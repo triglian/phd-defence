@@ -1,0 +1,133 @@
+
+.reveal .MJXp-script {font-size: .8em}
+.reveal .MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.reveal .MJXp-bold {font-weight: bold}
+.reveal .MJXp-italic {font-style: italic}
+.reveal .MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.reveal .MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.reveal .MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.reveal .MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.reveal .MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.reveal .MJXp-largeop {font-size: 150%}
+.reveal .MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.reveal .MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.reveal .MJXp-display {display: block; text-align: center; margin: 1em 0}
+.reveal .MJXp-math span {display: inline-block}
+.reveal .MJXp-box {display: block!important; text-align: center}
+.reveal .MJXp-box:after {content: " "}
+.reveal .MJXp-rule {display: block!important; margin-top: .1em}
+.reveal .MJXp-char {display: block!important}
+.reveal .MJXp-mo {margin: 0 .15em}
+.reveal .MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.reveal .MJXp-denom {display: inline-table!important; width: 100%}
+.reveal .MJXp-denom > * {display: table-row!important}
+.reveal .MJXp-surd {vertical-align: top}
+.reveal .MJXp-surd > * {display: block!important}
+.reveal .MJXp-script-box > *  {display: table!important; height: 50%}
+.reveal .MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.reveal .MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.reveal .MJXp-script-box > * > * > * {display: block!important}
+.reveal .MJXp-mphantom {visibility: hidden}
+.reveal .MJXp-munderover {display: inline-table!important}
+.reveal .MJXp-over {display: inline-block!important; text-align: center}
+.reveal .MJXp-over > * {display: block!important}
+.reveal .MJXp-munderover > * {display: table-row!important}
+.reveal .MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.reveal .MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.reveal .MJXp-mtr {display: table-row!important}
+.reveal .MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.reveal .MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.reveal .MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.reveal .MJXp-mlabeledtr {display: table-row!important}
+.reveal .MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.reveal .MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.reveal .MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.reveal .MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.reveal .MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.reveal .MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.reveal .MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.reveal .MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.reveal .MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.reveal .MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.reveal .MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.reveal .MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.reveal .MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.reveal .MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+.reveal .mjx-chtml {display: inline-block; line-height: 0; text-indent: 0; text-align: left; text-transform: none; font-style: normal; font-weight: normal; font-size: 100%; font-size-adjust: none; letter-spacing: normal; word-wrap: normal; word-spacing: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; margin: 0; padding: 1px 0}
+.reveal .MJXc-display {display: block; text-align: center; margin: 1em 0; padding: 0}
+.reveal .mjx-chtml[tabindex]:focus, body :focus .mjx-chtml[tabindex] {display: inline-table}
+.reveal .mjx-full-width {text-align: center; display: table-cell!important; width: 10000em}
+.reveal .mjx-math {display: inline-block; border-collapse: separate; border-spacing: 0}
+.reveal .mjx-math * {display: inline-block; -webkit-box-sizing: content-box!important; -moz-box-sizing: content-box!important; box-sizing: content-box!important; text-align: left}
+.reveal .mjx-numerator {display: block; text-align: center}
+.reveal .mjx-denominator {display: block; text-align: center}
+.reveal .MJXc-stacked {height: 0; position: relative}
+.reveal .MJXc-stacked > * {position: absolute}
+.reveal .MJXc-bevelled > * {display: inline-block}
+.reveal .mjx-stack {display: inline-block}
+.reveal .mjx-op {display: block}
+.reveal .mjx-under {display: table-cell}
+.reveal .mjx-over {display: block}
+.reveal .mjx-over > * {padding-left: 0px!important; padding-right: 0px!important}
+.reveal .mjx-under > * {padding-left: 0px!important; padding-right: 0px!important}
+.reveal .mjx-stack > .mjx-sup {display: block}
+.reveal .mjx-stack > .mjx-sub {display: block}
+.reveal .mjx-prestack > .mjx-presup {display: block}
+.reveal .mjx-prestack > .mjx-presub {display: block}
+.reveal .mjx-delim-h > .mjx-char {display: inline-block}
+.reveal .mjx-surd {vertical-align: top}
+.reveal .mjx-mphantom * {visibility: hidden}
+.reveal .mjx-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 2px 3px; font-style: normal; font-size: 90%}
+.reveal .mjx-annotation-xml {line-height: normal}
+.reveal .mjx-menclose > svg {fill: none; stroke: currentColor}
+.reveal .mjx-mtr {display: table-row}
+.reveal .mjx-mlabeledtr {display: table-row}
+.reveal .mjx-mtd {display: table-cell; text-align: center}
+.reveal .mjx-label {display: table-row}
+.reveal .mjx-box {display: inline-block}
+.reveal .mjx-block {display: block}
+.reveal .mjx-span {display: inline}
+.reveal .mjx-char {display: block; white-space: pre}
+.reveal .mjx-itable {display: inline-table; width: auto}
+.reveal .mjx-row {display: table-row}
+.reveal .mjx-cell {display: table-cell}
+.reveal .mjx-table {display: table; width: 100%}
+.reveal .mjx-line {display: block; height: 0}
+.reveal .mjx-strut {width: 0; padding-top: 1em}
+.reveal .mjx-vsize {width: 0}
+.reveal .MJXc-space1 {margin-left: .167em}
+.reveal .MJXc-space2 {margin-left: .222em}
+.reveal .MJXc-space3 {margin-left: .278em}
+.reveal .mjx-chartest {display: block; visibility: hidden; position: absolute; top: 0; line-height: normal; font-size: 500%}
+.reveal .mjx-chartest .mjx-char {display: inline}
+.reveal .mjx-chartest .mjx-box {padding-top: 1000px}
+.reveal .MJXc-processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.reveal .MJXc-processed {display: none}
+.reveal .mjx-test {display: block; font-style: normal; font-weight: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow: hidden; height: 1px}
+.reveal .mjx-ex-box-test {position: absolute; width: 1px; height: 60ex}
+.reveal .mjx-line-box-test {display: table!important}
+.reveal .mjx-line-box-test span {display: table-cell!important; width: 10000em!important; min-width: 0; max-width: none; padding: 0; border: 0; margin: 0}
+.reveal .mjx-chtml .mjx-noError {line-height: 1.2; vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+.reveal .MJXc-TeX-unknown-R {font-family: STIXGeneral,'Cambria Math','Arial Unicode MS',serif; font-style: normal; font-weight: normal}
+.reveal .MJXc-TeX-unknown-I {font-family: STIXGeneral,'Cambria Math','Arial Unicode MS',serif; font-style: italic; font-weight: normal}
+.reveal .MJXc-TeX-unknown-B {font-family: STIXGeneral,'Cambria Math','Arial Unicode MS',serif; font-style: normal; font-weight: bold}
+.reveal .MJXc-TeX-unknown-BI {font-family: STIXGeneral,'Cambria Math','Arial Unicode MS',serif; font-style: italic; font-weight: bold}
+.reveal .MJXc-TeX-ams-R {font-family: MJXc-TeX-ams-R,MJXc-TeX-ams-Rw}
+.reveal .MJXc-TeX-cal-B {font-family: MJXc-TeX-cal-B,MJXc-TeX-cal-Bx,MJXc-TeX-cal-Bw}
+.reveal .MJXc-TeX-frak-R {font-family: MJXc-TeX-frak-R,MJXc-TeX-frak-Rw}
+.reveal .MJXc-TeX-frak-B {font-family: MJXc-TeX-frak-B,MJXc-TeX-frak-Bx,MJXc-TeX-frak-Bw}
+.reveal .MJXc-TeX-math-BI {font-family: MJXc-TeX-math-BI,MJXc-TeX-math-BIx,MJXc-TeX-math-BIw}
+.reveal .MJXc-TeX-sans-R {font-family: MJXc-TeX-sans-R,MJXc-TeX-sans-Rw}
+.reveal .MJXc-TeX-sans-B {font-family: MJXc-TeX-sans-B,MJXc-TeX-sans-Bx,MJXc-TeX-sans-Bw}
+.reveal .MJXc-TeX-sans-I {font-family: MJXc-TeX-sans-I,MJXc-TeX-sans-Ix,MJXc-TeX-sans-Iw}
+.reveal .MJXc-TeX-script-R {font-family: MJXc-TeX-script-R,MJXc-TeX-script-Rw}
+.reveal .MJXc-TeX-type-R {font-family: MJXc-TeX-type-R,MJXc-TeX-type-Rw}
+.reveal .MJXc-TeX-cal-R {font-family: MJXc-TeX-cal-R,MJXc-TeX-cal-Rw}
+.reveal .MJXc-TeX-main-B {font-family: MJXc-TeX-main-B,MJXc-TeX-main-Bx,MJXc-TeX-main-Bw}
+.reveal .MJXc-TeX-main-I {font-family: MJXc-TeX-main-I,MJXc-TeX-main-Ix,MJXc-TeX-main-Iw}
+.reveal .MJXc-TeX-main-R {font-family: MJXc-TeX-main-R,MJXc-TeX-main-Rw}
+.reveal .MJXc-TeX-math-I {font-family: MJXc-TeX-math-I,MJXc-TeX-math-Ix,MJXc-TeX-math-Iw}
+.reveal .MJXc-TeX-size1-R {font-family: MJXc-TeX-size1-R,MJXc-TeX-size1-Rw}
+.reveal .MJXc-TeX-size2-R {font-family: MJXc-TeX-size2-R,MJXc-TeX-size2-Rw}
+.reveal .MJXc-TeX-size3-R {font-family: MJXc-TeX-size3-R,MJXc-TeX-size3-Rw}
+.reveal .MJXc-TeX-size4-R {font-family: MJXc-TeX-size4-R,MJXc-TeX-size4-Rw}
