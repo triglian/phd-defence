@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>seed-element</title>
+  
+  <script src="../../../webcomponentsjs/webcomponents.min.js"></script>
+  <link rel="import" href="../../../test-fixture/test-fixture.html">
+  <script src="../../../web-component-tester/browser.js"></script>
+  <script src="../../../test-fixture/test-fixture-mocha.js"></script>
+
+  <link rel="import" href="../../asq-welcome.html">
+</head>
+<body>
+  <test-fixture id="leFixture">
+    <template>
+      <asq-welcome id="myEl" role="presenter"></asq-welcome>
+    </template>
+  </test-fixture>
+  
+  <script>
+    var myEl;
+
+    describe('<asq-welcome> presenter', function() {
+
+      beforeEach(function () {
+        myEl = fixture('leFixture');
+      });
+
+      describe('attributes', function() {
+
+        it('should define the "joinMessage" attribute', function() {
+          assert.equal(myEl.joinMessage, 'Join this presentation at:');
+        });
+      });
+
+      describe('properties', function() {
+        it('should define the "liveUrl" property', function() {
+          assert.equal(myEl.liveUrl, '');
+        });
+
+        it('should define the "connected" property', function() {
+          assert.equal(myEl.connected, false);
+        });
+
+        it('should define the "iconGroups" property', function() {
+          assert.deepEqual(myEl.iconGroups, []);
+        });
+
+        it('should define the "connectedViewers" property', function() {
+          assert.deepEqual(myEl.connectedViewers, []);
+        });
+      });
+
+      describe('template', function(){
+        it('should reflect the number of "connectedViewers" in the template', function(done) {
+          myEl.connected = true;
+          setTimeout(function(){
+            assert.equal(myEl.shadowRoot.getElementById("viewersNum").textContent, "0");
+            myEl.connectedViewers = [
+              {token:"token_a", screenName:"nameA"},
+              {token:"token_b", screenName:"nameB"}
+            ];
+            setTimeout(function(){
+              assert.equal(myEl.shadowRoot.getElementById("viewersNum").textContent, "2");
+              done();
+            }, 1);
+          }, 1);
+        });
+
+        it('should show the correct number of viewer icons', function(done) {
+          myEl.connected = true;
+          console.log(myEl.connectedViewers)
+          setTimeout(function(){
+            assert.equal(myEl.shadowRoot.querySelectorAll(".icon-group").array().length, 0);
+            myEl.connectedViewers = [
+              {token:"token_a", screenName:"nameA"},
+              {token:"token_b", screenName:"nameB"}
+            ];
+            setTimeout(function(){
+              assert.equal(myEl.shadowRoot.querySelectorAll(".icon-group").array().length, 1);
+              myEl.connectedViewers = [
+                {token:"token_a", screenName:"nameA"},
+                {token:"token_b", screenName:"nameB"},
+                {token:"token_c", screenName:"nameC"},
+                {token:"token_d", screenName:"nameD"},
+                {token:"token_e", screenName:"nameE"},
+                {token:"token_f", screenName:"nameF"},
+              ];
+              setTimeout(function(){
+                assert.equal(myEl.shadowRoot.querySelectorAll(".icon-group").array().length, 2);
+                done();
+              }, 1);
+            }, 1);
+          }, 1);
+        });
+      });
+
+      describe('methods', function(){
+        describe('computeIconGroups', function(){
+          it('correctly calculate the icon groups', function() {
+            assert.deepEqual(myEl.computeIconGroups(0), []);
+            assert.deepEqual(myEl.computeIconGroups(1), [['']]);
+            assert.deepEqual(myEl.computeIconGroups(2), [['', '']]);
+            assert.deepEqual(myEl.computeIconGroups(5), [['', '', '', '', '']]);
+            assert.deepEqual(myEl.computeIconGroups(6), [['', '', '', '', ''], ['']]);
+            assert.deepEqual(myEl.computeIconGroups(12), [['', '', '', '', ''],['', '', '', '', ''],['', '']]);
+          });
+        });
+
+       describe('onSessionInfo', function(){
+          it('should form the right liveUrl', function() {
+            var event = { protocol: "http:", host: "demo.com", port: "80" };
+            myEl.onSessionInfo(event);
+            assert.equal( myEl.liveUrl, "http://demo.com/");
+            var event = { protocol: "http:", host: "demo.com", port: "443" };
+            myEl.onSessionInfo(event);
+            assert.equal( myEl.liveUrl, "http://demo.com:443/");
+            var event = { protocol: "https:", host: "demo.com", port: "443" };
+            myEl.onSessionInfo(event);
+            assert.equal( myEl.liveUrl, "https://demo.com/");
+            var event = { protocol: "https:", host: "demo.com", port: "80" };
+            myEl.onSessionInfo(event);
+            assert.equal( myEl.liveUrl, "https://demo.com:80/");
+          });
+        });
+      });
+
+    });
+  </script>
+
+</body>
+</html>

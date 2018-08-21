@@ -1,0 +1,327 @@
+<link rel="import" href="../asq-base/asq-base.html">
+<link rel="import" href="./asq-match.html">
+
+<script>
+
+  /** 
+  * @polymerBehavior
+  */
+  ASQ.MatchableBehavior = {
+
+    properties: {
+
+      /**
+       * The attribute value of an element for `matched`.
+       *
+       * @attribute attrForSelected
+       * @type {string}
+       */
+      attrForMatched: {
+        type: String,
+        value: 'name'
+      },
+
+      /**
+       * Returns the currently matched item.
+       *
+       * @type {Object}
+       */
+      matches: {
+        type: Object,
+        readOnly: true
+      },
+
+
+      /**
+       * This is a CSS selector string. Define the items that
+       * are divided into `X` set.
+       *
+       */
+      xMatchable: String,
+
+      /**
+       * This is a CSS selector string. Define the items that
+       * are divided into `Y` set.
+       *
+       */
+      yMatchable: String,
+
+      /**
+       * The class to set on elements when matched.
+       *
+       * @attribute selectedClass
+       * @type {string}
+       */
+      matchedClass: {
+        type: String,
+        value: 'asq-matched'
+      },
+
+      /**
+       * The attribute to set on elements when matched.
+       *
+       * @attribute selectedAttribute
+       * @type {string}
+       */
+      matchedAttribute: {
+        type: String,
+        value: null
+      },
+
+      /**
+       * The set of excluded elements where the key is the `localName` 
+       * of the element that will be ignored from the item list.
+       *
+       * @type {object}
+       * @default {template: 1}
+       */
+      excludedLocalNames: {
+        type: Object,
+        value: function() {
+          return {
+            'template': 1
+          };
+        }
+      },
+
+      /**
+       * The mode is to define the relationship between two sets.
+       * It can be `1-1`, `m-m`, `a-m`, `m-b` or `a-b`. 
+       * a and b are any positive integer numbers.
+       * 
+       */
+      mode: {
+        type: String,
+        value: '1-1',
+        notify: true,
+        reflectToAttribute: true,
+        observer: '_modeChanged'
+      },
+
+      /**
+       * This property is used to specify the matches through a valid 
+       * JSON format string, which is exactlly the stringify string of
+       * `matches`, i.e. JSON.stringify(matches). An example is 
+       * like follows.
+       *
+       *      x.value='{"Europe":["New York"],"North America":["Jerusalem"],"Middle East":["Lugano"]}'
+       */
+      value: {
+        type: String,
+        value: '{}',
+        observer: '_valueChanged'
+      }
+    },
+
+    /**
+     * This property is used to stop the change of value when
+     * the `matches` changes. It is useful when the matches are specified
+     * by the `value` attribute, e.g. `x.value='{"Europe":["New York"],"North America":["Jerusalem"],"Middle East":["Lugano"]}'`. 
+     *
+     * In this case, by setting `_stopCascading` to true before really performing the changes to prevent the infinite recursion.
+     * 
+     * @default false
+     * @type {Boolean}
+     */
+    _stopCascading: false,
+
+    _validateDeeply: function(value) {
+      if (!value || typeof value !== 'string' || value.length === 0) 
+        return false;
+
+      var matches = null;
+      try {
+        matches = JSON.parse(value);
+      } catch (err) {
+        return false;
+      }
+      
+      // the string we parsed can still be null or 'null'
+      if(!matches) return false;
+
+      var keys = Object.keys(matches);
+
+      for ( var i in keys ) {
+        var x = keys[i];
+        if ( matches[x].length > this._match.yMax ) {
+          return false;
+        }
+
+        for ( var j in matches[x] ) {
+          var y = matches[x][j];
+          this._validateValues(x, y);
+        }
+      }
+      return true;
+    },
+
+    _valueChanged: function(newValue, oldValue) {
+      if ( JSON.stringify(this.matches) !== newValue ) {
+        if ( !this._validateDeeply(newValue) ) {
+          this.value = oldValue;
+        } else {
+          this._stopCascading = true;
+
+          this._match.clear();
+          // no need to use try/catch here since we know
+          // `newValue` should be a valid JSON string
+          var matches = JSON.parse(newValue);
+          Object.keys(matches).forEach(function(x) {
+            matches[x].forEach(function(y){
+              this.match(x, y);
+            }, this);
+          }, this);
+
+          this._stopCascading = false;
+        }
+      }
+    },
+
+    created: function() {
+      this._bindFilterItem = this._filterItem.bind(this);
+      this._match = new ASQ.Match(this._applyMatch.bind(this));
+    },
+
+    /**
+     * Returns an array of items in `X` set.
+     *
+     * @property items
+     * @type Array
+     */
+    get xItems() {
+      var nodes = Polymer.dom(this).querySelectorAll(this.xMatchable || '*');
+      return Array.prototype.filter.call(nodes, this._bindFilterItem);
+    },
+
+    /**
+     * Returns an array of items in `Y` set.
+     *
+     * @property items
+     * @type Array
+     */
+    get yItems() {
+      var nodes = Polymer.dom(this).querySelectorAll(this.yMatchable || '*');
+      return Array.prototype.filter.call(nodes, this._bindFilterItem);
+    },
+
+
+    _filterItem: function(node) {
+      return !this.excludedLocalNames[node.localName];
+    },
+
+    toggle: function(xValue, yValue, flag) {
+      if (typeof flag === 'undefined') {
+        this.match(xValue, yValue);
+        return
+      }
+      
+      if ( typeof flag === 'boolean' && flag !== this._match.isMatched(x, y) ) {
+        this.match(xValue, yValue);
+      }
+    },
+
+    // 
+    _validateValues: function(xValue, yValue) {
+      var xItem = this._xValueToItem(xValue);
+      var yItem = this._yValueToItem(yValue);
+
+      if ( typeof(xItem) === 'undefined' || typeof(yItem) === 'undefined' ) {
+        throw 'Wrong values: '  + xValue + ' or ' + yValue;
+      }
+    },
+
+    /**
+     * To check if two values are matched.
+     * 
+     * @param  {String}  xValue [description]
+     * @param  {String}  yValue [description]
+     * @return {Boolean}        [description]
+     */
+    isMatched: function(xValue, yValue) {
+      this._validateValues(xValue, yValue);
+
+      return this._match.isMatched(xValue, yValue);
+    },
+
+    /**
+     * Match or dismatch two values.
+     * 
+     * @param  {String} xValue [description]
+     * @param  {String} yValue [description]
+     */
+    match: function(xValue, yValue) {
+      this._validateValues(xValue, yValue);
+      
+      this._match.match(xValue, yValue);
+    },
+
+    clear: function() {
+      this._match.clear();
+    },
+
+    _xValueToItem: function(value) {
+      for (var i = 0, item; item = this.xItems[i]; i++) {
+        if (this._valueForItem(item) == value) {
+          return item;
+        }
+      }
+    },
+
+    _yValueToItem: function(value) {
+      for (var i = 0, item; item = this.yItems[i]; i++) {
+        if (this._valueForItem(item) == value) {
+          return item;
+        }
+      }
+    },
+
+    _valueForItem: function(item) {
+      return item.getAttribute(this.attrForMatched);
+    },
+
+   
+    _applyMatch: function(x, y, isMatched) {
+      var xFlag = this._match.isXMatchedByAnyY(x);
+      var yFlag = this._match.isYMatchedByAnyX(y);
+
+      if ( this.matchedClass ) {
+        this._xValueToItem(x).classList.toggle(this.matchedClass, xFlag);
+        this._yValueToItem(y).classList.toggle(this.matchedClass, yFlag);
+      }
+
+      if ( this.matchedAttribute ) {
+        this._xValueToItem(x).setAttribute(this.matchedAttribute, xFlag); 
+        this._yValueToItem(y).setAttribute(this.matchedAttribute, yFlag); 
+      }
+
+      this._setMatches(this._match.x);
+      if ( ! this._stopCascading ) {
+        this.value = JSON.stringify(this.matches);
+      }
+      
+      this.fire('asq-matched', {x: x, y: y, isMatched: this.isMatched(x, y)});
+    },
+
+    _modeChanged: function(newMode, oldMode) {
+      this._parseMode(this.mode);
+      this.fire('new-mode-applied', {mode: this.mode});
+    },
+
+    _parseMode: function(mode) {
+      var parsed = mode.match(/^[0-9m]+-[0-9m]+$/g);
+      if ( typeof parsed !== 'undefined' ) {
+        var x = parsed[0].split('-')[0];
+        var y = parsed[0].split('-')[1];
+
+        this._match.xMax = x === 'm' ? Number.MAX_VALUE : Number(x);
+        this._match.yMax = y === 'm' ? Number.MAX_VALUE : Number(y);
+        
+      } else {
+        this._match.xMax = 1;
+        this._match.yMax = 1;
+      }
+    }
+
+  };
+
+</script>

@@ -1,0 +1,36 @@
+{
+  "name": "asq-code-q",
+  "version": "0.2.0",
+  "homepage": "https://github.com/ASQ-USI-Elements/asq-code-q",
+  "authors": [
+    "Vasileios Triglianos <triglian@gmail.com>",
+    "Zhenfei Nie <youyis2fox@gmail.com>"
+  ],
+  "description": "ASQ Code question element",
+  "keywords": [
+    "ASQ"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "polymer": "polymer/polymer#^1.2.1",
+    "ace-element": "triglian/ace-element#master",
+    "asq-base": "ASQ-USI-Elements/asq-base#master",
+    "iron-list": "polymerelements/iron-list#^1.3.8",
+    "paper-tabs": "polymerelements/paper-tabs#^1.0.10",
+    "paper-item": "PolymerElements/paper-item#^1.0.7",
+    "paper-styles": "PolymerElements/paper-styles#^1.0.12",
+    "iron-collapse": "PolymerElements/iron-collapse#^1.0.4"
+  },
+  "ignore": [
+    "index.js",
+    "lib",
+    "package.json",
+    "node_modules",
+    ".npmignore",
+    "test/server"
+  ],
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.1.4",
+    "web-component-tester": "Polymer/web-component-tester#^4.2.0"
+  }
+}

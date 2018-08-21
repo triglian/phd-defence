@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>asq-highlight-q | Demo</title>
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link href="../../asq-stem/asq-stem.html" rel="import">
+  <link rel="import" href="../asq-highlight-q.html">
+  <style>
+    body{
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    asq-highlight-q{
+      height: 550px;
+    }
+
+  </style>
+</head>
+<body unresolved>
+
+  <p><code>&lt;asq-highlight-q&gt; example</code>:</p>
+        
+  <asq-highlight-q  theme="textmate" mode="java" role="viewer" font-size="1em">
+    <asq-stem><h3 style=" margin:10px; 0;">Highlight with the appropriate color the following:</h3></asq-stem>
+    <asq-hl-color-task color="d9534f">Visibility Modifiers</asq-hl-color-task>
+      <asq-hl-color-task color="428bca">Variable Declarations</asq-hl-color-task>
+      <asq-hl-color-task color="f0ad4e">Other keywords</asq-hl-color-task>
+    <code>public class C {      
+ public void m() {
+   int i = i + 5 + ((int)5.0);
+ }
+}</code>
+  </asq-highlight-q>
+
+<asq-highlight-q  theme="textmate" mode="java" role="presenter" font-size="1em">
+    <asq-stem><h3 style=" margin:10px; 0;">Highlight with the appropriate color the following:</h3></asq-stem>
+    <asq-hl-color-task color="d9534f" colorName="bootstrapred">Visibility Modifiers</asq-hl-color-task>
+    <asq-hl-color-task color="428bca" colorName="blue">Variable Declarations</asq-hl-color-task>
+    <asq-hl-color-task color="f0ad4e" colorName="orange">Other keywords</asq-hl-color-task>
+    <code>public class C {      
+ public void m() {
+   int i = i + 5 + ((int)5.0);
+ }
+}</code>
+</asq-highlight-q>
+
+<script>
+  window.addEventListener('WebComponentsReady', function(){
+    var answers = [
+      { 
+        _id: '55f885bcb020385c4d26557f',
+        submitDate: Date.now(),
+        submission: {
+          'd9534f': [
+            {
+              'start': {
+                'row': '0',
+                'column': '0'
+              },
+              'end': {
+                'row': '0',
+                'column': '6'
+              },
+              'id': '42'
+            },
+            {
+              'start': {
+                'row': '1',
+                'column': '2'
+              },
+              'end': {
+                'row': '1',
+                'column': '8'
+              },
+              'id': '48'
+            }
+          ],
+          'f0ad4e': [
+            {
+              'start': {
+                'row': 2,
+                'column': 4
+              },
+              'end': {
+                'row': 2,
+                'column': 7
+              },
+              'id': 8
+            },
+            {
+              'start': {
+                'row': 2,
+                'column': 22
+              },
+              'end': {
+                'row': 2,
+                'column': 25
+              },
+              'id': 13
+            },
+            {
+              'start': {
+                'row': 2,
+                'column': 35
+              },
+              'end': {
+                'row': 2,
+                'column': 38
+              },
+              'id': 19
+            }
+          ]
+        }
+      },
+      {
+        _id: '55f885bcb020385c4d265572',
+        submitDate: Date.now(),
+        submission: {
+          'd9534f': [{
+            'start': {
+              'row': '0',
+              'column': '0'
+            },
+            'end': {
+              'row': '0',
+              'column': '6'
+            },
+            'id': '42'
+          }],
+          'f0ad4e': [{
+            'start': {
+              'row': 2,
+              'column': 4
+            },
+            'end': {
+              'row': 2,
+              'column': 7
+            },
+            'id': 8
+          }]
+        }
+      }
+    ];
+    var ah = document.querySelector('asq-highlight-q[role="presenter"]');
+    var ahp = Polymer.dom(ah.root).querySelector('asq-highlight-presenter-q');
+    ahp._submissions = answers;
+  })
+</script>
+
+</body>
+</html>

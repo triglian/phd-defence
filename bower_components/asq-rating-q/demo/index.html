@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+  <meta name="asq-elements" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  <title>asq-rating-q Demo</title>
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script>
+    window.Polymer = {
+      dom: 'shadow'
+    };
+  </script>
+  
+  <link href="../asq-rating-q.html" rel="import">
+  <link href="../../asq-stem/asq-stem.html" rel="import">
+
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial;
+      font-size: 14px;
+      margin: 0;
+      padding: 24px;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      -webkit-touch-callout: none;
+    }
+    section {
+      padding: 20px 0;
+    }
+    section > div {
+      padding: 14px;
+      font-size: 16px;
+    }
+  </style>
+
+</head>
+<body>
+
+  <section>
+    <h5>Viewer</h5>
+    <asq-rating-q type="stars" role="viewer">
+      <asq-stem><h3>An asq-rating question.</h3></asq-stem>
+      <asq-rating-item name="item-1" uid="uid1">Item to rate #1</asq-rating-item>
+      <asq-rating-item name="item-2" uid="uid2">Item to rate #2</asq-rating-item>
+      <asq-rating-item name="item-3" uid="uid3">Item to rate #3</asq-rating-item>
+      <asq-rating-item rating="3"  uid="uid4"disabled name="item-4">Item to rate #4 (disabled)</asq-rating-item>
+    </asq-rating-q>
+
+  </section>
+
+   <section>
+    <h5>Presenter</h5>
+    <asq-rating-q type="stars" role="presenter">
+      <asq-stem><h3>An asq-rating question.</h3></asq-stem>
+      <asq-rating-item name="item-1" uid="uid5">Item to rate #1</asq-rating-item>
+      <asq-rating-item name="item-2" uid="uid6">Item to rate #2</asq-rating-item>
+      <asq-rating-item name="item-3" uid="uid7">Item to rate #3</asq-rating-item>
+      <asq-rating-item rating="3" uid="uid8" disabled name="item-4">Item to rate #4 (disabled)</asq-rating-item>
+    </asq-rating-q>
+
+  </section>
+
+
+</body>
+</html>

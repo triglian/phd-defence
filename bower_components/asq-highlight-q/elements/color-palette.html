@@ -1,0 +1,201 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../iron-dropdown/iron-dropdown.html">
+<link rel="import" href="../../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../iron-icon/iron-icon.html">
+<link rel="import" href="../../iron-selector/iron-selector.html">
+<link rel="import" href="../../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../button-styles.html">
+    
+<dom-module id="color-palette">
+  <template>
+    
+    <style include="button-styles"></style>
+    <style>
+
+      :host[disabled]{
+        pointer-events: none;
+      }
+
+      /* manually position the dropdown below the trigger */
+      #dropdown {
+      /*  position: absolute;*/
+        width:112px;
+        padding: 5px;
+        background: #CFD8DC;
+      }
+
+      #colorSelector{
+        @apply(--layout-horizontal);
+        @apply(--layout-wrap);
+      }
+
+      .color-item{
+        width:20px;
+        height:20px;
+        border:1px solid transparent;
+        cursor: pointer;
+        margin: 3px;
+      }
+      .color-item:hover{
+        border:1px solid #444;
+      }
+
+      .color-item > iron-icon{
+        width:20px;
+        height: 20px;
+        display:none;
+      }
+
+      .color-item[active] > iron-icon{;
+        display:block;
+      }
+    </style>
+
+    <div style="position: relative">
+      <paper-icon-button id="trigger" disabled="{{disabled}}" touch-action="none" on-tap="_toggleDropdown">
+      </paper-icon-button>
+      <iron-dropdown id="dropdown" vertical-offset="44" horizontal-offset="2">
+        <iron-selector class="dropdown-content" id="colorSelector" selected="{{selected}}" on-iron-select="_onColorSelected">
+          <template is="dom-repeat" items="{{palette}}" as="item">
+            <div class="color-item" style$="{{computeStyle(item)}}"><iron-icon icon="check"></iron-icon></div>
+
+          </template>
+        </iron-selector>
+      </iron-dropdown>
+     
+    </div>
+    
+  </template>
+  <script>
+    Polymer({
+      is: 'color-palette',
+      properties: {
+        palette: {
+          type: Array,
+          value: function () {
+            return [
+              {
+                'color': 'd9534f',
+                'name': 'bootstrapred'
+              },
+              {
+                'color': '428bca',
+                'name': 'blue'
+              },
+              {
+                'color': '5cb85c',
+                'name': 'green'
+              },
+              {
+                'color': 'f0ad4e',
+                'name': 'orange'
+              },
+              {
+                'color': '8b0000',
+                'name': 'darkred'
+              },
+              {
+                'color': 'ffd700',
+                'name': 'gold'
+              },
+              {
+                'color': 'bdb76b',
+                'name': 'darkkhaki'
+              },
+              {
+                'color': '000080',
+                'name': 'navy'
+              },
+              {
+                'color': 'ba55d3',
+                'name': 'mediumorchid'
+              },
+              {
+                'color': '90ee90',
+                'name': 'lightgreen'
+              },
+              {
+                'color': 'ff00ff',
+                'name': 'magenta'
+              },
+              {
+                'color': 'ff0000',
+                'name': 'red'
+              }
+            ];
+          },
+          notify: true
+        },
+        disabled:{
+          type: Boolean,
+          value: false,
+          observer: '_disabledChanged',
+          reflectToAttribute: true,
+          notify: true
+        },
+        selected: { 
+          type: "String",
+          value: '0',
+          notify: true 
+        },
+        selectedColor: { 
+          type: "Object",
+          value: function(){return undefined;},
+          notify: true 
+        }
+      },
+
+      attached: function () {
+        //this will have the color of the selected color item
+        if(this.selected){
+          this.selectedColor = this.palette[this.selected];
+          this.cIcon.style.backgroundColor = '#'+ this.selectedColor.color;
+        }
+      },
+
+      _disabledChanged: function(newValue, oldValue){
+        if(!newValue && this.selected >=0){
+          this.selectedColor = this.palette[this.selected];
+          this.cIcon.style.backgroundColor = '#'+ this.selectedColor.color;
+        }else{
+          /*TODO(triglian):
+          Use material design color vars
+          */
+           this.cIcon.style.backgroundColor = '#9b9b9b';
+        }
+      },
+
+      get cIcon(){
+        return Polymer.dom(this.$.trigger.root).querySelector('iron-icon');
+      },
+
+      _toggleDropdown: function(){
+        this.$.dropdown.toggle();
+      },
+
+      _onColorSelected: function(event, detail){
+        if(this.disabled) return;
+        // this.cIcon.style.backgroundColor = detail.item.style.backgroundColor;
+        this.selectedColor = this.palette[this.selected];
+        this.cIcon.style.backgroundColor = '#'+ this.selectedColor.color;
+      },
+
+      computeStyle: function (item) {
+        return 'background-color: #' + item.color;
+      },
+
+      isActive: function (){
+        return  this.$.trigger.hasAttribute('active');
+      },
+
+      setActive: function (val){
+        if(val === true){
+          this.$.trigger.classList.add('selected');
+        }else if(val === false){
+          this.$.trigger.classList.remove('selected');
+        }
+        return;
+      }
+    });
+  </script>
+</dom-module>

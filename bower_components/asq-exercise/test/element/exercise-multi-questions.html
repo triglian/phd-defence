@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="asq" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>asq-exercise</title>
+
+  <script src="../../../webcomponentsjs/webcomponents.min.js"></script>
+  <script src="../../../web-component-tester/browser.js"></script>
+
+  <!-- Step 1: import the element to test -->
+  <link rel="import" href="../../asq-exercise.html">
+  <link rel="import" href="../../../asq-text-input-q/asq-text-input-q.html">
+  <link rel="import" href="../../../asq-multi-choice-q/asq-multi-choice-q.html">
+  <link rel="import" href="../../../asq-option/asq-option.html" >
+  <link rel="import" href="../../../asq-base/asq-base.html">
+</head>
+<body>
+
+  <!-- You use the document as a place to set up your fixtures. -->
+  <test-fixture id="aemq-fixture">
+    <template>
+
+      <asq-exercise>
+
+        <asq-text-input-q>
+          <asq-stem><h3>What's the result of '2 * 4'</h3></asq-stem>
+        </asq-text-input-q>
+
+        <asq-multi-choice-q>
+          <asq-stem><h3>Which are the official languages of Switzerland?</h3></asq-stem>
+          <asq-option uid="007" name="English">English</asq-option>
+          <asq-option uid="007" name="French" correct-answer="true">French</asq-option>
+          <asq-option uid="007" name="German" correct-answer="true">German</asq-option>
+          <asq-option uid="007" name="Romansh" correct-answer="true">Romansh</asq-option>
+        </asq-multi-choice-q>
+
+      </asq-exercise>
+
+  </template>
+  </test-fixture>
+
+  <script>
+
+    suite('<asq-multi-choice-q>', function() {
+      test('test _getQuestions()', function() {
+        var aemq = fixture('aemq-fixture');
+
+        assert.isTrue(Array.isArray(aemq._getQuestions()));
+        assert.equal(aemq._getQuestions().length, 2);
+        assert.equal(aemq._getQuestions()[0].nodeName, "ASQ-TEXT-INPUT-Q");
+        assert.equal(aemq._getQuestions()[1].nodeName, "ASQ-MULTI-CHOICE-Q");
+      });
+
+      test('test default mixin values', function() {
+        var aemq = fixture('aemq-fixture');
+
+        assert.isTrue(aemq.isASQElement);
+        assert.isFalse(aemq.isASQQuestionTypeElement);
+        assert.equal(aemq.uid, '');
+        assert.equal(aemq.role, 'viewer');
+      });
+
+
+    });
+  </script>
+
+</body>
+</html>

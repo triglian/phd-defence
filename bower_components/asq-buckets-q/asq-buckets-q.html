@@ -1,0 +1,282 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../asq-base/asq-base.html">
+
+<link rel="import" href="elements/asq-buckets-q-viewer.html">
+<link rel="import" href="elements/asq-buckets-q-presenter.html">
+
+<!--
+`asq-buckets-q` is a kind of matching question. To use this element, you need to difine two sets, `X` set and `Y` set, using `x-matchable` and `y-matchable`.
+
+Users can make matches between `X` and `Y` set. The matches can be either `1-m` and `1-1` relation, by specifing `mode` attribute.
+
+
+
+Examples:
+    
+    <asq-buckets-q role="viewer"
+      mode="1-3" 
+      x-matchable="div[buckets]" 
+      y-matchable="div[labels]" 
+      attr-for-matched="s-name"
+      matched-attribute="matched"
+      matched-class="label-success">
+
+      <div buckets>
+        <div s-name="Europe" bucket><b>Europe</b></div>
+        <div s-name="North America" bucket><b>North America</b></div>
+        <div s-name="Middle East" bucket><b>Middle East</b></div>
+      </div>
+      
+      <div labels>
+        <div s-name="New York" label class="label-primary">New York</div>
+        <div s-name="London" label class="label-primary">London</div>
+        <div s-name="Zurich" label class="label-primary">Zurich</div>
+        <div s-name="Jerusalem" label class="label-primary">Jerusalem</div>
+        <div s-name="Chicago" label class="label-primary">Chicago</div>
+        <div s-name="Lugano" label class="label-primary">Lugano</div>
+      </div>
+    </asq-buckets-q>
+
+
+@element asq-asq-buckets-q
+@demo demo/index.html
+@group ASQ Elements
+@blurb ASQ buckets questions.
+@homepage http://github.com/ASQ-USI-Elements/asq-buckets-q
+-->
+<dom-module id="asq-buckets-q">
+  
+  <style is="custom-style">
+    :host {
+      display: block;
+    }
+  </style>
+
+  <template>
+    <template is="dom-if" if="{{hasRole(role, roles.VIEWER)}}" restamp>
+      <asq-buckets-q-viewer
+        role="viewer" 
+        uid="[[uid]]"
+        disabled="{{disabled}}"
+        value="{{value}}"
+        mode="{{mode}}" 
+        x-matchable="{{xMatchable}}" 
+        y-matchable="{{yMatchable}}" 
+        x-bucket="{{xBucket}}"
+        y-label="{{yLabel}}"
+        attr-for-matched="{{attrForMatched}}"
+        matched-attribute="{{matchedAttribute}}"
+        matched-class="{{matchedClass}}"
+        on-dragging-class="{{onDraggingClass}}"
+        event-bus="[[eventBus]]">
+        <content></content>
+      </asq-buckets-q-viewer>
+    </template>
+
+    <template is="dom-if" if="{{hasRole(role, roles.PRESENTER)}}" restamp>
+      <asq-buckets-q-presenter
+        role="presenter" 
+        uid="[[uid]]"
+        disabled="{{disabled}}"
+        value="{{value}}"
+        mode="{{mode}}" 
+        x-matchable="{{xMatchable}}" 
+        y-matchable="{{yMatchable}}" 
+        x-bucket="{{xBucket}}"
+        y-label="{{yLabel}}"
+        attr-for-matched="{{attrForMatched}}"
+        matched-attribute="{{matchedAttribute}}"
+        matched-class="{{matchedClass}}"
+        on-dragging-class="{{onDraggingClass}}"
+        event-bus="[[eventBus]]">
+        <content></content>
+      </asq-buckets-q-presenter>
+    </template>
+    
+  </template>
+
+  <script>
+    Polymer({
+      is: 'asq-buckets-q',
+
+      behaviors: [
+        ASQ.asqQuestionElementBehavior
+      ],
+
+
+      properties: {
+
+        /**
+         * The buckets with the matched labels.
+         */
+        value: {
+          type: String,
+          notify: true,
+          observer: "_valueChanged",
+        },
+
+        disabled: { 
+          type: Boolean,
+          value: false,
+          notify: true, 
+          reflectToAttribute: true
+        },
+        /**
+         * Event bus to communicate with ASQ
+         */
+        eventBus: {
+          type: Object,
+          notify: true
+        },
+
+        onDraggingClass: {
+          type: String,
+          value: 'dragging',
+          notify: true
+        },
+
+        /**
+         * 
+         * The attribute value of an element for `matched`.
+         *
+         * @attribute attrForSelected
+         * @type {string}
+         */
+        attrForMatched: {
+          type: String,
+          value: 'name'
+        },
+
+        /**
+         * 
+         * This is a CSS selector string. Define the items that
+         * are divided into `X` set.
+         *
+         */
+        xMatchable: {
+          type: String,
+          value: '[buckets]'
+        },
+
+        /**
+         * 
+         * This is a CSS selector string. Define the items that
+         * are divided into `Y` set.
+         *
+         */
+        yMatchable: {
+          type: String,
+          value: '[labels]'
+        },
+
+        xBucket: {
+          type: String,
+          value: '.bucket'
+        },
+
+        yLabel: {
+          type: String,
+          value: '.label'
+        },
+        /**
+         * 
+         * The class to set on elements when matched.
+         *
+         * @attribute selectedClass
+         * @type {string}
+         */
+        matchedClass: {
+          type: String,
+          value: 'asq-matched'
+        },
+
+        /**
+         * 
+         * The attribute to set on elements when matched.
+         *
+         * @attribute selectedAttribute
+         * @type {string}
+         */
+        matchedAttribute: {
+          type: String,
+          value: 'matched'
+        },
+
+        /**
+         * 
+         * The mode is to define the relationship between two sets.
+         * It can be `1-1`, `m-m`, `a-m`, `m-b` or `a-b`. 
+         * a and b are any postive integer number.
+         * 
+         */
+        mode: {
+          type: String,
+          value: '1-1',
+          notify: true,
+          reflectToAttribute: true
+        },
+
+        /**
+         * This property is used to specify the matches through a valid 
+         * JSON format string, which is exactlly the stringify string of
+         * `matches`, i.e. JSON.stringify(matches). An example is 
+         * like follows.
+         *
+         *      x.value='{
+         *        "Europe":["New York"],
+         *        "North America":["Jerusalem"],
+         *        "Middle East":["Lugano"]
+         *      }'
+         *      
+         */
+        // value: {
+        //   type: String,
+        //   value: '{}'
+        // }
+      },
+
+      get _api() {
+        return this.$$('asq-buckets-q-' + this.role);
+      },
+
+      _valueChanged: function(newVal) {
+        this.fire('questioninput', newVal)
+      },
+
+      _updateItems: function() {
+        this._api._updateItems();
+      },
+
+      created: function () {
+        document.addEventListener('asq-ready', function (evt) {
+          this.eventBus = evt.detail.asqEventBus
+        }.bind(this));
+
+      },
+
+      /**
+       * Collect answers from inner `asq-option`s and orgnize them 
+       * into an object.
+       *
+
+        {
+          questionUid: this.uid,
+          timestamp: new Date(),
+          matches: <matches>
+        }
+
+       */
+      submit: function () {
+        if (this.role == this.roles.VIEWER) {
+          var el = this.$$('asq-buckets-q-viewer');
+          if (!el) {
+            throw new Error('submit(): expected asq-css-select-q-viewer element to exist');
+          }
+          return el.submit();
+        }
+      }
+
+    });
+  </script>
+
+</dom-module>

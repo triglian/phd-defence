@@ -1,7 +1,7 @@
 # phd-defence
 PhD Defence Slides.
 
-# Points to talk about
+# Outline
 ## Motivation
 
 * Distraction

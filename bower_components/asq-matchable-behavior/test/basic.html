@@ -1,0 +1,291 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="asq" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>asq-matching</title>
+
+  <script src="../../webcomponentsjs/webcomponents.min.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+
+  <!-- Step 1: import the element to test -->
+  <link rel="import" href="../asq-match.html">
+</head>
+<body>
+
+  <!-- You use the document as a place to set up your fixtures. -->
+
+  <script>
+    // 1) if user input some string, float number, null, undefined value
+    // 2) if the user change the xMax and yMax when at runtime
+    //    - clear everything before the change?
+    // 3) test isMatched
+    // 4) test dui chen xing
+    // 4) cannot self matching
+    // 
+    var callback = function(x, y, isMatched) { }
+
+    var m = new ASQ.Match(callback);
+
+    var f1 = '(from1)';
+    var f2 = '(from2)';
+    var f3 = '(from3)';
+
+    var t1 = '(to1)';
+    var t2 = '(to2)';
+    var t3 = '(to3)';
+    var t4 = '(to4)';
+
+
+    var keys = [];
+    var values = [];
+
+    var NUM = 1000;
+
+    for ( var i = 0; i < NUM; i++ ) {
+      keys[i] = 'xTag_' + i;
+      values[i] = 'yTag_' + i;
+    }
+
+    suite('ASQ.Match', function() {
+      test('test default values', function() {
+        assert.equal(m.xMax, 1);
+        assert.equal(m.yMax, 1);
+
+        assert.equal(Object.keys(m.x).length, 0);
+        assert.equal(Object.keys(m.y).length, 0);
+      });
+
+      test('test set values', function() {
+        m.xMax = 10;
+        m.yMax = 2;
+
+        // assert.equal(m.xMax, 10);
+        // assert.equal(m.yMax, 2);
+
+        asyncPlatformFlush(function() {
+          assert.equal(m.xMax, 10);
+          assert.equal(m.yMax, 2);
+          done();
+        });
+      });
+
+      test('test isMathed', function() {
+        m.xMax = 1;
+        m.yMax = 1;
+
+        m.x[f1] = [t1];
+        m.y[t1] = [f1];
+
+        assert.isTrue(m.isMatched(f1, t1));  
+      });
+
+      test('test 1-1 case 1', function() {
+        m.x = {};
+        m.y = {};
+        m.xMax = 1;
+        m.yMax = 1;
+
+        m.match(f1, t1);
+        assert.isTrue(m.isMatched(f1, t1));
+
+        // toggle to be false
+        m.match(f1, t1);
+        assert.isFalse(m.isMatched(f1, t1));
+
+        // toggle again; it becomes true
+        m.match(f1, t1);
+        assert.isTrue(m.isMatched(f1, t1));
+        
+        m.match(f1, t2);
+        assert.isFalse(m.isMatched(f1, t1));
+        assert.isTrue(m.isMatched(f1, t2));
+
+        m.match(f2, t2);
+        assert.isFalse(m.isMatched(f1, t1));
+        assert.isFalse(m.isMatched(f1, t2));
+        assert.isFalse(m.isMatched(f2, t1));
+        assert.isTrue(m.isMatched(f2, t2));
+
+        m.match(f2, t1);
+        assert.isFalse(m.isMatched(f1, t1));
+        assert.isFalse(m.isMatched(f1, t2));
+        assert.isTrue(m.isMatched(f2, t1));
+        assert.isFalse(m.isMatched(f2, t2));
+      });
+
+      test('test 1-1 case 2', function() {
+        m.x = {};
+        m.y = {};
+        m.xMax = 1;
+        m.yMax = 1;
+
+        var key = keys[0];
+        m.match(key, values[0]);
+        
+
+        for ( var i = 1; i < NUM-1; i++ ) {
+          assert.isTrue(m.isMatched(key, values[i-1]));
+          assert.isFalse(m.isMatched(key, values[i]));
+          assert.isFalse(m.isMatched(key, values[i+1]));
+
+          m.match(key, values[i]);
+          assert.isFalse(m.isMatched(key, values[i-1]));
+          assert.isTrue(m.isMatched(key, values[i]));
+          assert.isFalse(m.isMatched(key, values[i+1]));
+
+          // toggle
+          m.match(key, values[i]);
+          assert.isFalse(m.isMatched(key, values[i-1]));
+          assert.isFalse(m.isMatched(key, values[i]));
+          assert.isFalse(m.isMatched(key, values[i+1]));
+
+          // toggle again
+          m.match(key, values[i]);
+          assert.isFalse(m.isMatched(key, values[i-1]));
+          assert.isTrue(m.isMatched(key, values[i]));
+          assert.isFalse(m.isMatched(key, values[i+1]));
+        }
+
+        m.match(key, values[NUM-1]);
+        for ( var i = 0; i < NUM-1; i++ ) {
+          assert.isFalse(m.isMatched(key, values[i]));
+        }
+        assert.isTrue(m.isMatched(key, values[NUM-1]));
+      });
+
+      test('test m-m case 1', function() {
+        m.x = {};
+        m.y = {};
+        m.xMax = Number.MAX_VALUE;
+        m.yMax = Number.MAX_VALUE;
+
+        m.match(f1, t1);
+        assert.isTrue(m.isMatched(f1, t1));
+
+        m.match(f1, t1);
+        assert.isFalse(m.isMatched(f1, t1));
+
+        m.match(f1, t1);
+        assert.isTrue(m.isMatched(f1, t1));
+        
+        m.match(f1, t2);
+        assert.isTrue(m.isMatched(f1, t1));
+        assert.isTrue(m.isMatched(f1, t2));
+
+        m.match(f2, t2);
+        assert.isTrue(m.isMatched(f1, t1));
+        assert.isTrue(m.isMatched(f1, t2));
+        assert.isFalse(m.isMatched(f2, t1));
+        assert.isTrue(m.isMatched(f2, t2));
+
+        m.match(f2, t1);
+        assert.isTrue(m.isMatched(f1, t1));
+        assert.isTrue(m.isMatched(f1, t2));
+        assert.isTrue(m.isMatched(f2, t1));
+        assert.isTrue(m.isMatched(f2, t2));
+      });
+
+      test('test m-m case 2', function() {
+        m.x = {};
+        m.y = {};
+        m.xMax = Number.MAX_VALUE;
+        m.yMax = Number.MAX_VALUE;
+
+        for ( var i = 0; i < NUM; i++ ) {
+          assert.isFalse(m.isMatched(keys[0], values[i]));
+          assert.isFalse(m.isMatched(keys[1], values[i]));
+          assert.isFalse(m.isMatched(keys[2], values[i]));
+        }
+
+        for ( var i = 0; i < NUM; i++ ) {
+          m.match(keys[0], values[i]);
+          m.match(keys[1], values[i]);
+          m.match(keys[2], values[i]);
+        }
+
+        for ( var i = 0; i < NUM; i++ ) {
+          assert.isTrue(m.isMatched(keys[0], values[i]));
+          assert.isTrue(m.isMatched(keys[1], values[i]));
+          assert.isTrue(m.isMatched(keys[2], values[i]));
+        }
+      });
+
+      test('test clear() method', function() {
+        m.x = {};
+        m.y = {};
+        m.xMax = Number.MAX_VALUE;
+        m.yMax = Number.MAX_VALUE;
+       
+        for ( var i = 0; i < NUM; i++ ) {
+          m.match(keys[0], values[i]);
+          m.match(keys[1], values[i]);
+          m.match(keys[2], values[i]);
+        }
+
+        for ( var i = 0; i < NUM; i++ ) {
+          assert.isTrue(m.isMatched(keys[0], values[i]));
+          assert.isTrue(m.isMatched(keys[1], values[i]));
+          assert.isTrue(m.isMatched(keys[2], values[i]));
+        }
+
+        m.clear();
+
+        for ( var i = 0; i < NUM; i++ ) {
+          assert.isFalse(m.isMatched(keys[0], values[i]));
+          assert.isFalse(m.isMatched(keys[1], values[i]));
+          assert.isFalse(m.isMatched(keys[2], values[i]));
+        }
+      });
+
+      test('test a-b case', function() {
+        m.x = {};
+        m.y = {};
+
+
+        var iterations =  100;
+        var a = 10;
+        var b = 20;
+
+        m.xMax = a;
+        m.yMax = b;
+
+        assert.isTrue(iterations > a);
+        assert.isTrue(iterations > b);
+
+        
+        for ( var i = 0; i < iterations; i++ ) {
+          for ( var j = 0; j < iterations; j++ ) {
+            m.match(keys[i], values[j]);
+          }
+        }
+
+        Object.keys(m.x).forEach(function(key, index){
+          console.log(m.x[key].length);
+          assert.isTrue(m.x[key].length <= b);
+        });
+
+        Object.keys(m.y).forEach(function(value, index){
+          assert.isTrue(m.y[value].length <= a);
+        });
+
+        // check if the mathces are in good shape
+        Object.keys(m.x).forEach(function(x) {
+          m.x[x].forEach(function(y) {
+            assert.isTrue(m.y[y].indexOf(x) >= 0);
+          });
+        });
+        Object.keys(m.y).forEach(function(y) {
+          m.y[y].forEach(function(x) {
+            assert.isTrue(m.x[x].indexOf(y) >= 0);
+          });
+        });
+
+      });
+
+
+    });
+  </script>
+
+</body>
+</html>

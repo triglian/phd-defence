@@ -1,0 +1,491 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../paper-input/paper-textarea.html">
+
+<link rel="import" href="../../asq-base/asq-base.html">
+
+<!--
+`asq-js-eval-q-viewer` is the viewer element for `asq-js-eval-q` 
+
+A major feature is that it will evaluate the code instantly and show the result.
+
+##### Example
+      <asq-js-eval-q-viewer>
+        <asq-stem><h4>Implement a function that wraps a given 
+            string with an HTML tag:</h4></asq-stem>
+      </asq-js-eval-q-viewer>
+
+
+@element asq-js-eval-q-viewer
+@demo demo/index.html
+@group ASQ Elements
+@blurb Element viewer element for `asq-js-eval-q`.
+@homepage http://github.com/ASQ-USI-Elements/asq-js-eval-q
+-->
+<dom-module id="asq-js-eval-q-viewer">
+
+  <template>
+
+    <style>
+
+    :host{
+      --paper-toolbar-background: #CFD8DC;
+      --paper-toolbar-color: #000;  
+      --paper-tabs-selection-bar-color: #333;
+    }
+    
+    paper-textarea{
+      --paper-input-container-focus-color: #CFD8DC;
+      --paper-input-container-input-color: #FCFCFC;
+       --paper-input-container: {
+        line-height: 1.1;
+        padding: 0;
+       };
+      --paper-input-container-input: {
+        line-height: 1.1;
+        font-size: inherit;
+        font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+      };
+
+      --paper-input-container-label:{
+        line-height: 1.1;
+        font-size: inherit;
+        font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+      };
+    }
+
+    #le-content{
+      @apply(--asq-js-eval-q-content);
+    }
+
+    #editor{
+      width: 100%;
+      box-sizing:border-box;
+      background-color: #565656;
+      color: #FCFCFC;
+      display: block;
+      padding: 9.5px;
+      margin: 0 0 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      @apply(--asq-js-eval-q-editor);
+    }
+
+     #textareaContainer{
+      @apply(--layout-horizontal);
+      box-sizing:border-box;
+      padding: 4px 8px;
+      border: 1px dashed #ccc;
+      border-radius: 4px;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+      margin: 5px 0;
+     }
+      
+    #taLineNumContainer{
+      line-height: 1.1;
+      text-align :right;
+      padding : 0 8px;
+      border-right :1px solid rgba(255,255,255, 0.3);
+    }
+
+    .asq-result-wrapper{
+       @apply(--asq-js-eval-q-result-container);
+    }
+    
+    .asq-console-wrapper{
+       @apply(--asq-js-eval-q-console-container);
+    }
+
+      code, kbd, pre, samp {
+        font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+        font-size: 1em;
+      }
+
+      
+      samp{
+        font-size: 1em;
+      }
+
+      pre{
+        width: 100%;
+        box-sizing:border-box;
+        background-color: #565656;
+        color: #FCFCFC;
+        display: block;
+        padding: 9.5px;
+        margin: 0 0 10px;
+        line-height: 1.42857143;
+        word-break: break-all;
+        word-wrap: break-word;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        overflow: auto;
+      }
+
+      pre.result-pre{
+        background-color: transparent;
+        color: inherit;
+        border: none;
+        border-radius: 0px;
+        padding:0;
+        margin:0;
+      }
+
+      kbd{
+        padding: 2px 4px;
+        font-size: 90%;
+        color: #fff;
+        background-color: #333;
+        border-radius: 3px;
+        -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
+        box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
+      }
+
+      #code{
+        @apply(--asq-js-eval-q-code-input);
+        @apply(--layout-flex);
+        margin-left: 8px;
+      }
+
+      h5 {
+        font-size: 14px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-family: inherit;
+        font-weight: 500;
+        line-height: 1.1;
+        color: inherit;
+      }
+
+      .asq-result-wrapper{
+        position:relative;
+        min-height: 20px;
+        padding: 4px;
+        margin-bottom: 20px;
+        background-color: #f5f5f5;
+        border: 1px solid #e3e3e3;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+      }
+
+      .asq-console-wrapper{
+        position:relative;
+        min-height: 20px;
+        padding: 4px;
+        margin-bottom: 20px;
+        background-color: #f5f5f5;
+        border: 1px solid #e3e3e3;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+      }
+
+      .console-entry{
+        border-bottom: 1px solid #ccc;
+        padding: 1px 3px;
+      }
+
+      .console-entry:last-of-type{
+        border-bottom: none;
+      }
+
+      .asq-result-wrapper.asq-correct{
+        background-color:#dff0d8;
+      }
+
+      .asq-correct-ok{
+        position:absolute;
+        top:5px;
+        right: 8px;
+        opacity:0;
+      }
+
+      .asq-correct .asq-correct-ok{
+        color:#5cb85c;
+        opacity:1;
+      }
+    </style>
+
+    <content select="asq-stem"></content>
+
+    <div id="le-content">
+      <div id="editor">
+        <code>
+          <div id="textareaContainer">
+            <div id="taLineNumContainer"></div>
+            <paper-textarea id="code" class="asq-code-input" on-keydown="onTextareaKeydown" no-label-float  label="enter your code here" value="{{value}}" disabled="{{disabled}}"></paper-textarea>
+          </div>
+        </code>
+      </div>
+
+      <div>
+        <h5>Result:</h5>
+        <div id="wrapper" class="asq-result-wrapper">
+          <i class="asq-correct-ok glyphicon glyphicon-ok"></i>
+          <pre class="result-pre"><samp id="result" class="asq-result">{{result}}</samp></pre>
+        </div>
+        <h5>Console Output:</h5>
+        <div id="wrapper" class="asq-console-wrapper">
+          <i class="asq-correct-ok glyphicon glyphicon-ok"></i>
+          <samp id="result" class="asq-result">
+            <template is="dom-repeat" items="[[_consoleEntries]]" as="item">
+              <div class="console-entry"><pre class="result-pre">[[item]]</pre></div>
+            </template>
+          <!-- {{consoleTxt}} -->
+          </samp>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    (function () {
+
+      // from http://stackoverflow.com/questions/1760629/how-to-get-number-of-rows-in-textarea/1761203#1761203
+
+      var calculateContentHeight = function( ta, scanAmount ) {
+        var origHeight = ta.style.height,
+          height = ta.offsetHeight,
+          scrollHeight = ta.scrollHeight,
+          overflow = ta.style.overflow;
+        /// only bother if the ta is bigger than content
+        if ( height >= scrollHeight ) {
+          /// check that our browser supports changing dimension
+          /// calculations mid-way through a function call...
+          ta.style.height = (height + scanAmount) + 'px';
+          /// because the scrollbar can cause calculation problems
+          ta.style.overflow = 'hidden';
+          /// by checking that scrollHeight has updated
+          if ( scrollHeight < ta.scrollHeight ) {
+            /// now try and scan the ta's height downwards
+            /// until scrollHeight becomes larger than height
+            while (ta.offsetHeight >= ta.scrollHeight) {
+              ta.style.height = (height -= scanAmount)+'px';
+            }
+            /// be more specific to get the exact height
+            while (ta.offsetHeight < ta.scrollHeight) {
+              ta.style.height = (height++)+'px';
+            }
+          }
+          /// reset the ta back to it's original height
+          ta.style.height = origHeight;
+          /// put the overflow back
+          ta.style.overflow = overflow;
+          return height;
+        } else {
+          return scrollHeight;
+        }
+      }
+
+      Polymer({
+        is: 'asq-js-eval-q-viewer',
+
+        behaviors: [ASQ.asqQuestionElementBehavior],
+
+        properties: {
+
+          /**
+           * Set to true to disable the element.
+           */
+          disabled: {
+            type: Boolean,
+            value: false,
+            notify: true
+          },
+
+          /**
+           * Value of the paper-textarea.
+           */
+          value: {
+            type: String,
+            value: '',
+            notify: true,
+            observer: '_valueChanged'
+          },
+
+          /**
+           * Result from the last evaluation.
+           */
+          result: {
+            type: String,
+            value: '',
+            notify: true,
+          },
+
+          /**
+           * Array of console.log statements executed in the worker.
+           */
+          _consoleEntries: {
+            type: Array,
+            notify: true
+          },
+
+          /**
+           * Event bus to communicate with ASQ
+           */
+          eventBus: {
+            type: Object,
+            observer: "_eventBusChanged",
+            notify: true
+          }
+        },
+
+
+        observers: [" __drawLineNums__(value, taLineNumContainer)"],
+
+        attached: function(){
+          // get a reference to the raw text area to use it for line height calculations
+          var c = Polymer.dom(this.$.code.root).querySelector('paper-input-container');
+          var i = Polymer.dom(c).querySelector("iron-autogrow-textarea");
+          this.codeTextArea = i.$.textarea;
+
+          // need this to activate the __drawLineNums__ observer
+          this.taLineNumContainer = this.$.taLineNumContainer;
+        },
+
+
+        onTextareaKeydown: function(event, detail){
+          var keyCode = event.keyCode || event.which;
+
+            // mute tabs
+            if (keyCode == 9) {
+              event.preventDefault();
+            }
+        },
+
+        _onQuestionType: function (evt) {
+          if (!evt || !evt.questionType)
+            return;
+          if (evt.questionType == 'asq-js-eval-q') {
+            if (evt.type == 'restoreViewer') {
+              this._onRestoreViewer(evt);
+            }
+          }
+        },
+
+        _onRestoreViewer: function (evt) {
+          evt.questions.forEach(function (q) {
+            if (q.uid != this.uid)
+              return;
+            this.value = q.submission;
+          }.bind(this));
+        },
+
+        _update: function () {
+
+          // start with a new worker
+          this._killWorker(this.worker);
+          this.worker = new Worker(this.resolveUrl("../evalWorker.js"));
+          this.result = '';
+          this._consoleEntries = [];
+
+          // kill worker after 10 seconds no matter what
+          var id = setTimeout(function(){
+           this._killWorker(this.worker);
+          }.bind(this), 10000);
+
+          this.worker.onmessage = function(e) {            
+            if(e.data.type =="result"){
+              clearTimeout(id);
+              this._killWorker(this.worker);
+              this.result = e.data.value;
+            }
+            if(e.data.type== "console"){
+              this._consoleEntries = e.data.value;
+            }
+          }.bind(this);
+
+          this.worker.onerror = function(e) {
+            clearTimeout(id);
+            this._killWorker(this.worker);
+            this.result = '[' + e.lineno + ':' + e.colno + '] '  + e.message;
+          }.bind(this);
+
+          // start worker
+          this.worker.postMessage(this.value);  
+        },
+
+        _killWorker: function(worker){
+          if(! (worker instanceof Worker) ) return;
+          worker.terminate();
+          worker = null;
+        },
+
+        /**
+         * The `submit` method returns an object that respresents the submission of this question. The object has the following structure:
+
+             {
+                questionUid: this.uid, 
+                timestamp: new Date(),
+                submission: this.value
+             }
+         * Only enabled when the `role` of the element is <b>viewer</b>.
+         *
+         * @method submit
+         */
+        submit: function () {
+          if (!this.value) {
+            this.value = '';
+          }
+          submission = this.value;
+          return {
+            questionUid: this.uid,
+            timestamp: new Date(),
+            submission: submission
+          };
+        },
+
+        ready: function () {
+          // scan for code changes every 700ms
+          this.interval = 700;
+        },
+
+        _valueChanged: function(value, old){
+          this.debounce('evalInput', this._update, this.interval);
+        },
+
+
+        _eventBusChanged: function (eventBus, old) {
+          if(!eventBus) return;
+          eventBus.on('asq:question_type', this._onQuestionType.bind(this));
+        },
+
+        __drawLineNums__: function(value, taLineNumContainer){
+
+          clearTimeout(this.drawLinesTimeout);
+
+          this.drawLinesTimeout = setTimeout(function(){
+            var lines = this.__calculateLineNumber__();
+
+            // do not redraw if there's no change in lines
+            if(this.taLines == lines) return;
+            var html = "";
+            for (var i=0; i<lines; i){
+              html += (++i) + '<br/>';
+            }
+            taLineNumContainer.innerHTML = html;
+          }.bind(this), 50)
+        },
+
+        __calculateLineNumber__ : function() {
+           if(! this.codeTextArea) return;
+
+            var ta = this.codeTextArea,
+                style = (window.getComputedStyle) ?
+                    window.getComputedStyle(ta) : ta.currentStyle,
+
+                // This will get the line-height only if it is set in the css,
+                // otherwise it's "normal"
+                taLineHeight = parseInt(style.lineHeight, 10),
+                // Get the scroll height of the textarea
+                taHeight = calculateContentHeight(ta, taLineHeight),
+                // calculate the number of lines
+                numberOfLines = Math.ceil(taHeight / taLineHeight) - 1;
+
+            return numberOfLines;
+        }
+      });
+    }());
+  </script>
+</dom-module>

@@ -1,0 +1,565 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../asq-base/asq-base.html">
+<link rel="import" href="../../asq-matchable-behavior/asq-matchable-behavior.html">
+
+<link rel="import" href="../../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../iron-icons/iron-icons.html">
+<link rel="import" href="../../iron-list/iron-list.html">
+<link rel="import" href="../../paper-drawer-panel/paper-drawer-panel.html">
+<link rel="import" href="../../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../paper-item/paper-item.html">
+<link rel="import" href="../../paper-tabs/paper-tab.html">
+<link rel="import" href="../../paper-tabs/paper-tabs.html">
+<link rel="import" href="../../paper-toggle-button/paper-toggle-button.html">
+
+
+
+
+<dom-module id="asq-buckets-q-presenter">
+  <template>
+    <style is="custom-style">
+      :host {
+        display: block;
+        --paper-tabs-selection-bar-color: #333;
+      }
+
+      #container {
+        @apply(--layout-horizontal);
+      }
+
+      #main-container {
+        @apply(--layout-flex-3);
+        @apply(--asq-buckets-q-main-container);
+      }
+
+      #list-container{
+        @apply(--layout-flex);
+        @apply(--layout-vertical);
+      }
+
+      #submissionListWrapper{
+        @apply(--layout-flex);
+        display: none;
+      }
+
+      #submissionList {
+        @apply(--layout-flex);
+      }
+
+      #submissionList paper-item{
+        overflow:hidden;
+        padding: 12px 5px 0;
+        background-color: white;
+        cursor: pointer;
+        font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+        @apply(--shadow-elevation-2dp);
+        outline:none;
+      }
+      #submissionList paper-item[focused]{
+        background-color: var(--google-grey-300);
+      }
+
+      #statsToggle{
+        position:relative;
+        @apply(--asq-buckets-stats-toggle);
+      }
+    </style>
+    <section id="container">
+      <div id="main-container">
+        <content></content>
+        <paper-toggle-button id="statsToggle" on-iron-change="_onStatsToggleChange"></paper-toggle-button>
+      </div>
+      
+      <div id="list-container">
+        <paper-tabs selected="{{_selectedTab}}" selected="0" selected-attribute="active" noink role="tablist"> 
+          <paper-tab role="tab" on-click="toggleSubmissionList">Submissions</paper-tab> 
+        </paper-tabs>
+        <div id="submissionListWrapper" >
+          <iron-list id="submissionList" items="[[_submissions]]" as="submission" selection-enabled selected-item="{{_selectedSubmissionItem}}">
+            <template>
+              <paper-item>#<span>[[indexPlusOne(index)]]</span>&nbsp;&nbsp;<span>[[_computeItemText(submission)]]</span>
+              </paper-item>
+            </template>
+          </iron-list>
+        </div> 
+      </div>
+    </section>
+    
+  </template>
+
+  <script>
+    Polymer({
+      is: 'asq-buckets-q-presenter',
+
+      behaviors: [
+        ASQ.asqQuestionElementBehavior,
+        ASQ.MatchableBehavior
+      ],
+
+      created: function() {
+        this.listen(this, 'asq-matched', '_onMatched');
+      },
+
+      attached: function() {
+        this.async(function() {
+          this._setYItems();
+          this._initItems();
+        })
+      },
+
+      get _labelContainer() {
+        var container = Polymer.dom(this).queryDistributedElements(this.yMatchable);
+        if ( Array.isArray(container) && container.length >=1 ) {
+          return container[0]
+        }
+        return this;
+      },
+
+      properties: {
+        onDraggingClass: {
+          type: String,
+          value: 'dragging',
+          notify: true
+        },
+
+
+        eventBus: {
+          type: Object,
+          observer: "_eventBusChanged",
+          notify: true
+        },
+
+        _selectedTab:{
+          value: 0,
+          notify: true
+        },
+
+        _selectedSubmissionItem: {
+          observer: '_selectedSubmissionItemChanged'
+        },
+
+        _submissions: {
+          observer: '_submissionsChanged'
+        },
+
+        /**
+         * This property is used to specify the matches through a valid 
+         * JSON format string, which is exactlly the stringify string of
+         * `matches`, i.e. JSON.stringify(matches). An example is 
+         * like follows.
+         *
+         *      x.value='{
+         *        "Europe":["New York"],
+         *        "North America":["Jerusalem"],
+         *        "Middle East":["Lugano"]
+         *      }'
+         *      
+         */
+        value: {
+          type: String,
+          value: '{}',
+          notify: true,
+        },
+
+        disabled: { 
+          type: Boolean,
+          value: false,
+          notify: true, 
+          observer: '_disabledChanged',
+          reflectToAttribute: true
+        },
+
+        disabledClass: {
+          type: String,
+          value: 'asq-disabled'
+        },
+
+        xBucket: {
+          type: String,
+          value: '.bucket'
+        },
+
+        yLabel: {
+          type: String,
+          value: '.label'
+        },
+
+        /**
+         * *Overriten from asq-matchable-behavior.*
+         * 
+         * This is a CSS selector string. Define the items that
+         * are divided into `X` set.
+         *
+         */
+        xMatchable: String,
+
+        /**
+         * *Overriten from asq-matchable-behavior.*
+         * 
+         * This is a CSS selector string. Define the items that
+         * are divided into `Y` set.
+         *
+         */
+        yMatchable: String,
+
+        /**
+         * *Overriten from asq-matchable-behavior.*
+         * 
+         * The class to set on elements when matched.
+         *
+         * @attribute selectedClass
+         * @type {string}
+         */
+        matchedClass: {
+          type: String,
+          value: 'asq-matched'
+        },
+
+        /**
+         * *Overriten from asq-matchable-behavior.*
+         * 
+         * The attribute to set on elements when matched.
+         *
+         * @attribute selectedAttribute
+         * @type {string}
+         */
+        matchedAttribute: {
+          type: String,
+          value: 'matched-label'
+        },
+      },
+
+      _disabledChanged: function(disabled) {
+        this.yItems.forEach(function(y) {
+          y.disabled = this.disabled;
+          y.classList.toggle(this.disabledClass, this.disabled);
+        }, this);
+      },
+
+       _onStatsToggleChange: function(evt, detail){
+        this._showingStats = this.$.statsToggle.checked;
+        if(this._showingStats){
+          this._renderStats(this._stats);
+        }else{
+          this._clearStats();
+        }
+      },
+
+      /**
+       * Overriten from asq-matchable-behavior.
+       * Returns an array of items in `X` set.
+       *
+       * @property items
+       * @type Array
+       */
+      get xItems() {
+        var container = Polymer.dom(this).queryDistributedElements(this.xMatchable || '*');
+        var nodes = [];
+        if ( container && Array.isArray(container) && container.length > 0) {
+          nodes = container[0].children
+        }
+        return Array.prototype.filter.call(nodes, this._bindFilterItem);
+      },
+
+      /**
+       * *Overriten from asq-matchable-behavior.*
+       * Returns an array of items in `Y` set.
+       *
+       * @property items
+       * @type Array
+       */
+      get yItems() {
+        if (!this.__yItems__) this._setYItems();
+        return this.__yItems__;
+      },
+
+      _yMatchableChanged: function() {
+        this._setYItems();
+      },
+
+      _setYItems: function() {
+        var container = Polymer.dom(this).queryDistributedElements(this.yMatchable || '*');
+        var nodes = [];
+        if ( container && Array.isArray(container) && container.length > 0) {
+          nodes = Array.prototype.slice.call(container[0].children);
+        }
+        
+        this.xItems.forEach(function(x) {
+          var selector = '[' + this.matchedAttribute + ']' + '.' + this.matchedClass;
+          nodes = nodes.concat(Array.prototype.slice.call(x.querySelectorAll(selector)));
+        }, this);
+        this.__yItems__ = Array.prototype.filter.call(nodes, this._bindFilterItem);
+      },
+
+      toggleSubmissionList: function(evt, detail){
+        var current = this.$.submissionListWrapper.style.display;
+        this.$.submissionListWrapper.style.display = (current == 'flex') ? 'none': 'flex';
+        this.$.submissionList.notifyResize();
+      },
+
+      _computeItemText: function(item) {
+        if (! item) return;
+        return JSON.stringify(item.submission);
+      },
+
+      _selectedSubmissionItemChanged: function(newItem, old){
+        if(! newItem) return;
+        this._lastSelectionIndex = this.$.submissionList.items.indexOf(newItem);
+        this._clearStats();
+        this.value = JSON.stringify(newItem.submission);
+      },
+
+      _submissionsChanged: function(submissions) {
+        if ( ! submissions ) return;
+
+        this._stats = this._calcStats(submissions)
+
+        if(this._showingStats){
+          this._renderStats(this._stats);
+        }
+
+        if ( this._lastSelectionIndex == null || typeof this._lastSelectionIndex === 'undefined' ) return;
+
+        var index = this._lastSelectionIndex;
+        this.$.submissionList.scrollToIndex(index);
+        var item = this.$.submissionList.items[index];
+        this.$.submissionList.selectItem(item);
+      },
+
+      _calcStats: function(){
+        var stats = {}
+        this._submissions.forEach(function(s){
+          var sub = (s.submission);
+          if(sub == null || typeof sub == "undefined") return;
+          
+          Object.keys(sub).forEach(function(b){
+            sub[b].forEach(function(l){
+              stats[l] = stats[l] || {};
+              stats[l][b] = stats[l][b] || 0;
+              ++stats[l][b];
+            });
+          });
+        });
+
+        return stats;
+      },
+
+      _clearStats: function(){
+        this.xItems.forEach(function(bEl) {
+          var statLabels = Polymer.dom(bEl).querySelectorAll('.label-stat');
+          statLabels.forEach(function(l){
+            l.parentNode.removeChild(l);
+          })
+        })
+      },
+
+      _renderStats: function(stats){
+        this._match.clear();
+        this._clearStats();
+        this.yItems.forEach(function(lEl) {
+          this.xItems.forEach(function(bEl) {
+            var l = this._valueForItem(lEl);
+            var b = this._valueForItem(bEl);
+            if(stats[l] && stats[l][b] > 0){
+              var newNode = lEl.cloneNode(true);
+              newNode.classList.add('label-stat')
+              var statBadge = ' <span class="label-stat-badge">' + stats[l][b] +'</span>';
+              newNode.innerHTML += statBadge;
+              bEl.appendChild(newNode)
+            }
+          }.bind(this));
+        }.bind(this));
+      },
+
+      _unbindEvents: function() {
+        this.xItems.forEach(function(x) {
+          this.unlisten(x, 'dragenter', '_onDragEnter');
+          this.unlisten(x, 'dragleave', '_onDragLeave');
+          this.unlisten(x, 'dragover', '_onDragOver');
+          this.unlisten(x, 'drop', '_onDrop');
+        }, this);
+
+        this.yItems.forEach(function(y) {
+          this.unlisten(y, 'dragstart', '_onDragStart');
+          this.unlisten(y, 'dragend', '_onDragEnd');
+        }, this);
+      },
+
+      _updateItems: function() {
+        // unbind events
+        this._unbindEvents();
+
+        // rebind events
+        this.async(function() {
+          this._setYItems();
+          this._initItems();
+        });
+      },
+
+      _initItems: function() {
+
+        this.xItems.forEach(function(x) {
+          this.listen(x, 'dragenter', '_onDragEnter');
+          this.listen(x, 'dragleave', '_onDragLeave');
+          this.listen(x, 'dragover', '_onDragOver');
+          this.listen(x, 'drop', '_onDrop');
+        }, this);
+
+        this.yItems.forEach(function(y) {
+          y.setAttribute('draggable', true);
+
+          this.listen(y, 'dragstart', '_onDragStart');
+          this.listen(y, 'dragend', '_onDragEnd');
+        }, this);
+
+
+        // 
+        document.body.addEventListener('drop', this._onDropOut.bind(this));
+
+        document.body.addEventListener('dragenter', function(e) {
+          if (e.preventDefault) e.preventDefault(); 
+        });
+
+        document.body.addEventListener('dragover', function(e) {
+          if (e.preventDefault) e.preventDefault(); 
+          return false
+        });
+      },
+
+      _onDragStart: function(e) {
+        if ( this.onDraggingClass ) 
+          e.currentTarget.classList.toggle(this.onDraggingClass, true);
+
+        var data = this._valueForItem(e.currentTarget);
+
+        // store the current bucket
+        var parentElement = e.target.parentElement;
+        if ( this.xItems.indexOf(parentElement) >= 0 ) {
+          data = data + ';' + this._valueForItem(parentElement);
+        }
+        e.dataTransfer.dropEffect = 'move';
+        e.dataTransfer.setData('Text', data);
+      },
+
+      _onDragEnd: function(e) {
+        if (e.preventDefault) e.preventDefault();
+        if ( this.onDraggingClass ) 
+          e.currentTarget.classList.toggle(this.onDraggingClass, false);
+      },
+
+      _onDragEnter: function(e) {
+        if (e.preventDefault) {
+          e.preventDefault(); 
+        }
+        e.currentTarget.classList.toggle('over', true);
+      },
+
+      _onDragOver: function(e) {
+        e.preventDefault();
+        return false
+      },
+
+      _onDragLeave: function(e) {
+        e.currentTarget.classList.toggle('over', false);
+      },
+
+      _onDrop: function(e) {
+        if (e.stopPropagation) 
+          e.stopPropagation();
+
+        if (e.preventDefault) 
+          e.preventDefault(); 
+
+        e.currentTarget.classList.toggle('over', false);
+        
+        var x = this._valueForItem(e.currentTarget);
+        var y = e.dataTransfer.getData('Text').split(';')[0];
+
+        if ( this.isMatched(x, y) ) {
+          // do nothing
+          return
+        }
+
+        this.match(x, y);
+
+        return false;
+      },
+
+      _onDropOut: function(e) {
+        if (e.stopPropagation) 
+          e.stopPropagation();
+
+        if (e.preventDefault) 
+          e.preventDefault(); 
+
+        var data = e.dataTransfer.getData("Text").split(';');
+        var y = data[0];
+
+        if ( data.length == 2 ) {
+          var x = data[1];
+          if ( this._match.y.hasOwnProperty(y) 
+            && this._match.y[y].indexOf(x) >= 0 ) {
+            this.match(x, y);
+          }
+        }
+      },
+
+      match: function(xValue, yValue) {
+        ASQ.MatchableBehavior.match.apply(this, [xValue, yValue]);
+      },
+
+      _onMatched: function(event) {
+        var x = this._xValueToItem(event.detail.x);
+        var y = this._yValueToItem(event.detail.y);
+
+        if ( event.detail.isMatched ) {
+          x.appendChild(y);
+        } else {
+          this._labelContainer.appendChild(y);
+        }
+        
+      },
+
+      _onQuestionType: function (evt) {
+        if (!evt || !evt.questionType)
+          return;
+        if (evt.questionType == 'asq-buckets-q') {
+          if (evt.type == 'progress') {
+            this._onProgress(evt);
+          } else if (evt.type == 'restorePresenter') {
+            // use async
+            this.async(function() {
+              this._onRestorePresenter(evt);
+            })
+          }
+        }
+      },
+
+      _onRestorePresenter: function (evt) {
+        if ( !evt.questions ) return;
+
+        evt.questions.forEach(function(q){
+          if(q.uid != this.uid) return;
+          this._submissions = q.submissions;
+        }.bind(this));
+      },
+
+      _onProgress: function (evt) {
+        if (!evt.question || evt.question.uid !== this.uid)
+          return;
+        
+        this._submissions = evt.question.submissions;
+      },
+
+      _eventBusChanged: function (eventBus) {
+        if(!eventBus) return;
+        eventBus.on('asq:question_type', this._onQuestionType.bind(this));
+      },
+
+      indexPlusOne: function(index){
+        return ++index;
+      }
+    });
+  </script>
+
+</dom-module>

@@ -1,0 +1,138 @@
+<link rel="import" href="../asq-base/asq-base.html">
+
+<script>
+
+  /**
+   * @param {!Function} matchCallback
+   * @constructor
+   */
+  ASQ.Match = function(matchCallback) {
+    this.x = {};
+    this.y = {};
+    this.xMax = 1;
+    this.yMax = 1;
+
+    this.matchCallback = matchCallback;
+  };
+
+  ASQ.Match.prototype = {
+
+
+    /**
+     * Clears all the selection except the ones indicated.
+     *
+     * @method clear
+     * @param {Array} excludes items to be excluded.
+     */
+    clear: function(excludes) {
+      Object.keys(this.x).forEach(function(x, index){
+        var i = this.x[x].length;
+        while ( i-- ) {
+          var y = this.x[x][i];
+          if ( !excludes || !excludes.hasOwnProperty(x) 
+            || excludes[x].indexOf(y) < 0 ) {
+            this.setMatched(x, y, false);
+          }
+        }
+      }, this);
+    },
+
+    /**
+     * Match or dismatch two values, according to the `toBeMatched`.
+     * 
+     */
+    setMatched: function(x, y, toBeMatched) {
+      if ( x != null && y != null ) {
+        if ( toBeMatched ) {
+          this._connect(x, y);
+        } else {
+          this._disconnect(x, y);
+        }
+
+        if ( this.matchCallback ) {
+          this.matchCallback(x, y, toBeMatched);
+        }
+      }
+    },
+
+    _connect: function(x, y) {
+      if ( typeof this.x[x] === 'undefined' ) {
+        this.x[x] = [];
+      } 
+
+      if ( this.x[x].length >= this.yMax ) {
+        var kicked = this.x[x].splice(0, 1);
+        var j = this.y[kicked].indexOf(x);
+        if ( j >= 0 ) {
+          this.y[kicked].splice(j, 1);
+          this.matchCallback(x, kicked, false);
+        }
+      }
+
+      if ( typeof this.y[y] === 'undefined' ) {
+        this.y[y] = [];
+      }
+
+      if ( this.y[y].length >= this.xMax ) {
+        var kicked = this.y[y].splice(0, 1);
+        var i = this.x[kicked].indexOf(y);
+        if ( i >= 0 ) {
+          this.x[kicked].splice(i, 1);
+          this.matchCallback(kicked, y, false);
+        }
+      }
+
+      this.x[x].push(y);
+      this.y[y].push(x);
+      
+    },
+
+    _disconnect: function(x, y) {
+      var i = this.x[x].indexOf(y);
+      if ( i >= 0 ) this.x[x].splice(i, 1);
+
+      var j = this.y[y].indexOf(x);
+      if ( j >= 0 ) this.y[y].splice(j, 1);
+    },
+
+    /**
+     * Check if the two values are checked.
+     *
+     * @return {Boolean}   [description]
+     */
+    isMatched: function(x, y) {
+      if ( this.x.hasOwnProperty(x) ) {
+        return this.x[x].indexOf(y) >= 0;
+      }
+      return false;
+    },
+
+    /**
+     * Match or dismatch two values.
+     *
+     */
+    match: function(x, y) {
+      this.toggle(x, y);
+    },
+
+    toggle: function(x, y) {
+      this.setMatched(x, y, !this.isMatched(x, y));
+    },
+
+    isXMatchedByAnyY: function(x) {
+      if ( this.x.hasOwnProperty(x) && this.x[x].length > 0 ) {
+        return true
+      }
+      return false
+    },
+
+    isYMatchedByAnyX: function(y) {
+      if ( this.y.hasOwnProperty(y) && this.y[y].length > 0 ) {
+        return true
+      }
+      return false
+    }
+
+  };
+
+</script>

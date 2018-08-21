@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="asq-elements" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <title>asq-option | Demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents.js"></script>
+
+    <link href="../asq-option.html" rel="import">
+
+    <style is="custom-style">
+        asq-option {
+            display: block;
+            margin-bottom: 1em;
+        }
+
+        body div {
+            margin-left: 100px;
+        }
+
+        asq-option.blue {
+            --asq-option-presenter-progress-active-color: var(--paper-light-blue-500);
+        }
+
+        asq-option.red {
+            --asq-option-presenter-progress-active-color: var(--paper-red-500);
+        }
+
+        asq-option {
+            --asq-option-viewer-unchecked-ink-color: #FF1744;
+            --asq-option-viewer-checked-ink-color: #2E7D32;
+            --asq-option-viewer-checked-color: black;
+            --asq-option-viewer-unchecked-color: green;
+            --asq-option-viewer-unchecked-background-color: white;
+            --asq-option-viewer-checkmark-color: white;
+        }
+
+        asq-option[name="o1"] {
+            --asq-option-viewer-checked-color: black;
+            --asq-option-viewer-unchecked-color: black;
+        }
+    </style>
+
+
+</head>
+<body unresolved>
+
+<div>
+    <asq-option multi name="o0">A checkbox option for viewer</asq-option>
+    <asq-option multi name="o1" checked>Another checkbox option for viewer</asq-option>
+    <asq-option multi name="o2" checked disabled>A disabled checkbox option for viewer</asq-option>
+
+    <asq-option multi name="other1" is-other other-required>'Other' checkbox option for viewer with input field required</asq-option>
+    <asq-option multi name="other2" is-other>'Other' checkbox option for viewer with input field not required</asq-option>
+    <asq-option multi name="other3" is-other checked disabled>A disabled 'Other' checkbox option for viewer</asq-option>
+
+    <asq-option name="o3">A radio option</asq-option>
+    <asq-option name="o3" checked>A checked radio option</asq-option>
+    <asq-option name="o4" checked disabled>A disabled radio option</asq-option>
+
+    <asq-option name="other4" is-other other-required>'Other' radio option with input field required</asq-option>
+    <asq-option name="other5" is-other other-required>'Other' radio option with input field not required</asq-option>
+    <asq-option name="other6" is-other checked disabled>A disabled 'Other' radio option with input field not required</asq-option>
+
+
+
+    <asq-option class="blue" role="presenter" progress-value="5" progress-max="15">An option for presenter</asq-option>
+    <asq-option multi class="red" role="presenter" progress-value="10" progress-max="15" display-progress>Another option for presenter</asq-option>
+
+    <asq-option multi class="blue" role="presenter" uid="other4" name="other4" progress-value="8" progress-max="15" display-progress is-other other-required>Other ONE</asq-option>
+    <asq-option multi class="blue" role="presenter" uid="other5" name="other5" progress-value="12" progress-max="15" display-progress is-other>Other TWO</asq-option>
+</div>
+
+<script>
+
+  var opts = {
+    "other4" : [{text: "Text ONE", num: 2}, {text: "Text TWO", num: 1}, {text: "Text THREE", num: 1}, {text: "Text FOUR", num: 2}, {text: "Text FIVE", num: 2}],
+    "other5" : [{text: "", num: 3}, {text: "text ONE", num: 3}, {text: "text TWO", num: 2}, {text: "text THREE", num: 2}, {text: "text 4", num: 1},{text: "text 5", num: 1}]};
+
+  var otherAsqElements = document.querySelectorAll('html /deep/ *');
+  otherAsqElements = Array.prototype.slice.call(otherAsqElements).filter(function (el) {
+    return el.nodeName === 'ASQ-OPTION' && el.isOther && el.hasRole(el.role, el.roles.PRESENTER);
+  });
+
+  otherAsqElements.forEach(function (el) {
+    if(el.isOther)
+      el.otherData = opts[el.uid];
+  });
+
+
+</script>
+
+
+</body>
+</html>

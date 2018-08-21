@@ -5,10 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1024" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <title>ASQ Intro</title>
+    <title>ASQ | Vassilis Triglianos PhD Defence</title>
     
 
-    <script src="/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <!-- <script src="/webcomponentsjs/webcomponents-lite.js"></script> -->
     <!-- <script src="http://asq.inf.usi.ch/webcomponentsjs/webcomponents-lite.js"></script>  -->
     <!-- Use shadow dom -->
     <script>
@@ -16,9 +17,10 @@
       window.Polymer.dom = 'shadow';
     </script>
 
-    <link rel="import" href="/paper-icon-button/paper-icon-button.html">
-    <link rel="import" href="/asq-elements/asq-elements.html">
-    <link rel="import" href="/iron-flex-layout/classes/iron-flex-layout.html">
+    <link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
+    <link rel="import" href="bower_components/asq-elements/asq-elements.html">
+    <link rel="import" href="bower_components/iron-flex-layout/classes/iron-flex-layout.html">
+    <link rel="import" href="bower_components/paper-toggle-button/paper-toggle-button.html">
 
     <!-- 
     <link rel="import" href="http://asq.inf.usi.ch/element-docs/paper-icon-button/paper-icon-button.html">
@@ -31,14 +33,16 @@
     <link rel="stylesheet" href="reveal.js/css/theme/asq.css" id="theme">
 
     <!-- Code syntax highlighting -->
-    <link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">   
+    <link rel="stylesheet" href="reveal.js/lib/css/rainbow.css">   
+    <!-- Mathjax -->
+    <link rel="stylesheet" href="reveal.js/css/theme/mathjax.css">
 
     <link rel="import" href="shared-styles.html">
     <style is="custom-style" include="shared-styles"></style> 
 
   </head>
 
-  <body data-asq-role="viewer">
+  <body>
     <asq-settings max-num-submissions="-1" slideflow="ctrl" assessment="none"></asq-settings>
 
      <div id="branding" class="layout horizontal">
@@ -80,28 +84,38 @@
       </div>
 
 
+    <div class="cycle-container" id="cycle-present-asq-answer">
+      <img class="svg" src="svg/cycle-present-asq-answer.svg" alt="cycle-present-asq-answer">
+    </div>
+    
+    <div class="cycle-container" id="cycle-present-asq-answer-assess">
+      <img class="svg" src="svg/cycle-present-asq-answer-assess.svg" alt="cycle-present-asq-answer">
+    </div>
+
+    <div class="cycle-container" id="asq-cycle-full">
+      <img class="svg" src="svg/asq-cycle-full.svg" alt="cycle-present-asq-answer">
+    </div>
+
     <div class="reveal">
 
       <!-- Any section element inside of this container is displayed as a slide -->
 
-      <div id="joinasqmsg" style="position:fixed; left:0: right: 0; background: #fafafa; padding: 5px 10px; z-index: 10; border-radius: 5px;">Join: <a class="bold" style="font-size: 1.2em; text-shadow:none;" href="http://bit.do/icwe18">http://bit.do/icwe18</a></div>
+      <div id="joinasqmsg" style="position:fixed; left:0: right: 0; background: #fafafa; padding: 5px 10px; z-index: 10; border-radius: 5px;">Join: <a class="bold" style="font-size: 1.2em; text-shadow:none;" href="http://bit.do/triglian">http://bit.do/triglian</a></div>
 
       <div class="slides">
         <section id="splash">
 
-          <div id="splashAsqLogo">
-            <img src="svg/a.svg"><span id="a-sub-expansion" class="logo-expansion">nswers</span>
-            <img src="svg/s.svg"><span id="s-sub-expansion" class="logo-expansion">lides</span>
-            <img src="svg/q.svg"><span id="q-sub-expansion" class="logo-expansion">uestions</span>
+          <div class="asq-logo">
+            <img class="anim a" src="svg/a.svg">
+            <img class="anim backfacing a" src="svg/a.svg">
+            <img class="anim s" src="svg/s.svg">
+            <img class="anim backfacing s" src="svg/s.svg">
+            <img class="anim q" src="svg/q.svg">
+            <img class="anim backfacing q" src="svg/q.svg">
           </div>
 
-          <div id="hideSplashContent" class="fragment"></div>
-          <div id="q-sub" class="fragment"></div>
-          <div id="s-sub" class="fragment"></div>
-          <div id="a-sub" class="fragment"></div>
-
           <div id="splashContent">
-            <h2 id="presentationTitle" class="pastel-blue">ASQ: Active Learning with Interactive WebPresentations and Classroom Analytics</h2>
+            <h2 id="presentationTitle" class="pastel-blue">Active Learning with Interactive Web Presentations and Classroom Analytics</h2>
             <p class="small" style="margin-top:1em;"><!-- <em class='grey'>Vasileios Triglianos</em> -->
               PhD Dissertation Defense of <strong>Vasileios Triglianos</strong>
             </p>
@@ -111,7 +125,7 @@
                 Internal Committee Members</br> <strong>Prof. Matthias Hauswirth, Prof. Mehdi Jazayeri</strong> </br>
                 External Committee Members</br> <strong>Prof. Mária Bieliková, Prof. Pierre Dillenbourg</strong>
               </div>
-              <div class="flex"><asq-welcome join-message="Join: http://bit.do/icwe18"></asq-welcome></div>
+              <div class="flex"><asq-welcome join-message="Join: http://bit.do/triglian"></asq-welcome></div>
             </div>
           </div>
              
@@ -119,23 +133,6 @@
           </aside>
         </section>
 
-        <section id="a-questions">
-            <div style="max-width: 660px; margin: 0 auto;">
-              <asq-exercise>
-                <asq-multi-choice-q id="ti1">
-                  <asq-stem><h3>What does ASQ stand for?</h3></asq-stem>
-                  <asq-option name="a">Answer Service Questionnaire</asq-option>
-                  <asq-option name="b">Asynchronous System for Questions</asq-option>
-                  <asq-option name="c" correct>Answers Slides Questions</asq-option>
-                  <asq-option name="d">Asking Students Questions</asq-option>
-                  <asq-option name="e">Anyone Should Question</asq-option>
-                  <asq-option name="other" is-other other-required>Other</asq-option>
-                </asq-multi-choice-q>
-              </asq-exercise>
-              <br>
-        
-            </div>
-        </section>
 
         <section id="modern-classroom" data-background-image="img/Macs-Missouri-School-of-Journalism_16_9.jpg">
           <aside class="notes">A little bit about our motivation. Each year we give our students laptops to use for their studies</aside>
@@ -153,15 +150,71 @@
           <h1 class="white" style="font-size: 2.5em; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Technology = <span class="orange">Distraction</span></h1>
         </section>
 
+        <section id="computers-1" data-transition="fade">
+          <p style="font-size: 1.5em;">Smart devices are also good for <br><strong class="light-blue">programming</strong></p>
+        </section>
+
+        <section id="computers-2" data-transition="fade">
+          <p style="font-size: 1.5em;">Smart devices are also good for <br><strong class="orange">typing answers</strong></p>
+        </section>
+
+        <section id="computers-3" data-transition="fade">
+          <p style="font-size: 1.5em;">Smart devices are also good for <br><strong class="light-red">drawing diagrams</strong></p>
+        </section>
+
+        <section id="computers-4" data-transition="fade">
+          <p style="font-size: 1.5em;">Smart devices are also good for <br><strong class="light-blue">interactive questions</strong></p>
+        </section>
+
          <section id="asq-reality" data-background-image="img/usi_class.jpg">
-          <img src="svg/asq-cycle.svg" alt="ASQ cycle" class="fragment">
           <aside class="notes"> Technology in the classroom is expensive/difficult to use....</aside>
         </section>
 
-        
-        <section id="no-context-switch"  data-background-image="img/context-switching.jpg">
-          <h1 class="white" style="font-size: 4em; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">No Context Switch</h1>
-          <aside class="notes">with ASQ we make it easy because there is no switch between slides, questions and answers (repeat the logo name definition) everything is integrated. This reduces opportunities for off-task behavior and removes the cognitive load associated with switching between tools</aside>
+        <section id="rq1" class="text-justify">
+          <p class="x-large" style="width: 800px; margin: 0 auto;">
+            <strong class="pastel-blue">RQ1: </strong> To what extent can a <strong class="fragment">Web-based, privacy-preserving teaching tool</strong><span class="fragment"> be reliably used to enable <strong>active learning</strong></span><span class="fragment">, infer <strong>student behavior dynamics</strong></span><span class="fragment">, assess the <strong>attention</strong> and <strong>learning outcomes</strong> of students</span><span class="fragment"> and provide <strong>insights</strong> to improve teaching?</span>
+          </p>
+        </section>
+
+        <section id="outline">
+           <h2>Outline</h2>
+          <ul class="timeline-ul">
+            <li class="fragment"><span class="timeline-bullet">•</span> Challenges of <strong>scaling active learning</strong></li>
+            <li class="fragment" style="height: 50px;"><span class="timeline-bullet">•</span> <img src="img/ASQLogoBlack.png" style="height: 1.1em; position:relative; top: 10px;"> in the <strong>classroom</strong></li>
+            <li class="fragment"><span class="timeline-bullet">•</span> <img src="img/ASQLogoBlack.png" style="height: 1.1em; position:relative; top: 10px;"> platform <strong>architecture</strong></li>
+            <li class="fragment"><span class="timeline-bullet">•</span> Real-world <strong>deployments</strong> and user <strong>feedback</strong></li>
+            <li class="fragment" style="height: 50px;"><span class="timeline-bullet">•</span> Modelling <strong>student behavior dynamics</strong></li>
+            <li class="fragment" style="height: 50px;"><span class="timeline-bullet">•</span> Student attention</li>
+            <li class="fragment" style="height: 50px;"><span class="timeline-bullet">•</span> Question spacing</li>
+          </ul>
+          <aside class="notes">As we're nearing the end I would likte to talk a bit about the future. We're aware that one of the hardest parts is clustering open ended questions. To this end we're hard at work and we have some preliminary results in successfully clustering JavaScript questions. We will continue working on it. We are also working at analyzing data from an experiment where we used ASQ in computers equipped with eye-trackers in an effort to compare the real world with what ASQ logs. What's more we're working on an experiment to measure how students perform in on different question type format in ASQ. If the proposal review is successful I will immediately start writing my thesis and see you on the defence!</aside>
+        </section>
+
+
+        <section id="active-learning" data-background-image="img/active-learning_dark.jpg">
+          <h1 class="white" style="font-size: 4em; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Active Learning</h1>
+        </section>
+
+        <section id="active-learning-2">
+          <img src="svg/active_learning.svg" class="svg">
+          <aside class="related-publications small brown fragment" style="position: fixed; top: 600px; left:-400px;">[Prince2004does,Freeman2014active]</aside>
+          <aside class="notes"> Also using problems has an effect size of 0.20</aside>
+        </section>
+
+        <section id="active-learning-question"  data-background-image="img/delft_feedback.jpg" data-transition-speed="fast">
+          <aside class="notes"></aside>
+        </section>
+
+        <section id="active-learning-question-2"  data-background-image="img/delft_feedback_dark.jpg" data-transition="none" data-transition-speed="fast">
+          <h1 class="orange" style="font-size: 4em; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Ask Questions</h1>
+          <aside class="notes"></aside>
+        </section>
+
+        <section id="challenges" data-autoslide="1000" data-background-image="img/problem_dark.jpg">
+          <h1 class="white fragment" data-autoslide="0">Challenges</h1>
+          <aside class="notes">
+              There are a lot of problems to solve and aspects to consider when designing plugin systems and more generally, component architectures. Application Domain Conformance, Encapsulation, Modularity, Communication, Security, Loose Coupling, Deployment and Testability to name a few. Today we will focus on a subset that troubled us the most:
+          </aside>
         </section>
 
         <section id="everyone-answers"  data-background-image="img/interactions.jpg">
@@ -169,51 +222,149 @@
           <aside class="notes">Asking questions to make a lecture interactive can be done also without technology. However, with technology everyone can answer at the same time. So as a teacher, how do you deal with hundreds of students sending you their programming code solutions? ASQ can help to aggregate and summarize the answers so they can be discussed with the audience. </aside>
         </section>
 
+        <section id="question-format" class="small text-left">
+          <div class="layout horizontal center">
+            <asq-multi-choice-q class="fragment">
+              <asq-stem><h4>What's the ouput of the following function?</h4>
+<pre><code>for(i=1; i<6; i++){
+  console.log(i)
+}
+</code></pre>
+              </asq-stem>
+              <asq-option name="a" correct>1 2 3 4 5</asq-option>
+              <asq-option name="b">2 3 4 5 6</asq-option>
+              <asq-option name="c">2 3 4 5</asq-option>
+              <asq-option name="d">1 2 3 4 5 6</asq-option>
+            </asq-multi-choice-q>
+            <h1 class="pastel-blue fragment" style="font-size: 4em; margin: 0 20px;">vs.</h1>
+            <asq-js-eval-q class="fragment">
+              <asq-stem><h4>Implement a for-loop that print numbers 1 to in the console</h4></asq-stem>
+            </asq-js-eval-q>
+          </div>
+          <div class="fragment text-center">
+            <p style="font-size: 2em; margin-top: 60px;">The more effortful <strong>cued/free</strong> answer depth format <strong class="orange">outperforms</strong> the <strong>recognition</strong> format</p>
+            <aside class="related-publications small brown" style="position: fixed; top: -50px; right:-140px;">[Maass2016modeling, Glover1989testing,Morris1977levels,Mcdaniel2007testing,Kang2007test]</aside>
+          </div>
+          <aside class="notes"></aside>
+        </section>
+
+
+        <section id="teacher"  data-background-image="img/teacher_overload.jpg">
+          <h1 class="white fragment" style="font-size: 4em; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Empower teachers</h1>
+          <aside class="notes">We want to enable these things while keeping the cognitive overhead as low as possible for the presenter. This is where clustering submissions and visualizations come into play.</aside>
+        </section>
+
+
+        <section id="what-is-asq">
+         <img src="svg/a.svg"><span id="a-sub-expansion" class="logo-expansion">nswers</span>
+         <img src="svg/s.svg"><span id="s-sub-expansion" class="logo-expansion">lides</span>
+         <img src="svg/q.svg"><span id="q-sub-expansion" class="logo-expansion">uestions</span>
+         <div id="q-sub" class="fragment"></div>
+         <div id="s-sub" class="fragment"></div>
+         <div id="a-sub" class="fragment"></div>
+         <aside class="notes">So how to we engage students to educational interactions? We have slides that can have questions for which the users give answers. In more detail, ASQ is a Web platform for interactive HTML slides, that allows you to interleave questions in them and receive answers from your audience in real time. Admittedly, the main job of a presenter is to engage their audience. And we use a lot of ways to do that. Assume for example that I wanted to find out our favourite programming language. I could do a show of hands or a voice vote. Who likes Python?... Who likes Javascript... But this is hard to scale or accurately measure. Or I could just do this..</aside>
+        </section>
+
+
+        <section id="architecture-overview">
+          <img class="svg" src="svg/asqDevices.svg" alt="architecture devices" style="width: 100%;">
+          <aside class="related-publications small brown" style="position: fixed; top: 0px;">[Triglianos2014ICWE]</aside>
+           <aside class="notes">ASQ is a liquid application. Web application with distributed UI running across multiple devices. We have different roles like presenters and viewers and different views like beamer and cockpit. </aside>
+        </section>
+
+        <section id="all-devices"  data-background-image="img/all_devices.jpg">
+          <aside class="notes">Most of the presentations, like the current one, work on both desktop and mobile. Here's a photo from Cebit with the large screen emulating a beamer, the desktop computer and the smartphone displaying two different sections of the cockpit and the laptop acting as a student device</aside>
+        </section>
+
+        <section id="architecture-full">
+            <img class="svg" src="svg/asq/asq.svg" alt="architecture full">
+            <aside class="related-publications small brown" style="position: fixed; top: -20px;">[Triglianos2014ICWE, Triglianos2015ICWE]</aside>
+            <aside class="notes">To dive down a bit more, the client talks to the server with WebSockets after loading initial assets with HTTP. Both the client and the server have a plugin layers which interacts with the core in a decoupled fashing. We persist volatile information like session identifiers in redis and more permament information, like answers to a MongoDB</aside>
+        </section>
+
+       
+
+
+        <section id="asq-cycle" class="text-center" data-scale="0.4">
+          <img class="svg" src="svg/asq-cycle.svg" style="width:100%;">
+          <aside class="notes">The ASQ cycle is the teaching model we like to follow in class and ASQ is optimized around that. It's based on the premises that short teaching segments followed by recall segements allow for better learining. The way it works is as follows. We present a short segment and then pose associated questions to the classroom. Students answer and we aggregated and assess/cluster the answers. Then we discuss results with the students to clear misconceptions, fill in knowledge gaps and comment on the merits of different types of answers. And then we start all over again.</aside>
+        </section>
+
+        <section id="cycle-1-students"  data-background-image="img/delft_students.jpg" style="width: 100vw; height: 100vh;">
+          <aside class="notes">Here's this cycle at tplay at TU Delft. Students are answers a SQLite questions</aside>
+        </section>
+        <section id="cycle-1-presenter"  data-background-image="img/delft_presenter.jpg">
+          <aside class="notes">The presenter tracks the progress and can peek into the answers</aside>
+        </section>
+        <section id="cycle-1-feedback"  data-background-image="img/delft_feedback.jpg">
+          <aside class="notes">Then he moves on to discuss particular solutions. Notice that he can execute each student submission in his own question instance and discuss the result of the query</aside>
+        </section>
+
+        <section id="cycle-2-presenter"  data-background-image="img/delft_highlight.jpg">
+          <aside class="notes">
+            Here's a nice example of visualizing the answers in a concise way. This question types works like this. Students are given tasks to highlight portion of text with specific colors. For example "highlight all entities with Yellow". Then as the students answers the presenter can choose to view a heatmap of each task. Darker versions of a color denote that the specific portion of text has been highlighted by many students. The opposite is true for lighter versions. This question type started as a project with Margarita Grinvald supervised by Matthias and me and now it's one of our favourites in ASQ. if you wish I can show you a demo in the end.
+          </aside>
+          
+        </section>
+        <section id="cycle-2-feedback"  data-background-image="img/delft_highlight_feedback.jpg"></section>
+        
+        <section id="no-context-switch"  data-background-image="img/context-switching.jpg">
+          <h1 class="white" style="font-size: 4em; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">No Context Switch</h1>
+          <aside class="notes">with ASQ we make it easy because there is no switch between slides, questions and answers (repeat the logo name definition) everything is integrated. This reduces opportunities for off-task behavior and removes the cognitive load associated with switching between tools</aside>
+        </section>
+
 
         <section id="many-question-types">
-          <h4 id="question-type-name-label" class="orange" style="text-align: center;"></h4>
-          <div id="question-type-list">
-            <div id="img-asq-multi-choice-q" data-autoslide="300" class="img-frame fragment" data-question-name="Multi-choice">
-              <img src="img/questions/asq-multi-choice-q-viewer.png">
+          <div class="layout vertical">
+            <h4 id="question-type-name-label" class="orange" style="text-align: center;"></h4>
+            <div id="question-type-list" style="order:2;">
+              <div id="img-asq-multi-choice-q" class="img-frame recognition-format fragment" data-question-name="Multi-choice" data-autoslide="300">
+                <img src="img/questions/asq-multi-choice-q-viewer.png">
+              </div>
+              <div id="img-asq-text-input-q" class="img-frame cued-free-format fragment" data-autoslide="300" data-question-name="Text">
+                <img src="img/questions/asq-text-input-q-viewer.png">
+              </div>
+              <div id="img-asq-rating-q" class="img-frame recognition-format fragment" data-autoslide="300" data-question-name="Rate">
+                <img src="img/questions/asq-rating-q-viewer.png">
+              </div>
+              <div id="img-asq-order-q" class="img-frame recognition-format fragment" data-autoslide="300"  data-question-name="Order">
+                <img src="img/questions/asq-order-q-viewer.png">
+              </div>
+              <div id="img-asq-buckets-q" class="img-frame recognition-format fragment" data-autoslide="300" data-question-name="Classify">
+                <img src="img/questions/asq-buckets-q-viewer.png">
+              </div>
+              <div id="img-asq-highlight-q" class="img-frame recognition-format fragment" data-autoslide="300" data-question-name="Highlight">
+                <img src="img/questions/asq-highlight-q-viewer.png">
+              </div>
+              <div id="img-asq-js-function-body-q" class="img-frame cued-free-format live-programming fragment" data-autoslide="300" data-question-name="JS function">
+                <img src="img/questions/asq-js-function-body-q-viewer.png">
+              </div>
+              <div id="img-asq-css-select-q" class="img-frame cued-free-format live-programming fragment" data-autoslide="300" data-question-name="CSS Select">
+                <img src="img/questions/asq-css-select-q-viewer.png">
+              </div>
+              <div id="img-asq-sqlite-q" class="img-frame cued-free-format fragment" data-autoslide="300" data-question-name="SQLlite">
+                <img src="img/questions/asq-sqlite-q-viewer.png">
+              </div>
+              <div id="img-asq-diagram-q" class="img-frame cued-free-format fragment" data-question-name="Diagram" data-autoslide="300">
+                <img src="img/questions/asq-diagram-q-viewer.png">
+              </div> 
+              <div id="img-asq-js-eval-q" class="img-frame cued-free-format live-programming fragment" data-question-name="JS Eval" data-autoslide="300">
+                <img src="img/questions/asq-js-eval-q-viewer.png">
+              </div> 
+              <div id="img-asq-code-q" class="img-frame cued-free-format fragment" data-question-name="Code" data-autoslide="300">
+                <img src="img/questions/asq-code-q-viewer.png">
+              </div> 
+              <div id="img-asq-fiddle-q" class="img-frame cued-free-format live-programming fragment" data-question-name="HTML Fiddle" data-autoslide="300">
+                <img src="img/questions/asq-fiddle-q-viewer.png">
+              </div> 
+              <div id="img-message" class="img-frame fragment" data-question-name="Active Learning Question Types" data-autoslide="none">
+              </div> 
             </div>
-            <div id="img-asq-text-input-q" class="img-frame fragment" data-autoslide="300" data-question-name="Text">
-              <img src="img/questions/asq-text-input-q-viewer.png">
+            <div class=" fragment medium" style="order:1;">
+              Recognition <paper-toggle-button id="recognitionTB" checked></paper-toggle-button>
+              Cued/free Recall <paper-toggle-button id="cuedFreeTB" checked></paper-toggle-button>
+              Live-Programming <paper-toggle-button id="liveProgrammingTB" checked></paper-toggle-button>
             </div>
-            <div id="img-asq-rating-q" class="img-frame fragment" data-autoslide="300" data-question-name="Rate">
-              <img src="img/questions/asq-rating-q-viewer.png">
-            </div>
-            <div id="img-asq-order-q" class="img-frame fragment" data-autoslide="300"  data-question-name="Order">
-              <img src="img/questions/asq-order-q-viewer.png">
-            </div>
-            <div id="img-asq-buckets-q" class="img-frame fragment" data-autoslide="300" data-question-name="Classify">
-              <img src="img/questions/asq-buckets-q-viewer.png">
-            </div>
-            <div id="img-asq-highlight-q" class="img-frame fragment" data-autoslide="300" data-question-name="Highlight">
-              <img src="img/questions/asq-highlight-q-viewer.png">
-            </div>
-            <div id="img-asq-js-function-body-q" class="img-frame fragment" data-autoslide="300" data-question-name="JS function">
-              <img src="img/questions/asq-js-function-body-q-viewer.png">
-            </div>
-            <div id="img-asq-css-select-q" class="img-frame fragment" data-autoslide="300" data-question-name="CSS Select">
-              <img src="img/questions/asq-css-select-q-viewer.png">
-            </div>
-            <div id="img-asq-sqlite-q" class="img-frame fragment" data-autoslide="300" data-question-name="SQLlite">
-              <img src="img/questions/asq-sqlite-q-viewer.png">
-            </div>
-            <div id="img-asq-diagram-q" class="img-frame fragment" data-question-name="Diagram" data-autoslide="300">
-              <img src="img/questions/asq-diagram-q-viewer.png">
-            </div> 
-            <div id="img-asq-js-eval-q" class="img-frame fragment" data-question-name="JS Eval" data-autoslide="300">
-              <img src="img/questions/asq-js-eval-q-viewer.png">
-            </div> 
-            <div id="img-asq-code-q" class="img-frame fragment" data-question-name="Code" data-autoslide="300">
-              <img src="img/questions/asq-code-q-viewer.png">
-            </div> 
-            <div id="img-asq-fiddle-q" class="img-frame fragment" data-question-name="HTML Fiddle" data-autoslide="300">
-              <img src="img/questions/asq-fiddle-q-viewer.png">
-            </div> 
-            <div id="img-message" class="img-frame fragment" data-question-name="Active Learning Question Types" data-autoslide="none">
-            </div> 
           </div>
           <aside class="notes"> We support .different question types ranging from simple multi-choice and text input questions; to labeling, ordering and highlight text to more open ended question types like Javascript programming or SQL queries that run in a database inside the browser.</aside>
         </section>
@@ -222,8 +373,848 @@
           <h1 class="white" style="font-size: 2.5em; margin-top: 500px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Access from any device with a browser</h1>
         </section>
 
-         <section id="analytics" data-background-image="img/Advanced_SQL_Topics_2015-12-14_at_09h40m34sall_single_session_viewer_state_stacked_area_dark.png">
+        <section id="design-goals">
+        <ul class="dash">
+          <li class="fragment">Application Domain Conformance 
+            <p class="accordion medium">
+              entities, relationships, information flow
+            </p>
+          </li>
+          <li class="fragment">Encapsulation
+            <div class="accordion medium">
+              <ul class="dash">
+                <li><strong class="grey">CSS:</strong> Base rule changes, Naming collisions, subtree matches
+                <!-- <pre><code class="css small">/* in article.css */
+        .article .title {
+        border-bottom: 1px solid;
+        font-size: 1.5em;
+        }
+
+        /* in widget.css */
+        .widget .title {
+        color: gray;
+        text-transform: uppercase;
+        }
+        /* Problem if .title inside a .widget inside an .article */</code></pre> -->
+                </li>
+                <li><strong class="grey">JavaScript:</strong> global namespace pollution, memory leaks
+                <!-- <pre><code class="js small">//will not be garbage collected - lose some KBs of memory
+        var myArray = [];
+        for (var i = 0; i < 2003000; i++) {
+        myArray.push(i * i + i);
+        }</code></pre> -->
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="fragment">Communication  <div class="accordion">
+               <ul class="dash medium">
+                 <li>Serverside</li>
+                 <li>Clientside</li>
+                 <li>inter-plugin (in-between client-side or server-side components of different plugins)</li>
+                 <li>intra-plugin (between client-side and server-side components)</li>
+               </ul>
+            </div></li>
+          <li class="fragment">Deployment and Publication
+            <div class="accordion">
+               <ul class="dash medium">
+                 <li>Single code repository</li>
+                 <li>Easily isolate and deploy frontend and backend code</li>
+               </ul>
+            </div>
+          </li>
+        </ul>
+        <aside class="notes">
+        <!--           The first thing to consider is the application domain: The domain of each application dictates the respective entities and their privileges, the flow of information between them and the security constraints that govern them. For example, a blogging platform is about posts and comments while a travel booking system about destinations, routes, travel packages and means of trasportation.<br><br> -->
+          Plugins are a unit of design encapsulation that reflects the structure of the architecture, and thus they should conform to the application domain. <br><br>
+
+          Packing of data and functions into a single component is straightforward to do in Node.js serverside applications using CommonJS style modules, it's not trivial to do in the frontend. <br>
+          To begin with, the cascading nature of CSS can lead to style bleeding where the appearance of UI elements is unintentionally altered. Methodologies like BEM and SMACSS have been devised to alleviate this problem but the root problem is in the technology itself. <br>
+          Similarly, Frontend JavaScript suffers from global namespace variable leaks (leaking variable to the global window object or unintentionally overwriting global objects). There have been various attempts to mitigate this. One is t use namespaces. Another is to use anonymous functions in module loaders like CommonJS and AMD (at the cost of precompilation which negates the role of JavaScript as an interpreted language) and again it's a platform problem. <br><br>
+          Luckily Web Components came along and made our lifes easier.
+          <br><br>
+
+          Plugin communication in our case can be categorised in four categories. between the backend components of a plugin and the core in the server, between frontend components of a plugin and the core in the client. Inter-plugin between client-side or server-side componentes of different plugins. And finally and maybe more interestingly, intra-plugin between the server and client components of the plugin. <br><br>
+
+          And finally how do make deploying and publishing plugins with components that live both in browser and server painless.
+          </aside>
+        </section>
+
+        <section id="plugin" data-background-color="#e1eaf7">
+          <img class="svg" src="svg/server-plugin-browser.svg" alt="architecture" style="width: 100%;">
+          <aside class="related-publications small brown" style="position: fixed; top: -60px;">[Triglianos2015ICWE]</aside>
+          <aside class="notes">Each ASQ plugin can have both serverside and clientside logic. The plugin systems of ASQ allows to use a single code base for both and offers an API for communication and interaction with the core.</aside>
+        </section>
+
+        <section id="asqium">
+          <img src="svg/server-plugin-browser.svg" alt="server svg client" style="width:100%;" class="svg">
+        </section>
+
+        <section id="architecture-diagram">
+          <img src="svg/architecture_cleaned.svg" alt="" class="svg">
+        </section>
+
+         <section id="lifecycle">
+          <h2 class="pastel-blue">Lifecycle methods</h2>
+          <p>modelled after Wordpress and Ghost</p>
+          <ul class="dash">
+            <li class="substep"><code>install</code></li>
+            <li class="substep"><code>uninstall</code></li>
+            <li class="substep"><code>activate</code></li>
+            <li class="substep"><code>deactivate</code></li>
+          </ul>
+          <aside class="notes">
+           Backend plugins feature four lifecycle methods.
+           During the install callback, plugins may install dependencies persist bootstraping data and more. The Activate callback loads them in the memory and registers hooks and events, tWe will refer to them shortly. Deacticate is about releasing resources.
+          </aside>
+        </section>
+
+         <section id="proxy-diagram">
+           <img src="svg/proxy_cleaned.svg" alt="" class="svg">
+           <aside class="notes">
+             One interesting implementation detail that decouples the core from plugins and can isolate runnning plugins in case of failure is the proxy object. A proxy object is a single façade interface between plugin modules and the host system. It exposes the core API to plugins. Each plugin gets instantiated with one from the core.
+           </aside>
+         </section>
+
+         <section id="backend-communication" class="text-left">
+           <h4 class="pastel-blue">Backend communication and message passing</h4>
+           <ul class="dash">
+             <li class="fragment">Input transformation tasks with <strong class="grey">completion acknowledgement</strong>
+               <ul class="disc medium">
+                 <li class="fragment">The result of each plugin is passed to the next participating plugin</li>
+                 <li class="fragment"> Plugins <strong class="grey">cannot</strong> be invoked in parallel or asynchonously</li>
+                 <li class="fragment">A plugin's task execution code <strong class="orange">can</strong> and should!</li>
+                 <li class="fragment">hooks API</li>
+               </ul>
+             </li>
+             <li class="fragment">Decoupled asynchronous tasks
+             <ul class="disc small">
+               <li class="fragment">No expectations for a completion acknowledgment or return values</li>
+               <li class="fragment">Pub/Sub</li>
+               <li class="fragment"> Native support in both server (EventEmitter) and client (EventTarget)</li>
+             </dash></li>
+           </ul>
+           <aside class="notes">
+             We have found communication  between plugins and the core to be a very important aspect of application domain conformance. On the one hand we may have have some information flows that need to pass sequentially through interested plugins for processing, sequentially and we need ACK when they are done. As an example consider preparing the head of an HTML document for rendering: Each interested plugin may inject scripts or other assets in the head. We need to run this sequentially to avoid two plugins writing simultaneously text output and we need to know when it's over so we can send it to the client.
+             On the other hand we have events that follow a Pub/Sub style like 'a new user has connected'. 
+           </aside>
+         </section>
+
+         <section id="hooks-diagram">
+           <img src="svg/hooks_cleaned.svg" alt="" class="svg">
+           <aside class="notes">It's good to go though an example</aside>
+         </section>
+
+         <section id="frontend">
+           <h4 class="pastel-blue">Frontend Web Components</h4>
+           <ul class="dash">
+             <li class="fragment">Web Components
+             <div class="accordion">
+                 <ul class="disc medium">
+                   <li>Custom Elements</li>
+                   <li>Shadow DOM</li>
+                   <li>HTML <code>&lt;template&gt;</code> element</li>
+                   <li>HTML imports</li>
+                 </ul>
+               </div>
+             </li>
+             <li class="fragment">Encapsulation and modularity
+               <div class="accordion">
+                 <ul class="disc small">
+                   <li>JavaScript methods on Element prototypes which are in the DOM anyway</li>
+                   <li>CSS Styles encapsulated in Shadow DOM, can be themed with CSS variables (emerging standard)</li>
+                   <li>Seperate presentation from content (Shadow DOM)</li>
+                 </ul>
+               </div>
+             </li>
+             <li class="fragment"><strong class="grey">Polyfill</strong> for Browsers that don't support them</li>
+           </ul>
+           <aside class="notes">
+             A Frontend plugin in asqium is implemented using Web Components. <!-- Web Components is an umbrella term covering four Web Technologies: Custom elements Shadow DOM, the HTML template element and HTML imports. -->
+             Custom Elements allows us to register our own HTML Element names which feature a shadow DOM. Shadow DOM can be viewed as a 'private' DOM for our element allowings to seperate structural markup from content and hide the implementation details. Moreover, Shadow DOM allows us to encapsulate CSS styles. HTML template elements, similar to Javascript powered templating languages, allow us to declaratively define HTML code fragments and reuse them. Finaly HTML imports enable us to automatically import HTML pages to our document, as well as their dependencies, akin to script tags with the src attribute set.
+
+             Missing Web Components functionality can be polyfilled with the webcomponentsjs polyfill library. We use the Polymer library which builds on top of the Web Components technology to add extra functionality like data- binding and declarative element registration. 
+           </aside>
+         </section>
+
+         <section id="frontend-communication-diagram">
+           <img src="svg/frontend_communication_cleaned.svg" alt="" class="svg">
+           <aside class="notes">
+
+             A typical Web Component defines one or more Custom Elements that encapsulate the User Interface and frontend business logic of the plugin. The plugin subscribes and publishes events to communicate with the rest of the application. Thus, the only dependency between front-end components and the front-end core of the application is the pub/sub implementation which is already present in the form of the EventTarget interface that most DOM Elements implement.
+
+              Each plugin shares an instance of an EventEmitter like object that allows it to subscribe and publish events. The reason we used an EventEmitter like object instead of using DOM nodes as EventDispatcher objects, is to allow for a uniform interface between server and client. A Web Component can exchange messages with the core or it's coresponding server-side module (through WebSockets). Events generated from plugins should be namespaced with the plugin's name. 
+             The choice of WebSockets for plugin communication was dictated by the needs of the ASQ platform as a real-time tool. However it's absolutely acceptable to use AJAX and a RESTful style of communication.
+           </aside>
+         </section>
+
+        <section id="asq-diagram">
+           <img src="svg/asq/asq.svg" alt="" class="svg">
+           <aside class="notes">
+             Before asqium, our plugin system, ASQ was structured as follows: There was a Frontend, the backend and persistence layers. <br><br>
+             On the serverside there was a, monolithic core, an HTTP server and a Websockets server. For persistence we use two types of stores a MongoDB database to store structured permanent data, and a Redis store to store volatile data that need fast access like session and socket ids. <br><br>
+             On the frontend we had the core JavaScript business logic as well as communication layers based on AJAX and WebSockets.
+             Time to introduce our plugin system to ASQ. Serverside we add the hook/events layer and the module plugin components on top of it. This results in a shrinked core. In a similar fashion we add the event middleware layer and the Web Component plugins on top of it on the clientside.
+           </aside>
+        </section>
+
+        <section id="publish-deploy-1">
+          <ul class="dash medium">
+            <li class="substep">Single code repository <br>
+              <a href="https://github.com/ASQ-USI-Elements/asq-highlight-q"><code>https://github.com/ASQ-USI-Elements/asq-highlight-q</code></a>
+            </li>
+          <li class="substep nopreviousfade">Directory structure
+              <pre class="small"><code class="html">├── README.md
+├── <span style="color:rgb(168, 189, 236);">asq-highlight-q.html</span> <span class="substep" style="color:#F7A3C6;"># Web Component</span> 
+├── <span style="color:rgb(168, 189, 236);">bower.json</span> <span class="substep" style="color:#F7A3C6;"># Bower package and frontend dependencies</span>
+├── <span style="color:rgb(168, 189, 236);">demo.html</span>
+├── <span style="color:rgb(168, 189, 236);">elements</span>
+│   ├── <span style="color:rgb(168, 189, 236);">...</span>
+├── <span style="color:#E2B992;">index.js</span> <span class="substep" style="color:#F7A3C6;"># node.js module entry</span>
+├── <span style="color:#E2B992;">lib</span>
+│   └── <span style="color:#E2B992;">asqHighlightPlugin.js</span> <span class="substep" style="color:#F7A3C6;"># node.js module</span>
+├── <span style="color:#E2B992;">node_modules</span>
+│   ├── <span style="color:#E2B992;">...</span> 
+├── <span style="color:#E2B992;">package.json</span> <span class="substep" style="color:#F7A3C6;"># npm package and backend dependencies</span>
+└── test
+    ├── <span style="color:rgb(168, 189, 236);">element</span>
+    └── <span style="color:#E2B992;">server</span></code></pre>
+            </li>
+          </ul>
+          <aside class="notes">
+          Asq-highlight lives in one github repo. 
+          The plugin repo is structured as follows:
+          There is the main custom element file, asq-highlight.html, which uses other elements from the elements directory. If we require the module on the backend, node will load index.js which points to lib/asqHighlightPlugin.js. 
+          </aside>
+        </section>
+
+        <section id="publish-deploy-2" class="step plain" data-x="2200" data-y="1700" data-scale="0.45">
+          <ul class="dash medium">
+            <li class="substep">Install frontend
+              <pre class="small"><code class="shell">&gt;_ <span style="color:rgb(168, 189, 236);">bower install --save asq-highlight</span></code></pre>
+            </li>
+            <li class="substep">Install backend
+              <pre class="small"><code class="shell">&gt;_ <span style="color:#E2B992;">npm install --save asq-highlight</span></code></pre>
+            </li>
+          </ul>
+          <aside class="notes">
+          To use it in a presentation you can install it as a frontend dependency with bower. You also have to add it to the plugins directory in ASQ. ASQ will install dependencies from npm once you activate the plugin. 
+          </aside>
+        </section>
+
+        <section id="analytics" data-background-image="img/Advanced_SQL_Topics_2015-12-14_at_09h40m34sall_single_session_viewer_state_stacked_area_dark.png">
           <h1 class="orange" style="font-size: 4em; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Analytics</h1>
+        </section>
+
+        <section id="events">
+          <h1 class="orange">Events</h1>
+          <aside class="related-publications small dark-brown">[Triglianos2016ECTEL, Triglianos2017UMAP]</aside>
+          <aside class="notes">The base unit for our analytics are browser events</aside>
+        </section>
+
+        <section id="events-mouse" data-background-image="img/gifs/mouse.gif">
+          <aside class="notes">such as mouse events</aside>
+        </section>
+        <section id="events-input-submit" data-background-image="img/gifs/input_submit.gif"><aside class="notes">selection and submission events</aside></section>
+        <section id="events-tab-switch" data-background-image="img/gifs/tab_switch.gif">
+        <aside class="notes">or tab visilibity events</aside></section>
+
+              <section id="controlled-setting" data-background-image="img/tu_delft_wtd_14_Nov_2016.jpeg" data-autoslide="1000">
+                <h1 class="fragment white" data-autoslide="0" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.6); font-size: 3em;">Real Classroom</h1>
+                <aside class="notes">
+                  <ul>
+                    <li>participation was optional</li>
+                    <li>students’ identity concealed</li>
+                    <li>learning set-up equal for all participants.</li>
+                  </ul>
+                  Previous works Methodological limitations:
+                  <ul>
+                     <li>experiments took place in a controlled setting</li>
+                     <li>where the students’ identities were known</li>
+                     <li>explicitly assigned to experimental conditions that could have harmed their learning experience</li>
+                   </ul>
+                </aside>
+              </section>
+
+              <section id="privacy" data-background-image="img/privacy.jpg" data-autoslide="1000">
+                <h1 class="fragment orange" data-autoslide="0" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.6); font-size: 3em;">Privacy &amp; Fairness</h1>
+                <aside class="notes">These issues of privacy and fairness are not compatible with the requirements of a real-world course, where students must be guaranteed equal treatment, and privacy must be preserved.</aside>
+              </section>
+
+              <section id="logistics" class="break white" data-background-image="img/ewi-delft.jpg">
+                <div style="background: rgba(39,39,39, 0.8); border-radius: 3px; width: 600px; margin: 0 auto; padding: 20px">
+                  <img style="height: 80px; display: block; margin: 0 auto 20px;" src="svg/tu-delft_white.svg">
+                  <h3 class="orange" style="margin-bottom: 15px;">Web &amp; Database Technology</h3>
+                  <ul class="text-left" style="list-style: none; margin-left: -60px;">
+                    <li>- 2016/17 edition</li>
+                    <li>- 1<sup>st</sup> - 3<sup>rd</sup> year Bachelor students</li>
+                    <li>- 14x90min lecture sessions</li>
+                    <li>- 83-319 students</li>
+                  </ul> 
+                </div>
+              </section> 
+
+
+             <!--  <section id="rq1" class="text-justify">
+                <p class="x-large" style="width: 800px; margin: 0 auto;">
+                  <strong class="pastel-blue">RQ1:</strong> To what extent can a <strong class="fragment">Web-based, privacy-preserving teaching
+                  tool</strong><span class="fragment"> be reliably used to assess the <strong>attention</strong></span><span class="fragment"> and <strong>learning outcomes</strong> of students?</span></span>
+                </p>
+              </section> -->
+
+              <section id="http-lecture-visible" data-background-color="#FFFFFF" data-background-transition="none">
+                <h4 class="text-center light-grey small">Temporal evolution of connected and slide engaged students during the HTTP lecture</h4>
+                <img src="img/http_visible.png" alt="Temporal evolution of connected and slide engaged students during the HTTP lecture" style="width: 100%;">
+              </section>
+
+              <section id="javascript-lecture-visible" data-background-color="#FFFFFF" data-background-transition="none">
+                <h4 class="text-center light-grey small">Temporal evolution of connected and slide engaged students during the JavaScript lecture</h4>
+                <img src="img/javascript_visible.png" alt="Temporal evolution of connected and slide engaged students during the JavaScript lecture" style="width: 100%;">
+              </section>
+
+              <section id="equations">
+                <div class="fragment">
+                  <h3>How engaged are the viewers during <span class="text-highlight">slides</span></h3>
+                        <span class="xx-large">\[\text{MSE}(v,s) = \frac{1}{T(s)}\sum_{t=1}^{T(s)} visible(v,s,t)\]</span>
+                </div>
+                <div class="fragment">
+                  <h3>How engaged are the viewers during <span class="text-highlight">questions</span></h3>
+                        <span class="xx-large">\[\text{MQE}(v,s) = \frac{1}{|Q(s)|} \sum_{q \in Q(s)} submitted(v,q)\]</span>
+                </div>
+              </section>
+
+              <section id="slide-engagement" data-background-color="#FFFFFF" data-background-transition="none">
+                <h3>Slide Engagement</h3>
+                <img src="img/mean-slide-engagement.png" alt="slide engagement">
+              </section>
+
+              <section id="slide-question-cor" data-background-color="white">
+                <h3 style="">Slide vs. Question Engagement</h3>
+                <img src="img/passive_active_scatter.png" alt="">
+              </section>
+
+              <section id="le-res">
+                <table class="small">
+                <thead>
+                  <tr class="medium">
+                    <th style="vertical-align: bottom;">Lecture</span><th class="rotate"><div><span>Instructor</span></div></th><th class="rotate"><div><span>Question Strategy</span></div></th><th class="rotate"><div><span>Easy Questions</span></div></th><th class="rotate"><div><span>Hard Questions</span></div></th><th class="rotate"><div><span>Students</span></div></th><th class="rotate"><div><span>ASQ Students</span></div></th><th class="rotate"><div><span>At Least 1 Question</span></div></th><th class="rotate"><div><span>All Questions</span></div></th> <th class="rotate"><div><span>cor. coeff. ρ(<em>S,Q</em>)</span></div></th><th class="rotate"><div><span>Score</span></div></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>HTTP</td><td>I1</td><td>b</td><td>6</td><td>4</td><td>319</td><td>99.7%</td><td>74.5%</td><td>26.1%</td><td>0.72</td><td>62.16%</td>
+                  </tr>
+                  <tr>
+                    <td>HTML</td><td>I1</td><td>u</td><td>4</td><td>4</td><td>238</td><td>94.5%</td><td>79.1%</td><td>27.6%</td><td>0.58</td><td>47.75%</td>
+                  </tr>
+                  <tr>
+                    <td>JavaScript</td><td>I1</td><td>i</td><td>5</td><td>5</td><td>192</td><td>91.1%</td><td>81.1%</td><td>8.0%</td><td>0.69</td><td>
+                      48.14%</td>
+                  </tr>
+                  <tr>
+                    <td>Database introduction</td><td>I2</td><td>i</td><td>6</td><td>1</td><td>204</td><td>83.8%</td><td>78.9%</td><td>10.5%</td><td>
+                  0.60</td><td>49.66%</td>
+                  </tr>
+                  <tr>
+                    <td>node.js </td><td>I1</td><td>b</td><td>5</td><td>3</td><td>208</td><td>64.9%</td><td>74.1%</td><td>15.6%</td><td>0.66</td><td>65.53%</td>
+                  </tr>
+                  <tr>
+                  <td>CSS</td><td>I1</td><td>u</td><td>2</td><td>5</td><td>163</td><td>82.8%</td><td>79.3%</td><td>21.5%</td><td>0.72</td><td>
+                      64.88%</td>
+                  </tr>
+                  <tr>
+                    <td>SQL introduction</td><td>I2</td><td>b</td><td>4</td><td>5</td><td>196</td><td>75.0%</td><td>79.6%</td><td>8.2%</td><td>0.57</td><td>52.05%</td>
+                  </tr>
+                  <tr>
+                    <td>SQL continued</td><td>I2</td><td>u</td><td>6</td><td>2</td><td>157</td><td>87.9%</td><td>76.8%</td><td>2.9%</td><td>0.44</td><td>54.41%</td>
+                  </tr>
+                  <tr>
+                    <td>Cookies &amp; session</td><td>I1</td><td>b</td><td>5</td><td>4</td><td>133</td><td>97.0%</td><td>78.3%</td><td>11.6%</td><td>0.51</td><td>49.76%</td>
+                  </tr>
+                  </tr>
+                  <tr>
+                    <td>Advanced SQL</td><td>I2</td><td>u</td><td>7</td><td>3</td><td>89 </td><td>87.6%</td><td>62.8%</td><td>0.0%</td><td>0.64</td><td>
+                      65.52%</td>
+                  </tr>
+                  <tr>
+                    <td>Web security</td><td>I1</td><td>u</td><td>4</td><td>4</td><td>151</td><td>70.9%</td><td>74.8%</td><td>14.0%</td><td>0.50</td><td>48.46%</td>
+                  </tr>
+                  <tr>
+                    <td>Conceptual design</td><td>I2</td><td>b</td><td>11</td><td>2</td><td>83</td><td>65.1%</td><td>83.3%</td><td>13.0%</td><td>0.42</td><td>60.26%</td>
+                  </tr>
+                  <tr>
+                    <td>ER logical design</td><td>I2</td><td>u</td><td>4</td><td>4</td><td>125</td><td>68.0%</td><td>84.7%</td><td>2.4%</td><td>0.40</td><td>
+                      54.49%</td>
+                  </tr>
+                  <tr>
+                    <td>NoSQL</td><td> I2</td><td>b</td><td>8</td><td>0</td><td>89  </td><td>76.4%</td><td>69.1%</td><td>11.8%</td><td>0.39</td><td>61.61%</td>
+                  </tr>
+                </tbody>
+                </table>
+              </section>
+
+              <section id="rq2" class="text-justify">
+                <div style="width: 800px; margin: 0 auto;">
+                  <p class="x-large" style="margin-top: 200px;">
+                    <strong class="pastel-blue">RQ2:</strong> Does the <span class="fragment"><strong>practice question strategy</strong><sup class="x-small"><a href="#fn1" id="ref1">1</a></sup></span> <span class="fragment">have any <strong>impact on student engagement</strong> and <strong>student learning</strong>?</span>
+                  </p>
+                  <hr style="margin-top: 200px;">
+                  <sup class="small footnote" id="fn1">1. Questions are deployed
+        uniformly across the entire lecture or with bursts of several questions at the same time<a href="#ref1" title="Jump back to footnote 1 in the text.">↩</a></sup>
+                </div>
+              </section>
+
+              <section id="question-strategies" data-background-color="#FFFFFF" data-background-transition="none">
+                <img src="img/question_strategy.png" alt="questions strategy">
+              </section>
+
+              <section id="question-strategies-results" data-autoslide="100">
+               <!--  <ul class="small">
+                  <li><strong>N</strong>: Number of items to correlate</li>
+                  <li><strong>ρ(S, Q)</strong>: Spearman rank-order correlation coefficient between <em>MSE</em> and <em>MQE</em> </li>
+                  <li><strong>%CA</strong>: percentage of correct <em>multi-choice</em> answers</li>
+                </ul> -->
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Condition</th>
+                      <th>Number <br>
+                      of Answers</th>
+                      <th>cor. coeff. <br>
+                      ρ(S, Q)</th>
+                      <th>% Correct <br>
+                      Answers</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="fragment no-border-bottom" data-autoslide="100">
+                      <td>Question strat. <em>uniform</em></td>
+                      <td>768</td>
+                      <td>0.50</td>
+                      <td>51.92</td>
+                    </tr>
+                    <tr class="fragment" data-autoslide="0">
+                      <td>Question strat. <em>bursts</em></td>
+                      <td>851</td>
+                      <td>0.61</td>
+                      <td>59.65</td>
+                    </tr>
+                    <tr class="fragment no-border-bottom" data-autoslide="100">
+                      <td>Instructor <em>I1</em></td>
+                      <td>1224</td>
+                      <td>0.63</td>
+                      <td>55.47</td>
+                    </tr>
+                    <tr class="fragment" data-autoslide="0">
+                      <td>Instructor <em>I2</em></td>
+                      <td>741</td>
+                      <td>0.45</td>
+                      <td>55.02</td>
+                    </tr>
+                    <tr class="fragment no-border-bottom" data-autoslide="100">
+                      <td><em>I1</em> + <em>uniform</em></td>
+                      <td>467</td>
+                      <td>0.58</td>
+                      <td>50.25</td>
+                    </tr>
+                    <tr class="fragment no-border-bottom" data-autoslide="100">
+                      <td><em>I1</em> + <em>bursts</em></td>
+                      <td>582</td>
+                      <td>0.67</td>
+                      <td>60.85</td>
+                    </tr>
+                    <tr class="fragment no-border-bottom" data-autoslide="100">
+                      <td><em>I2</em> + <em>uniform</em></td>
+                      <td>301</td>
+                      <td>0.39</td>
+                      <td>55.85</td>
+                    </tr>
+                    <tr class="fragment" data-autoslide="0">
+                      <td><em>I2</em> + <em>bursts</em></td>
+                      <td>269</td>
+                      <td>0.47</td>
+                      <td>56.75</td>
+                    </tr>
+                  </tbody>
+                </table>
+                 <p><em>p &lt; 0.01</em></p>
+              </section>
+
+
+          <section id="conclusions">
+            <h3 class="pastel-blue">Conclusions</h3>
+            <ul>
+              <li class="fragment" style="margin-top: 20px;">ASQ is a suitable platform for "in-situ" privacy-preserving research in large classrooms</li>
+              <li class="fragment" style="margin-top: 40px;">Different question  strategies can influence student engagement</li>
+            </ul>
+          </section>
+
+          <section id="browser-events">
+           <h1 class="pastel-blue">Browser events</h1>
+          </section>  
+
+
+          <section id="events-list">
+            <table class="medium" id="events-tbl">
+       <thead>
+         <tr><th>Event Name</th><th>Description</th>
+       </thead>
+       <tbody>
+        <!--  <tr>
+           <td><code>tabhidden</code></td><td> The browser tab that displays the ASQ webpage becomes hidden.</td>
+         </tr>
+         <tr>
+           <td><code>tabvisible</code></td><td> The browser tab that displays the ASQ webpage becomes visible.</td>
+         </tr>
+         <tr> -->
+           <td><code>windowfocus</code></td><td> The browser window that displays the ASQ receives focus.</td>
+         </tr>
+       <!--   <tr>
+           <td><code>windowblur</code></td><td> The browser window that displays the ASQ webpage loses focus (blurs in HTML terminology).</td>
+         </tr> -->
+       <!--   <tr>
+           <td><code>exercisefocus</code></td><td> An ASQ exercise HTML element receives focus.</td>
+         </tr>
+         <tr>
+           <td><code>exerciseblur</code></td><td> An ASQ exercise HTML element blurs.</td>
+         </tr> -->
+       <!--   <tr>
+           <td><code>input</code></td><td> There is student input in the browser window that displays ASQ.</td>
+         </tr> -->
+         <tr>
+           <td><code>questioninput</code></td><td> Student input in a question.</td>
+         </tr>
+         <tr>
+           <td><code>exercisesubmit</code></td><td> A student submits the solution to an ASQ exercise.</td>
+         </tr>
+       <!--   <tr>
+           <td><code>answersubmitted</code></td><td> A student submits an answer for an ASQ question (an exercise can have multiple questions).</td>
+         </tr> -->
+         <tr>
+           <td><code>idle</code></td><td> Student is inactive for 10 seconds.</td>
+         </tr>
+         <tr>
+           <td><code>connected</code></td><td> A student connects to the ASQ server.</td>
+         </tr>
+       <!--   <tr>
+           <td><code>disconnected</code></td><td>A student disconnects from the ASQ server.</td>
+         </tr> -->
+       </tbody>
+       </table>
+
+               <div class="fragment medium text-left">
+                 <br>
+                 <code>tabhidden</code>, <code>tabvisible</code>, <code>windowblur</code>, <code>exercisefocus</code>, <code>exerciseblur</code>, <code>input</code>, <code>answersubmitted</code>, <code>disconnected</code>
+               </div>
+             </section>
+
+
+             <section id="rqs">
+               <h4 class="large"> <span class="grey" style="font-weight: normal;">RQ1.</span> To what extent can students’ <span class="light-blue">attention</span> be inferred from their interactions with a Web-based platform?</h4>
+               <br>
+               <h4 class="large fragment"> <span class="grey" style="font-weight: normal;">RQ2.</span> Which type of <span class="light-red">interactions</span> are most correlated with (in)attention?</h4>
+               <div class="notes">
+               </div>
+             </section>
+
+             <section id="attention-measurement-methods">
+               <table id="methods-tbl" class="tg">
+                <colgroup>
+                  <col span="1" style="width: 35%;">
+                  <col span="1" style="width: 11%;">
+                  <col span="1" style="width: 11%;">
+                  <col span="1" style="width: 10%;">
+                  <col span="1" style="width: 10%;">
+                  <col span="1" style="width: 12%;">
+                </colgroup>
+                 <tr>
+                   <th class="tg-031e" style="text-align: left;">Method</th>
+                   <th class="tg-yw4l">Invasive</th>
+                   <th class="tg-yw4l">Accurate</th>
+                   <th class="tg-yw4l">Scalable</th>
+                   <th class="tg-yw4l">Privacy</th>
+                   <th class="tg-yw4l">Affordable</th>
+                 </tr>
+                 <tr>
+                   <td class="tg-yw4l">EEG signals</td>
+                   <td class="tg-yw4l" style="text-align: center;">✓</td>
+                   <td class="tg-yw4l" style="text-align: center;">✓</td>
+                   <td class="tg-yw4l" style="text-align: center;"></td>
+                   <td class="tg-yw4l" style="text-align: center;">✓</td>
+                   <td class="tg-yw4l" style="text-align: center;"></td>
+                 </tr>
+                 <tr>
+                   <td class="tg-yw4l">Facial expressions</td>
+                   <td class="tg-yw4l" style="text-align: center;"></td>
+                   <td class="tg-yw4l" style="text-align: center;">✓</td>
+                   <td class="tg-yw4l" style="text-align: center;"></td>
+                   <td class="tg-yw4l" style="text-align: center;"><br></td>
+                   <td class="tg-yw4l" style="text-align: center;"></td>
+                 </tr>
+                 <tr>
+                   <td class="tg-yw4l">Eye gaze and skin conductance</td>
+                   <td class="tg-yw4l" style="text-align: center;">✓</td>
+                   <td class="tg-yw4l" style="text-align: center;">✓</td>
+                   <td class="tg-yw4l" style="text-align: center;"></td>
+                   <td class="tg-yw4l" style="text-align: center;">✓</td>
+                   <td class="tg-yw4l" style="text-align: center;"></td>
+                 </tr>
+                 <tr>
+                   <td class="tg-yw4l">TAs Observing Students</td>
+                   <td class="tg-yw4l" style="text-align: center;"></td>
+                   <td class="tg-yw4l" style="text-align: center;">✓</td>
+                   <td class="tg-yw4l" style="text-align: center;"></td>
+                   <td class="tg-yw4l" style="text-align: center;"></td>
+                   <td class="tg-yw4l" style="text-align: center;"></td>
+                 </tr>
+                 <tr>
+                   <td class="tg-yw4l">Note-taking analysis</td>
+                   <td class="tg-yw4l" style="text-align: center;"></td>
+                   <td class="tg-yw4l" style="text-align: center;"></td>
+                   <td class="tg-yw4l" style="text-align: center;"></td>
+                   <td class="tg-yw4l" style="text-align: center;"></td>
+                   <td class="tg-yw4l" style="text-align: center;"></td>
+                 </tr>
+               </table>
+               
+             </section>
+
+             <section id="findings" class="text-left">
+               <h2 class="orange">State of the Art Findings</h2>
+               <ul>
+                <li class="fragment" style="margin-top: 10px;"><span style="font-weight: bold; color: #555;">F1</span>: Students' <span class="light-red">attention drops</span> over the class period.</li>
+                <li class="fragment" style="margin-top: 10px;"><span style="font-weight: bold; color: #555;">F2</span>: <span class="light-red">Attention breaks occur regularly</span> and <span class="light-red">increase</span> in frequency as the class progresses.</li>
+                <li class="fragment" style="margin-top: 10px;"><span style="font-weight: bold; color: #555;">F3</span>: Attention rises when <span class="light-red">interactive elements</span> are introduced.</li>
+                <li class="fragment" style="margin-top: 10px;"><span style="font-weight: bold; color: #555;">F4</span>: Immediately <span class="light-red">after interactive teaching elements</span>, the <span class="light-red">level of distraction is lower</span> than before the start of the interaction.</li>
+               </ul>
+             </section>
+
+             <section id="logistics-2" class="break white" data-background-image="img/ewi-delft.jpg">
+                <div style="background: rgba(39,39,39, 0.8); border-radius: 3px; width: 600px; margin: 0 auto; padding: 20px">
+               <img style="height: 80px;" src="svg/tu-delft_white.svg">
+               <h3 class="orange" style="margin-bottom: 15px;">Web &amp; Database Technology</h3>
+               <ul class="text-left" style="list-style: none; margin-left: -60px;">
+                 <li>- 2015/16 edition</li>
+                 <li>- 1<sup>st</sup> - 3<sup>rd</sup> year Bachelor students</li>
+                 <li>- 3x90min lecture sessions</li>
+                 <li>- 111-187 students</li>
+               </ul> 
+             </div>
+             </section> 
+
+             <section id="events-img">
+               <h4 class="text-center small">Browser events for 2 students</h4>
+               <img src="img/single_viewer_events.png" alt="single viewer events" style="width: 100%;">
+             </section>
+
+             <section id="low-level" class=" text-center">
+               <h1>From <span class="light-blue">low-level events</span> to <span class="orange">attention states</span></h1>
+               <div class="notes">
+               </div>
+             </section>
+
+             <section id="activity-indicators">
+               <h4 class="text-center" style="margin-bottom: 0.7em;">State indicators</h4>
+               <table id="indicators-tbl" class="medium">
+       <thead>
+         <tr>
+           <th>Name</th>
+           <th>Description</th>
+       </thead>
+       <tbody>
+         <tr>
+           <td><code>exercise</code></td><td> The current slide has an exercise.</td>
+         </tr>
+         <tr>
+           <td><code>connected</code></td><td> The student browser is connected to ASQ.</td>
+         </tr>
+         <tr>
+           <td><code>focus</code></td><td> The  browser  has  focus  on  the  tab  or  exercise  related  to  the lecture.</td>
+         </tr>
+         <tr>
+           <td><code>idle</code></td><td> The viewer is idle.</td>
+         </tr>
+         <tr>
+           <td><code>input</code></td><td> An ASQ exercise HTML element receives input.</td>
+         </tr>
+         <tr>
+           <td><code>submitted</code></td><td> All the ASQ exercises of the slide have been submitted.</td>
+         </tr>
+       </tbody>
+       </table>
+      </section>
+
+
+      <section id="stacked-area-connected-focus">
+         <h4 class="text-center small">Connected-focus indicators for the whole class</h4>
+         <img src="img/Advanced_SQL_Topics_2015-12-14_at_09h40m34sall_single_session_connected_focus_stacked_area.png" alt="connected-focus indicators" style="width: 100%;">
+         <ul class="x-small">
+           <li class="fragment" style="margin-top: 10px; font-weight: bold;">F1: Students' attention drops over the class period.</li>
+           <li class="fragment" style="margin-top: 10px; font-weight: bold;">F3: Attention rises when interactive elements are introduced.</li>
+         </ul>
+        </section>
+
+        <section id="stacked-area-connected-focus-2">
+         <div style="position: relative; width: 700px; height: 900px; margin: 0 auto;">
+         <img src="img/ER_Conceptual_Design_2016-01-04_at_09h43m13sall_single_session_connected_focus_stacked_area.png" alt="connected-focus indicators for ER Conceptual Design lecture" style="width: 100%; position: absolute; left:0; top: 0; z-index: 2;">
+         <img src="img/Web_Security_2016-01-11_at_09h37m56sall_single_session_connected_focus_stacked_area.png" alt="connected-focus indicators for Web Security lecture" style="width: 100%; position: absolute; left:0; top: 320px;">
+         </div>
+        </section>
+
+        <section id="modeling">
+
+        <table id="modeling-tbl">
+        <colgroup>
+          <col span="1" style="width: 130px;">
+          <col span="1" style="width: 150px;">
+          <col span="1" style="width: 90px;">
+          <col span="1" style="width: 70px;">
+          <col span="1" style="width: 90px;">
+          <col span="1" style="width: 140px;">
+          <col span="1" style="width: 360px;">
+        </colgroup>
+        <thead>
+        <tr>
+          <th>exercise</th> <th>connected</th> <th>focus</th> <th>idle</th> <th>input</th> <th>submitted</th> <th style="text-align: left; color:#FFC445; text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);">Inferred Attention State</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+          <td>-          </td><td> -          </td><td> -          </td><td> -          </td><td> -          </td><td> -           </td><td> <div class="state-color" style="background-color: #a6cee3;"></div> Disconnected  </td>
+        </tr>
+        <tr>
+          <td>&#10004; </td><td> -          </td><td> -          </td><td> -          </td><td> -          </td><td> -           </td><td><div class="state-color" style="background-color: #1f78b4;"></div> Disconnected  </td>
+        </tr>
+        <tr>
+          <td>&#10004; </td><td> -          </td><td> -          </td><td> -          </td><td> -          </td><td> &#10004;  </td><td><div class="state-color" style="background-color: #cab2d6;"></div> Disconnected  </td>
+        </tr>
+        </tbody>
+        <tbody class="substep">
+        <tr>
+          <td>-          </td><td> &#10004; </td><td> -          </td><td> -          </td><td> -          </td><td> -           </td><td><div class="state-color" style="background-color: #b2df8a;"></div> Distracted  </td>
+        </tr>  
+        <tr>
+          <td>-          </td><td> &#10004; </td><td> -          </td><td> &#10004; </td><td> -          </td><td> -           </td><td><div class="state-color" style="background-color: #b2df8a;"></div> Distracted  </td>
+        </tr>  
+        </tbody>
+        <tbody class="substep">
+        <tr>
+          <td>&#10004; </td><td> &#10004; </td><td> -          </td><td> -          </td><td> -          </td><td> -           </td><td><div class="state-color" style="background-color: #33a02c;"></div> Searching for a solution  </td>
+        </tr>  
+        <tr>
+          <td>&#10004; </td><td> &#10004; </td><td> -          </td><td> &#10004; </td><td> -          </td><td> -           </td><td><div class="state-color" style="background-color: #33a02c;"></div> Searching for a solution  </td>
+        </tr>   
+        <tr>
+          <td>-          </td><td> &#10004; </td><td> &#10004; </td><td> -          </td><td> -          </td><td> -           </td><td><div class="state-color" style="background-color: #fb9a99; "></div> Interacting with non-question slide   </td>
+        </tr> 
+        <tr>
+          <td>-          </td><td> &#10004; </td><td> &#10004; </td><td> &#10004; </td><td> -          </td><td> -           </td><td><div class="state-color" style="background-color: #fdbf6f;"></div> Following     </td>
+        </tr>
+        <tr>
+          <td>&#10004; </td><td> &#10004; </td><td> &#10004; </td><td> -          </td><td> -          </td><td> -           </td><td><div class="state-color" style="background-color: #e31a1c;"></div> Thinking    </td>
+        </tr>  
+        <tr>
+          <td>&#10004; </td><td> &#10004; </td><td> &#10004; </td><td> &#10004; </td><td> -          </td><td> -           </td><td><div class="state-color" style="background-color: #e31a1c;"></div> Thinking   </td>
+        </tr>   
+        <tr>
+          <td>&#10004; </td><td> &#10004; </td><td> -          </td><td> -          </td><td> -          </td><td> &#10004;  </td><td><div class="state-color" style="background-color: #6a3d9a;"></div> Bored   </td>
+        </tr>      
+        <tr>
+          <td>&#10004; </td><td> &#10004; </td><td> -          </td><td> &#10004; </td><td> -          </td><td> &#10004;  </td><td><div class="state-color" style="background-color: #6a3d9a;"></div> Bored   </td>
+        </tr>      
+        <tr>
+          <td>&#10004; </td><td> &#10004; </td><td> &#10004; </td><td> -          </td><td> -          </td><td> &#10004;  </td><td><div class="state-color" style="background-color: #ffff99;"></div> Waiting  </td>
+        </tr>     
+        <tr>
+          <td>&#10004; </td><td> &#10004; </td><td> &#10004; </td><td> &#10004; </td><td> -          </td><td> &#10004;  </td><td><div class="state-color" style="background-color: #ffff99;"></div> Waiting   </td>
+        </tr>    
+        <tr>
+          <td>&#10004; </td><td> &#10004; </td><td> &#10004; </td><td> -          </td><td> &#10004; </td><td> -           </td><td><div class="state-color" style="background-color: #ff7f00;"></div> Working </td>
+        </tr>    
+        <tr>
+          <td>&#10004; </td><td> &#10004; </td><td> &#10004; </td><td> -          </td><td> &#10004; </td><td> &#10004;  </td><td><div class="state-color" style="background-color: #b15928;"></div> Reworking answer   </td>
+        </tr>
+        </tbody>
+        </table>
+        <!--   <br>
+          <p class="substep small">"Disconnected", "Searching for a solution", "Interacting with non-question slide", "Thinking", "Waiting", "Reworking answer"</p> -->
+      </section>
+
+
+      <section id="attention-state">
+        <div class="layout horizontal center-justified">
+          <h1 style="width: 750px; margin: 0 auto;">We can monitor <span class="orange">student attention</span> in <span class="pastel-blue">large classrooms!</span></h1>
+        </div>
+      </section>
+
+
+      <section id="state-img">
+          <h4 class="text-center small">Attention State for 2 students</h4>
+          <img src="img/single_viewer_state.png" alt="single attention State" style="width: 100%;">
+      </section>
+
+      <section id="stacked-area-dissection">
+        <div class="graph-slideshow">
+          <img src="img/step1.png" alt="single attention State">
+          <img class="fragment" src="img/step2.png" alt="single attention State">
+          <img class="fragment" src="img/step3.png" alt="single attention State">
+          <img class="fragment" src="img/step4.png" alt="single attention State">
+          <img class="fragment" src="img/step5.png" alt="single attention State">
+          <img class="fragment" src="img/step6.png" alt="single attention State">
+        </div>
+           <ul class="x-small">
+         <li class="fragment" style="margin-top: 10px; font-weight: bold;">F1: Students' attention drops over the class period.</li>
+         <li class="fragment" style="margin-top: 10px; font-weight: bold;">F3: Attention rises when interactive elements are introduced.</li>
+         <li class="fragment" style="margin-top: 10px; font-weight: bold;">F4: Immediately after interactive teaching elements, the level of distraction is lower than before the start of the interaction.</li>
+        </ul>
+      </section>
+
+      <section id="zoom-exercise-slide">
+        <h1>Let's <span class="pastel-blue">zoom</span> in a <span class="orange">question slide</span></h1>
+      </section>
+
+      <section id="stacked-area-exercise-dissection">
+        <div class="graph-slideshow">
+          <img src="img/step_ex_slide_1.png" alt="single attention State">
+          <img class="fragment" src="img/step_ex_slide_2.png" alt="single attention State">
+          <img class="fragment" src="img/step_ex_slide_3.png" alt="single attention State">
+          <img class="fragment" src="img/step_ex_slide_4.png" alt="single attention State">
+          <img class="fragment" src="img/step_ex_slide_5.png" alt="single attention State">
+          <img class="fragment" src="img/step_ex_slide_6.png" alt="single attention State">
+        </div>
+      </section>
+
+      <section id="stacked-area-2">
+        <div style="position: relative; height: 900px; margin: 0 auto;">
+          <img src="img/ER_Conceptual_Design_2016-01-04_at_09h43m13sall_single_session_viewer_state_stacked_area.png" alt="single attention State" style="width: 650px; position: relative; top:0; left: 0;">
+          <img src="img/Web_Security_2016-01-11_at_09h37m56sall_single_session_viewer_state_stacked_area.png" alt="single attention State" style="width: 650px; position: relative; top: -135px; left: 0;">
+        </div>
+        
+      </section>
+
+
+      <section id="attention-focus-variation">
+        <h4 class="text-center light-grey small">Attention-focus variation</h4>
+        <img src="img/Advanced_SQL_Topics_2015-12-14_at_08h40m34sattention_focus_variation.png" alt="attention focus variation" style="width: 100%;">
+        <ul class="x-small">
+          <li class="substep" style="margin-top: 10px; font-weight: bold;">F2: Attention breaks occur regularly <span class="light-red">but do not</span> increase in frequency as the class progresses.</li>
+          <li class="substep" style="margin-top: 10px; font-weight: bold;">F3: Attention rises when interactive elements are introduced.</li>
+        </ul>
+      </section>
+
+      <section id="attention-focus-variation-2">
+        <div style="position: relative; height: 900px; margin: 0 auto;">
+        <img src="img/Web_Security_2016-01-11_at_08h37m56sattention_focus_variation.png" alt="attention focus variation" style="width:650px; position: relative; left:0; z-index: 1;">
+        <img src="img/ER_Conceptual_Design_2016-01-04_at_08h43m13sattention_focus_variation.png" alt="attention focus variation" style="width:650px; position: relative; left:0; top: -60px;">
+        </div>
+      </section>
+      
+
+        <section id="events-img-2" data-background-color="#FFFFFF" data-background-transition="none">
+            <h4 class="text-center small">Sequence of events for 3 example viewers</h4>
+            <img src="img/three_viewer_events.png" alt="events for three viewers" style="width: 100%;">
+            <aside class="notes">Plot for three students</aside>
         </section>
 
         <section id="dataset-1">
@@ -368,108 +1359,24 @@
     <script src="reveal.js/lib/js/head.min.js"></script>
     <script src="bower_components/svg-injector/dist/svg-injector.min.js"></script>
     <script src="reveal.js/js/reveal.js"></script>
-    <script type="text/javascript">
-
-//and inject svgs
-var mySVGsToInject = document.querySelectorAll('img.svg');
-SVGInjector(mySVGsToInject);
-
-// cache question-type-name-label
-var questionTypeNameLabelEl = document.getElementById('question-type-name-label');
-
-Reveal.addEventListener( 'ready', function( event ) {
-  document.body.classList.add("on-"+event.currentSlide.id);
-});
-
-Reveal.addEventListener( 'slidechanged', function( event ) {
-  if (event.previousSlide) {
-    document.body.classList.remove("on-"+event.previousSlide.id);
-  }
-  if (event.currentSlide) {
-    document.body.classList.add("on-"+event.currentSlide.id);
-  }
-});
-
-Reveal.addEventListener("fragmenthidden", function(evt){
-  var ids=["s-sub", "q-sub", "a-sub"]
-  var idx;
-
-  if(! evt.fragment) return;
-
-  if(evt.fragment.id === 'hideSplashContent'){
-    try{
-      document.getElementById('splashAsqLogo').classList.remove('animate');
-      document.getElementById('splashContent').classList.remove('hidden');
-    }catch(err){
-      console.log('Could not show splash content');
-      console.log(err);
-    }
-  }
-
-  // asq explanation
-  if((idx = ids.indexOf(evt.fragment.id)) >= 0){
-    try{
-      // document.getElementById(evt.target.id + '-expansion').classList.add(active);
-      for(var i=0; i < ids.length; i++){
-        if(i == idx){
-          document.getElementById(ids[i] + '-expansion').classList.remove('active');
-        }else{
-          // document.getElementById(ids[i] + '-expansion').classList.remove('active');
-        }
-      }
-    }catch(err){
-      console.log('Could not find associated letter expansion')
-    }
-  }
-})
-
-Reveal.addEventListener("fragmentshown", function(evt){
-  var ids=["s-sub", "q-sub", "a-sub"]
-  var idx;
-
-  if(! evt.fragment) return;
-
-  if(evt.fragment.id === "hideSplashContent"){
-    try{
-      document.getElementById('splashAsqLogo').classList.add('animate');
-      document.getElementById("splashContent").classList.add('hidden');
-    }catch(err){
-      console.log("Could not hide splash content")
-      console.log(err)
-    }
-  }
-
-  // asq explanation
-  if((idx = ids.indexOf(evt.fragment.id)) >= 0){
-    try{
-      // document.getElementById(evt.target.id + "-expansion").classList.add(active);
-      for(var i=0; i < ids.length; i++){
-        if(i == idx){
-          document.getElementById(ids[i] + "-expansion").classList.add("active");
-        }else{
-          // document.getElementById(ids[i] + "-expansion").classList.remove("active");
-        }
-      }
-    }catch(err){
-      console.log("Could not find associated letter expansion")
-    }
-  }
-  // question types
-  else if(evt.fragment.classList.contains('img-frame')){
-    questionTypeNameLabelEl.textContent = evt.fragment.dataset.questionName;
-  }
-});
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
     </script>
+    <script type="text/javascript" src="js/app.js"></script>
     <script>
       setTimeout(function(){
         try{
           Reveal.initialize({
             dependencies:[
               { src: 'reveal.js/plugin/notes/notes.js', async: true },
+              // Zoom in and out with Alt+click
+              { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
             ],
             pdfMaxPagesPerSlide: 1,
             history: true,
             loop: true,
+            slideNumber: 'c/t',
+            zoomLevel: 4,
             // width: "80%",
             // height: "100%",
             // margin: 0,

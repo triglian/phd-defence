@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" viewBox="1021 502 558 464" width="744" height="464pt">
+    <defs>
+        <marker orient="auto" overflow="visible" id="a" viewBox="-4 -4 10 8" markerWidth="10" markerHeight="8" color="#989898">
+            <path d="M5 0l-8-3 3 3-3 3z" fill="currentColor" stroke="currentColor"/>
+        </marker>
+        <marker orient="auto" overflow="visible" id="b" viewBox="-6 -4 10 8" markerWidth="10" markerHeight="8" color="#989898">
+            <path d="M-5 0l8 3-3-3 3-3z" fill="currentColor" stroke="currentColor"/>
+        </marker>
+    </defs>
+    <g fill="none">
+        <title>
+            Canvas 1
+        </title>
+        <title>
+            Layer 1
+        </title>
+        <path fill="#f7f7f7" d="M1023.307 504.567h552.756V963.78h-552.756z"/>
+        <path stroke="#929292" stroke-linecap="round" stroke-linejoin="round" d="M1023.307 504.567h552.756V963.78h-552.756z"/>
+        <path d="M1057.323 513.07h289.134v147.402h-289.134z" stroke="#929292" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1,4"/>
+        <path d="M1427.322 513.07h109.816v113.387h-109.816z" stroke="#929292" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1,4"/>
+        <path d="M1448.565 572.04v-27.112c0-1.87 15.082-3.39 33.665-3.39s33.665 1.52 33.665 3.39v27.11c0 1.872-15.082 3.39-33.665 3.39s-33.665-1.518-33.665-3.39" fill="#fffce9"/>
+        <path d="M1448.565 572.04v-27.112c0-1.87 15.082-3.39 33.665-3.39s33.665 1.52 33.665 3.39v27.11c0 1.872-15.082 3.39-33.665 3.39s-33.665-1.518-33.665-3.39m0-27.11c0 1.87 15.082 3.39 33.665 3.39s33.665-1.52 33.665-3.39" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+        <text transform="translate(1453.565 554.178)" fill="#000">
+            <tspan font-family="Helvetica" font-size="10" font-weight="bold" x="5.061" y="10" textLength="47.207">MongoDB</tspan>
+        </text>
+        <path d="M1448.565 611.2v-27.113c0-1.87 15.082-3.39 33.665-3.39s33.665 1.52 33.665 3.39V611.2c0 1.87-15.082 3.387-33.665 3.387s-33.665-1.518-33.665-3.388" fill="#eba3b8"/>
+        <path d="M1448.565 611.2v-27.113c0-1.87 15.082-3.39 33.665-3.39s33.665 1.52 33.665 3.39V611.2c0 1.87-15.082 3.387-33.665 3.387s-33.665-1.518-33.665-3.388m0-27.113c0 1.87 15.082 3.39 33.665 3.39s33.665-1.52 33.665-3.39" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+        <text transform="translate(1453.565 593.337)" fill="#000">
+            <tspan font-family="Helvetica" font-size="10" font-weight="bold" x="15.049" y="10" textLength="27.231">Redis</tspan>
+        </text>
+        <path fill="#cde2cb" d="M1428.065 513.07h88.47v17.697h-88.47z"/>
+        <text transform="translate(1433.065 514.92)" fill="#000">
+            <tspan font-family="Helvetica Neue" font-size="12" font-style="italic" font-weight="300" x=".559" y="11" textLength="77.352">PERSISTENCE</tspan>
+        </text>
+        <path marker-end="url(#a)" marker-start="url(#b)" stroke="#989898" stroke-linecap="round" stroke-linejoin="round" d="M1435.326 595.28h-80.388"/>
+        <text transform="translate(1363.56 580.28)" fill="#000">
+            <tspan font-family="Helvetica" font-size="12" font-weight="500" x="2.159" y="11" textLength="56.016">PUB/SUB</tspan>
+        </text>
+        <text transform="translate(1371.06 598.112)" fill="#000">
+            <tspan font-family="Helvetica" font-size="12" font-weight="500" x=".154" y="11" textLength="42.691">Session</tspan>
+        </text>
+        <text transform="translate(1375.6 543.69)" fill="#000">
+            <tspan font-family="Helvetica" font-size="12" font-weight="500" x=".158" y="11" textLength="32.684">Model</tspan>
+        </text>
+        <path marker-end="url(#a)" marker-start="url(#b)" stroke="#989898" stroke-linecap="round" stroke-linejoin="round" d="M1261.417 714.48V653.2"/>
+        <path marker-end="url(#a)" marker-start="url(#b)" stroke="#989898" stroke-linecap="round" stroke-linejoin="round" d="M1165.04 653.2v61.28"/>
+        <path d="M1037.48 721.79h524.075v233.486H1037.48z" stroke="#929292" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1,4"/>
+        <path fill="#ffeeaf" d="M1037.48 721.79h73.7v18.32h-73.7z"/>
+        <text transform="translate(1042.48 723.95)" fill="#000">
+            <tspan font-family="Helvetica Neue" font-size="12" font-style="italic" font-weight="300" x=".956" y="11" textLength="61.788">FRONTEND</tspan>
+        </text>
+        <path d="M1063.914 893.666l-.22 4.59v7.516h2.447v-7.517l-.22-4.59c-.02-.42-.38-.758-.8-.758h-.407c-.422 0-.78.34-.8.76z" fill="#3c3c3b"/>
+        <path d="M1062.782 892.958l-1.024-1.347c-.254-.333-.8-.603-1.222-.603h-.4c-.42 0-.642.246-.493.548l.27.55c-3.542.036-5.532 2.424-5.532 6.59v6.96h7.208z" fill="#3c3c3b"/>
+        <path d="M1075.535 898.695c0-4.164-1.99-6.554-5.53-6.59.12-.248.27-.55.27-.55.147-.303-.074-.55-.494-.55h-.398c-.42 0-.97.27-1.223.605l-1.026 1.347 1.195 12.698h7.205z" fill="#3c3c3b"/>
+        <path d="M1069.878 884.74c0 3.513-1.6 6.36-4.92 6.36-3.325 0-4.924-2.847-4.924-6.36 0-3.517 1.6-4.976 4.923-4.976 3.32 0 4.92 1.46 4.92 4.976z" fill="#3c3c3b"/>
+        <text transform="translate(1038.458 904.144)" fill="#000">
+            <tspan font-family="Helvetica" font-size="12" font-weight="500" x=".487" y="11" textLength="52.025">Presenter</tspan>
+        </text>
+        <path d="M1389.353 891.533c.005-.012-.93-.035-.93-.035-.676 1.288-2.002 1.992-3.878 1.992-1.668 0-2.962-.743-3.562-1.992-.97.025-.966.038-.966.038-3.068.194-4.796 2.305-4.796 5.913v6.28h3.592c.25-1.025.44-2.097.44-3.008 0-2.02.666.575.773 3.008h9.41c.11-2.433.777-5.03.777-3.008 0 .91.19 1.983.44 3.008h3.532v-6.28c0-3.622-1.74-5.738-4.83-5.917z" fill="#3c3c3b"/>
+        <path d="M1389.02 886.032c0 3.172-1.443 5.74-4.44 5.74-2.997 0-4.44-2.568-4.44-5.74 0-3.17 1.443-4.488 4.44-4.488 2.997 0 4.44 1.318 4.44 4.488z" fill="#3c3c3b"/>
+        <path d="M1365.315 888.927c.006-.012-.93-.034-.93-.034-.675 1.287-2 1.99-3.877 1.99-1.668 0-2.963-.742-3.562-1.99-.97.024-.966.037-.966.037-3.068.194-4.796 2.305-4.796 5.914v6.28h3.59c.25-1.025.44-2.096.44-3.007 0-2.02.667.574.773 3.007h9.41c.11-2.433.777-5.028.777-3.007 0 .91.19 1.982.44 3.007h3.533v-6.28c0-3.62-1.74-5.738-4.832-5.917z" fill="#3c3c3b"/>
+        <path d="M1364.984 883.427c0 3.17-1.444 5.74-4.44 5.74-3 0-4.442-2.57-4.442-5.74 0-3.17 1.443-4.49 4.442-4.49 2.996 0 4.44 1.32 4.44 4.49z" fill="#3c3c3b"/>
+        <path d="M1380.932 890.81c-.945-1.124-1.483-2.765-1.483-4.778 0-1.427.285-2.548.855-3.38-.35-.086-.72-.14-1.115-.163.005-.014-.93-.037-.93-.037-.675 1.288-2 1.992-3.877 1.992-1.668 0-2.962-.743-3.56-1.992-.972.025-.968.04-.968.04-3.015.19-4.732 2.235-4.79 5.73.198.01.343.022.448.043-.05-.015-.103-.025-.16-.027 3.44.197 5.425 2.545 5.48 6.444h4.093c.737-2.31 2.486-3.675 5.048-3.836-.042.002-.083.008-.122.018.19-.034.51-.043 1.08-.058m-6.513-8.082c2.994 0 4.438-2.568 4.438-5.74 0-3.17-1.444-4.487-4.44-4.487-2.998 0-4.44 1.317-4.44 4.487s1.442 5.74 4.44 5.74" fill="#3c3c3b"/>
+        <text transform="translate(1351.647 901.933)" fill="#000">
+            <tspan font-family="Helvetica" font-size="12" font-weight="500" x=".266" y="11" textLength="8.004">V</tspan> <tspan font-family="Helvetica" font-size="12" font-weight="500" x="8.059" y="11" textLength="34.676">iewers</tspan>
+        </text>
+        <path d="M1094.127 860.753h57.214v74.775h-57.213z"/>
+        <clipPath id="c">
+            <use xl:href="#path"/>
+        </clipPath>
+        <g clip-path="url(#c)">
+            <image xl:href="image2.pdf" width="101" height="132" transform="matrix(.56648 0 0 .56648 1094.127 860.753)"/>
+        </g>
+        <text transform="translate(1099.127 885.14)" fill="#fcf6e4">
+            <tspan font-family="Helvetica" font-size="11" font-weight="500" x="5.877" y="10" textLength="38.516">Control</tspan> <tspan font-family="Helvetica" font-size="11" font-weight="500" x="10.15" y="23" textLength="29.971">panel</tspan>
+        </text>
+        <path d="M1259.19 860.753h76.83v69.993h-76.83z"/>
+        <clipPath id="d">
+            <use xl:href="#path_2"/>
+        </clipPath>
+        <g clip-path="url(#d)">
+            <image xl:href="image4.pdf" width="236" height="215" transform="matrix(.32555 0 0 .32555 1259.19 860.753)"/>
+        </g>
+        <text transform="translate(1271.92 866.456)" fill="#fff">
+            <tspan font-family="Helvetica Neue" font-size="11" font-weight="600" x="10.512" y="11" textLength="30.976">Slides</tspan> <tspan font-family="Helvetica Neue" font-size="11" font-weight="600" x=".321" y="24" textLength="51.359">Questions</tspan> <tspan font-family="Helvetica Neue" font-size="11" font-weight="600" x="2.466" y="37" textLength="47.069">Statistics</tspan>
+        </text>
+        <path d="M1400.72 852.258h43v82.178h-43z"/>
+        <clipPath id="e">
+            <use xl:href="#path_3"/>
+        </clipPath>
+        <g clip-path="url(#e)">
+            <image xl:href="image3.pdf" width="45" height="86" transform="matrix(.95556 0 0 .95556 1400.72 852.258)"/>
+        </g>
+        <text transform="rotate(90 281.42 1147.723)" fill="#fcf6e4">
+            <tspan font-family="Helvetica Neue" font-size="11" font-weight="600" x=".321" y="11" textLength="51.359">Questions</tspan>
+        </text>
+        <path stroke="#6b6b6b" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke-dasharray="1,4" d="M1343.504 939.112V847.56"/>
+        <path d="M1138.838 872.5h133.845v69.4h-133.845z"/>
+        <clipPath id="f">
+            <use xl:href="#path_4"/>
+        </clipPath>
+        <g clip-path="url(#f)">
+            <image xl:href="image1.pdf" width="189" height="98" transform="matrix(.70817 0 0 .70817 1138.838 872.5)"/>
+        </g>
+        <text transform="translate(1171.26 876.513)" fill="#fcf6e4">
+            <tspan font-family="Helvetica Neue" font-size="11" font-weight="600" x="19.012" y="11" textLength="30.976">Slides</tspan> <tspan font-family="Helvetica Neue" font-size="11" font-weight="600" x="8.82" y="24" textLength="51.359">Questions</tspan> <tspan font-family="Helvetica Neue" font-size="11" font-weight="600" x="10.966" y="37" textLength="47.069">Statistics</tspan> <tspan font-family="Helvetica Neue" font-size="11" font-weight="600" x=".059" y="50" textLength="28.314">Contr</tspan> <tspan font-family="Helvetica Neue" font-size="11" font-weight="600" x="28.175" y="50" textLength="40.766">ol Panel</tspan>
+        </text>
+        <path d="M1450.588 859.543h109.876v56.973h-109.876z"/>
+        <clipPath id="g">
+            <use xl:href="#path_5"/>
+        </clipPath>
+        <g clip-path="url(#g)">
+            <image xl:href="image1.pdf" width="189" height="98" transform="matrix(.58136 0 0 .58136 1450.588 859.543)"/>
+        </g>
+        <text transform="translate(1480.183 864.72)" fill="#fcf6e4">
+            <tspan font-family="Helvetica Neue" font-size="11" font-weight="600" x="10.512" y="11" textLength="30.976">Slides</tspan> <tspan font-family="Helvetica Neue" font-size="11" font-weight="600" x=".321" y="24" textLength="51.359">Questions</tspan> <tspan font-family="Helvetica Neue" font-size="11" font-weight="600" x="7.047" y="37" textLength="37.906">Results</tspan>
+        </text>
+        <path marker-end="url(#a)" marker-start="url(#b)" stroke="#989898" stroke-linecap="round" stroke-linejoin="round" d="M1436.885 558.69h-81.947"/>
+        <path fill="#fcf7e4" d="M1148.032 734.173h255.118v31.18h-255.118z"/>
+        <path d="M1148.032 734.173h255.118v31.18h-255.12z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1,4"/>
+        <text transform="translate(1153.032 741.264)" fill="#000">
+            <tspan font-family="Helvetica" font-size="14" font-weight="500" x="0" y="14" textLength="38.917">Plugin</tspan>
+        </text>
+        <path fill="#fcf7e4" d="M1062.992 538.583h255.118v31.18h-255.118z"/>
+        <path d="M1062.992 538.583h255.118v31.18h-255.118z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1,4"/>
+        <text transform="translate(1067.992 545.673)" fill="#000">
+            <tspan font-family="Helvetica" font-size="14" font-weight="500" x="0" y="14" textLength="38.917">Plugin</tspan>
+        </text>
+        <text transform="translate(1224.083 669.515)" fill="#000">
+            <tspan font-family="Helvetica" font-size="12" font-weight="500" x="6.818" y="11" textLength="63.363">Presenter &amp;</tspan> <tspan font-family="Helvetica" font-size="12" font-weight="500" x=".256" y="25" textLength="8.004">V</tspan> <tspan font-family="Helvetica" font-size="12" font-weight="500" x="8.049" y="25" textLength="68.695">iewer Events</tspan>
+        </text>
+        <text transform="translate(1128.374 661.953)" fill="#000">
+            <tspan font-family="Helvetica" font-size="12" font-weight="500" x="3.819" y="11" textLength="71.361">Static assets,</tspan> <tspan font-family="Helvetica" font-size="12" font-weight="500" x="10.487" y="25" textLength="7.33">T</tspan> <tspan font-family="Helvetica" font-size="12" font-weight="500" x="16.487" y="25" textLength="52.025">emplates,</tspan> <tspan font-family="Helvetica" font-size="12" font-weight="500" x=".474" y="39" textLength="78.053">Bootstrap data</tspan>
+        </text>
+        <path fill="#968dff" d="M1057.323 513.07h68.03v18.32h-68.03z"/>
+        <text transform="translate(1062.323 515.23)" fill="#000">
+            <tspan font-family="Helvetica Neue" font-size="12" font-style="italic" font-weight="300" x="1.344" y="11" textLength="55.344">BACKEND</tspan>
+        </text>
+        <path d="M1206.162 819.213h90.333c1.67 0 3.023 1.194 3.023 2.666v17.343c0 1.473-1.353 2.667-3.023 2.667h-90.333c-1.67 0-3.022-1.194-3.022-2.667V821.88c0-1.473 1.353-2.667 3.022-2.667z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+        <text transform="translate(1208.14 824.05)" fill="#3c3c3b">
+            <tspan font-family="Helvetica" font-size="11" font-weight="500" x="29.434" y="10" textLength="27.511">AJAX</tspan>
+        </text>
+        <path d="M1303.518 819.213h88.378c2.21 0 4 1.79 4 4v14.677c0 2.21-1.79 4-4 4h-88.378c-2.21 0-4-1.79-4-4v-14.677c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+        <text transform="translate(1304.518 824.05)" fill="#3c3c3b">
+            <tspan font-family="Helvetica" font-size="11" font-weight="500" x="12.413" y="10" textLength="10.382">W</tspan> <tspan font-family="Helvetica" font-size="11" font-weight="500" x="22.602" y="10" textLength="51.364">ebSockets</tspan>
+        </text>
+        <path d="M1209.184 785.197h180.667c3.34 0 6.046 1.79 6.046 4v26.016c0 2.21-2.707 4-6.045 4h-180.666c-3.338 0-6.044-1.79-6.044-4v-26.016c0-2.21 2.706-4 6.044-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+        <text transform="translate(1208.14 795.705)" fill="#3c3c3b">
+            <tspan font-family="Helvetica" font-size="11" font-weight="500" x="79.457" y="10" textLength="23.842">Core</tspan>
+        </text>
+        <path d="M1207.14 762.52h184.756c2.21 0 4 1.79 4 4v14.677c0 2.21-1.79 4-4 4H1207.14c-2.21 0-4-1.79-4-4V766.52c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+        <text transform="translate(1208.14 767.358)" fill="#3c3c3b">
+            <tspan font-family="Helvetica" font-size="11" font-weight="500" x="47.663" y="10" textLength="87.431">Event middleware</tspan>
+        </text>
+        <path d="M1207.14 739.842h184.756c2.21 0 4 1.79 4 4v14.678c0 2.21-1.79 4-4 4H1207.14c-2.21 0-4-1.79-4-4v-14.678c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+        <text transform="translate(1208.14 744.68)" fill="#3c3c3b">
+            <tspan font-family="Helvetica" font-size="11" font-weight="500" x="47.453" y="10" textLength="10.382">W</tspan> <tspan font-family="Helvetica" font-size="11" font-weight="500" x="57.642" y="10" textLength="77.661">eb Components</tspan>
+        </text>
+        <path d="M1119.873 623.622h90.333c1.67 0 3.022 1.194 3.022 2.667v17.343c0 1.472-1.353 2.666-3.022 2.666h-90.333c-1.67 0-3.023-1.195-3.023-2.667V626.29c0-1.474 1.354-2.668 3.023-2.668z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+        <text transform="translate(1121.85 628.46)" fill="#3c3c3b">
+            <tspan font-family="Helvetica" font-size="11" font-weight="500" x="11.199" y="10" textLength="28.719">HTTP</tspan> <tspan font-family="Helvetica" font-size="11" font-weight="500" x="39.725" y="10" textLength="35.455">Server</tspan>
+        </text>
+        <path d="M1217.228 623.622h88.378c2.21 0 4 1.79 4 4V642.3c0 2.208-1.79 4-4 4h-88.378c-2.21 0-4-1.792-4-4V627.62c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+        <text transform="translate(1218.228 628.46)" fill="#3c3c3b">
+            <tspan font-family="Helvetica" font-size="11" font-weight="500" x="12.413" y="10" textLength="10.382">W</tspan> <tspan font-family="Helvetica" font-size="11" font-weight="500" x="22.602" y="10" textLength="51.364">ebSockets</tspan>
+        </text>
+        <path d="M1122.895 589.606h180.667c3.338 0 6.044 1.79 6.044 4v26.016c0 2.21-2.706 4-6.044 4h-180.667c-3.338 0-6.045-1.79-6.045-4v-26.016c0-2.21 2.707-4 6.045-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+        <text transform="translate(1121.85 600.114)" fill="#3c3c3b">
+            <tspan font-family="Helvetica" font-size="11" font-weight="500" x="79.457" y="10" textLength="23.842">Core</tspan>
+        </text>
+        <path d="M1120.85 544.252h184.756c2.21 0 4 1.79 4 4v14.677c0 2.208-1.79 4-4 4H1120.85c-2.21 0-4-1.792-4-4V548.25c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+        <text transform="translate(1121.85 549.09)" fill="#3c3c3b">
+            <tspan font-family="Helvetica" font-size="11" font-weight="500" x="40.626" y="10" textLength="101.503">Module Components</tspan>
+        </text>
+        <path d="M1120.85 566.93h184.756c2.21 0 4 1.79 4 4v14.676c0 2.21-1.79 4-4 4H1120.85c-2.21 0-4-1.79-4-4V570.93c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+        <text transform="translate(1121.85 571.768)" fill="#3c3c3b">
+            <tspan font-family="Helvetica" font-size="11" font-weight="500" x="58.969" y="10" textLength="64.818">hooks/events</tspan>
+        </text>
+    </g>
+</svg>

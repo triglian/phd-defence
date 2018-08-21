@@ -1,0 +1,500 @@
+<link rel="import" href="../../../polymer/polymer.html">
+<link rel="import" href="../../../ace-element/ace-element.html">
+<link rel="import" href="../../../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../../iron-icons/editor-icons.html">
+<link rel="import" href="../../../iron-icons/av-icons.html">
+<link rel="import" href="../../../iron-list/iron-list.html">
+<link rel="import" href="../../../iron-selector/iron-selector.html">
+<link rel="import" href="../../../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../../paper-item/paper-item.html">
+<link rel="import" href="../../../paper-tabs/paper-tabs.html">
+<link rel="import" href="../../../paper-tabs/paper-tab.html">
+<link rel="import" href="../../../paper-toolbar/paper-toolbar.html">
+
+<link rel="import" href="../../../asq-base/asq-base.html">
+<link rel="import" href="../../../asq-solution/asq-solution.html">
+<link rel="import" href="../../../asq-stem/asq-stem.html">
+
+<link rel="import" href="../ace-highlight-manager/ace-highlight-manager.html">
+<link rel="import" href="../asq-hl-color-task/asq-hl-color-task.html">
+<link rel="import" href="../color-palette.html">
+<link rel="import" href="../../button-styles.html">
+
+<!--
+Presenter version of asq-highlight-q. Normally this element is used by an `<asq-highlight-q>` element when it's `role` attribute is equal to `presenter`.
+
+##### Example
+
+    <asq-highlight-presenter-q theme="textmate" mode="java" role="presenter" fontSize="1em">
+        <asq-stem><h3>Highlight with the appropriate color the following:</h3></asq-stem>
+        <asq-hl-color-task color="d9534f">Visibility Modifiers</asq-hl-color-task>
+        <asq-hl-color-task color="428bca">Variable Declarations</asq-hl-color-task>
+        <asq-hl-color-task color="f0ad4e">Other keywords</asq-hl-color-task>
+        <code>public class C {      
+     public void m() {
+       int i = i + 5 + ((int)5.0) + ((int)5f);
+     }
+    }</code>
+    </asq-highlight-presenter-q>
+
+@element asq-highlight-presenter-q
+@status alpha
+@homepage http://github.com/ASQ-USI/asq-highlight
+-->
+
+<dom-module id="asq-highlight-presenter-q">
+
+  <template>
+    <style include="button-styles"></style>
+    <style>
+      :host{
+        @apply(--layout-vertical);
+        @apply(--layout-flex);
+        --paper-toolbar-background: #CFD8DC;
+        --paper-toolbar-color: #000;  
+        --paper-tabs-selection-bar-color: #333;
+      }
+
+      #leContent > ::content asq-solution {
+        display: none;
+      }
+      #leContent > ::content code {
+        display: none;
+      }
+
+      #mainContainer{
+        @apply(--layout-horizontal);
+        @apply(--layout-flex);
+        @apply(--asq-highlight-q-main-container);
+      }
+
+      #editorContainer{
+        @apply(--layout-vertical);
+        @apply(--layout-flex-3);
+        @apply(--asq-highlight-q-editor-container);
+      }
+
+      #aceContainer{
+        /* make ace editor stretch to fill this not the parent*/
+        position: relative;
+        @apply(--layout-flex);
+      }
+
+      #statusMsg{
+        font-size: 14px;
+        @apply(--layout-flex);
+      }
+
+      #inspector {
+        min-height: 100px;
+        overflow-y: scroll;
+        background: #f8f8f8;
+        @apply(--layout-flex);
+      }
+
+      #submissionList {
+        @apply(--layout-flex);
+      }
+
+      #submissionList paper-item{
+        padding-top: 12px;
+        background-color: white;
+        cursor: pointer;
+        @apply(--shadow-elevation-2dp);
+      }
+
+      #inspector {
+        @apply(--layout-vertical);
+        @apply(--layout-flex-2);
+        @apply(--asq-highlight-q-inspector);
+      }
+
+      paper-toolbar{
+        line-height: 1;
+        font-size: 16px;
+        @apply(--asq-highlight-toolbar);
+      }
+
+    </style>
+    <div id="leContent">
+      <content id="stemContent" select="asq-stem"></content>
+      <content id="codeContent" select="code"></content>
+      <iron-selector id="taskSelector" on-iron-select="_onSelectedTaskChanged" on-iron-deselect="_onSelectedTaskChanged" selected-attribute="active">
+        <content id="tasksContent" select="asq-hl-color-task"></content>
+      </iron-selector>
+      <content select="asq-solution"></content>
+      <content></content>
+    </div>
+
+    <div id="mainContainer">
+      <div id="editorContainer">
+
+        <paper-toolbar>
+          <paper-icon-button id="heatmapBtn" icon="assessment" on-tap="_onHeatmapBtnTap" title="Show heatmap"></paper-icon-button>          
+          <span id="statusMsg">{{statusMessage}}</span>
+          <paper-icon-button id="solutionBtn" icon="done-all" on-tap="_onSolutionBtnTap" title="Show Solution"></paper-icon-button>
+          <paper-icon-button id="clearBtn" icon="av:not-interested" on-tap="_onClearBtnTap" title="Clear Ranges"></paper-icon-button>
+        </paper-toolbar>
+
+        <div id="aceContainer">
+          <ace-element id="codeEditor" mode="{{mode}}" theme="{{theme}}" font-size="{{fontSize}}" tab-size="{{tabSize}}" disabled="{{disabled}}" wrap="{{wrap}}">{{aceValue}}</ace-element>
+          <ace-highlight-manager id="aceHighlightManager" colors="{{palette}}" selection-color="{{colorPaletteSelectedColor}}" on-highlightrangeschanged="_highlightRangesChanged"></ace-highlight-manager>
+        </div>
+      </div>
+
+      <div id="inspector" class="layout vertical flex-2">
+        <paper-tabs selected="0" selected-attribute="active" noink role="tablist">     
+          <paper-tab role="tab">Submissions</paper-tab>            
+        </paper-tabs>
+        <iron-list id="submissionList" items="[[_submissions]]" as="submission" selection-enabled selected-item="{{_selectedSubmissionItem}}">
+          <template>
+            <paper-item class="{{_computeClass(selected)}}">
+              Submission #<span>[[index]]</span>
+            </paper-item>
+          </template>
+        </iron-list>
+      </div>
+
+    </div>
+
+  </template>
+  <script>
+    (function () {
+      'use strict';
+      Polymer({
+        is: 'asq-highlight-presenter-q',
+
+        behaviors: [ASQ.asqQuestionElementBehavior],
+
+        properties: {
+
+          /**
+           * The user selected ranges.
+           */
+          value: {
+            type: Object,
+            notify: true
+          },
+          
+          disabled: {
+            type: Boolean,
+            value: false,
+            notify: true,
+            reflectToAttribute: true
+          },
+
+          /**
+           * The fontSize property of the ace-element.
+           */
+          fontSize: { 
+            type: String,
+            value: "12px",
+            notify: true,
+            reflectToAttribute: true
+          },
+
+          /**
+           * The mode property of the ace-element.
+           */
+          mode: {
+            type: String,
+            value: 'javascript',
+            reflectToAttribute: true,
+            notify: true
+          },
+
+          /**
+           * The tabSize property of the ace-element.
+           */
+          tabSize: { 
+            type: Number,
+            value: 2,
+            notify: true,
+            reflectToAttribute: true,
+          },
+
+          /**
+           * The theme property of the ace-element.
+           */
+          theme: {
+            type: String,
+            value: 'monokai',
+            notify: true,
+            reflectToAttribute: true,
+          },
+
+
+          /**
+           * The value property of the ace-element.
+           */
+          aceValue: {
+            type: String,
+            value: null,
+            notify: true,
+            reflectToAttribute: true,
+          },
+
+          /**
+           * The wrap property of the ace-element.
+           */
+          wrap: {
+            type: Boolean,
+            value: false,
+            notify: true,
+            reflectToAttribute: true,
+          },
+
+          displayMode: {
+            type: String,
+            value: '',
+            notify: true,
+            observer: '_displayModeChanged',
+            reflectToAttribute: true,
+          },
+
+          statusMessage: {
+            type: String,
+            value: '',
+            notify: true,
+            reflectToAttribute: true,
+          },
+
+          /**
+           * The color palette
+           */
+          palette: {
+            type: Array,
+            value: function(){return []},
+            notify: true
+          },
+
+          /**
+           * Event bus to communicate with ASQ
+           */
+          eventBus: {
+            type: Object,
+            observer: "_eventBusChanged",
+            notify: true
+          },
+
+          _submissions:{
+            type: Array,
+            notify: true
+          },
+
+          _heatmapData: {
+            type: Array, 
+            computed: '_computeHeatmapData(_submissions)'
+          },
+
+         _selectedSubmissionItem: {
+            observer: '_selectedSubmissionItemChanged'
+          }
+        },
+
+        attached: function(){
+          this._injectMarkerStyles();
+          this._populatePalette();
+          //initialize highlight manager
+          // fixme: the reason for the timeout is that ace-element changes it's editor property internally. maybe expose it as a readonly so that the pointer is always cool
+          // have to wait for ace-element to upgrade its internal editor
+          // so that aceHighlightManger has the correct instance
+          setTimeout(function(){
+            this.$.codeEditor.editor.resize();
+            this.$.aceHighlightManager.editor = this.$.codeEditor.editor; 
+            this.$.aceHighlightManager.updateHeatmapData(this._heatmapData || []);
+            
+          }.bind(this), 10)
+        },
+
+        ready: function () {
+          this.$.aceHighlightManager.mode = this.$.aceHighlightManager.MODE_HEATMAP;
+        },
+
+        _injectMarkerStyles(){
+          this.importHref(this.resolveUrl('./ace-marker-styles-presenter.html'), function(e) {
+             var template = e.target.import.querySelector('template');
+             var styleEl = template.content.querySelector('style');
+             var liveStyleEl = document.importNode(styleEl, true);
+             if (window.Polymer.Settings.dom === 'shadow' || window.Polymer.Settings.useShadow ) {
+               Polymer.dom(this.$.codeEditor.root).appendChild(liveStyleEl);
+             }else{
+               this.$.codeEditor.appendChild(liveStyleEl);
+             }
+          }, function(e) {
+              // loading error
+              console.error('Could not import ace-marker-styles-presenter.html')
+          });
+        },
+
+        _populatePalette: function () {
+          var tasks = this.$.tasksContent.getDistributedNodes();
+          this.palette = Array.prototype.map.call(tasks, function (task) {
+            return {
+              'color': task.color,
+              'name': task.colorName
+            };
+          });
+        },
+
+        _displayModeChanged: function (newVal, oldVal) {
+          if (newVal == 'heatmap') {
+            this.$.taskSelector._selection.clear();
+            this.$.taskSelector.multi = false;
+            this.$.taskSelector.select("0")
+          } else if (newVal == 'ranges' || newVal == 'solution') {
+            this.$.taskSelector.multi = true;
+          }
+        },
+
+        _onQuestionType: function (evt) {
+          if(!evt || ! evt.questionType) return;
+
+          if (evt.questionType == "asq-highlight-q") {
+            if (evt.type == 'progress') {
+              this._onProgress(evt);
+            }else if(evt.type == "restorePresenter"){
+            this._onRestorePresenter(evt);
+            }
+          }
+        },
+
+        _onProgress: function (evt) {
+          if (!evt.question || evt.question.uid !== this.uid)
+            return;
+
+          this._submissions = evt.question.answers;
+          this._draw();
+        },
+
+        _onRestorePresenter: function(evt){
+          evt.questions.forEach(function(q){
+           if(q.uid != this.uid) return;
+           this._submissions = q.submissions;
+           this.solution = q.data.solution;
+          }.bind(this));
+           this._draw();
+        },
+
+        _onHeatmapBtnTap: function (event, detail) {
+          this.$.heatmapBtn.classList.add('selected');
+          this.$.solutionBtn.classList.remove('selected');
+          this.displayMode = 'heatmap';
+          this._showHeatmap();
+        },
+
+        _onSolutionBtnTap: function (event, detail) {
+          this.$.solutionBtn.classList.add('selected');
+          this.$.heatmapBtn.classList.remove('selected');
+          this.displayMode = 'solution';
+          this._applyHueRanges(this.solution)
+        },
+
+        _onClearBtnTap: function (event, detail) {
+          this.$.solutionBtn.classList.remove('selected');
+          this.$.heatmapBtn.classList.remove('selected');
+          this.displayMode = '';
+          this.$.aceHighlightManager.removeAllMarkers();
+        },
+
+        _selectedSubmissionItemChanged: function(newItem, old){
+          if(!newItem) return;
+
+          this.$.solutionBtn.classList.remove('selected');
+          this.$.heatmapBtn.classList.remove('selected');
+
+          this.displayMode = 'ranges';
+          this._applyHueRanges(newItem.submission)
+        },
+
+        _computeHeatmapData: function(answers){
+          return answers.map(function(answer){
+            return answer.submission;
+          });
+        },
+
+        _showHeatmap: function () {
+          //have the latest and greatest
+          this.$.aceHighlightManager.updateHeatmapData(this._heatmapData || []);
+
+          var selectedItem = this.$.taskSelector.selectedItem;
+          if (!selectedItem)
+            return;
+          this.statusMessage = 'Heatmap for ' + selectedItem.textContent;
+          try {
+            this.$.aceHighlightManager.drawHeatmap(selectedItem.color);
+          } catch (err) {
+            // maybe there's just no data
+            if (err.message && err.message.match(/no heatmatData found for hue/)) {
+            } else {
+              throw err;
+            }
+          }
+        },
+
+        _applyHueRanges: function (hueRanges) {
+          if(!hueRanges) return;
+          
+          var appliedHueRanges = {};
+          this.statusMessage = 'Ranges for';
+
+          var selectedItems = this.$.taskSelector.selectedItems;
+
+          if (selectedItems) {
+            var colors = selectedItems.map(function (item, idx) {
+              if (idx == 0) {
+                this.statusMessage += ' ';
+              } else if (idx < selectedItems.length - 1) {
+                this.statusMessage += ', ';
+              } else {
+                this.statusMessage += ' and ';
+              }
+              this.statusMessage += item.textContent;
+              return item.color;
+            }.bind(this));
+            colors.forEach(function (c) {
+              if (hueRanges.hasOwnProperty(c)) {
+                appliedHueRanges[c] = hueRanges[c].slice();
+              }
+            });
+          } else {
+            appliedHueRanges = hueRanges;
+            this.statusMessage = 'Ranges for all';
+          }
+          this.$.aceHighlightManager.drawSolution(appliedHueRanges);
+        },
+
+        _eventBusChanged: function (eventBus, old) {
+          if(!eventBus) return;
+          eventBus.on('asq:question_type', this._onQuestionType.bind(this));
+        },
+
+        _onSelectedTaskChanged: function (event, detail) {
+         this._draw()
+        },
+
+        _highlightRangesChanged: function(event, detail){
+          this.value = detail.ranges;
+        },
+
+        _draw: function(){
+          if (this.displayMode == 'heatmap') {
+            this._showHeatmap();
+          } else if (this.displayMode == 'ranges') {
+            if(this.$.submissionList.selectedItem){
+              this._applyHueRanges(this.$.submissionList.selectedItem.submission);
+            }
+          }else if (this.displayMode == 'solution') {
+            this._applyHueRanges(this.solution);
+          }
+        },
+
+        _computeClass: function (selected) {
+          var classList = '';
+          if (selected) classList = 'selected';
+          return selected;
+        }
+      });
+    }());
+  </script>
+</dom-module>

@@ -1,0 +1,496 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../ace-element/ace-element.html">
+<link rel="import" href="../../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../iron-selector/iron-selector.html">
+<link rel="import" href="../../paper-item/paper-item.html">
+
+<link rel="import" href="../../asq-base/asq-base.html">
+
+<!--
+ Give students an image of a simple Web page + the HTML and ask them to write out the CSS to reproduce this image.
+
+### Example:
+
+    <asq-fiddle-q-viewer">
+      <asq-stem><h4>Paint a circle in the canvas</h4></asq-stem>
+      <template seed>
+        <pre html><canvas id="c"></canvas></pre>
+        <pre css>#c {width: 200px; height: 200px}</pre>
+        <pre js>//Paint a circle in the canvas
+var c = document.getElementById("c");</pre>
+      </template> 
+    </asq-fiddle-q-viewer>
+
+@group ASQ Elements
+@element asq-fiddle-q-viewer
+@demo demo/index.html
+-->
+<dom-module id="asq-fiddle-q-viewer">
+  <template>
+    <style>
+      :host {
+        @apply(--layout-vertical);
+        @apply(--layout-flex);
+        min-height:300px;
+        box-sizing: border-box;
+      }
+
+      .pane{
+        @apply(--layout-vertical);
+        position:absolute;
+        top:0;
+        bottom:0;
+        left:0;
+        right:0;
+        border: 1px solid #f0f0f0;
+        display: none;
+      }
+
+      .pane.iron-selected{
+        display: block;
+      }
+
+      #toolbar{
+        @apply(--layout-horizontal);
+        @apply(--layout-center-justified);
+        padding: 5px 0;
+      }
+
+      #tabSelector{
+        @apply(--layout-horizontal);
+        border-top: 1px solid #BDBDBD;
+        border-bottom: 1px solid #BDBDBD;
+        border-left: 1px solid #BDBDBD;
+      }
+
+      #paneSelector{
+        @apply(--layout-flex);
+        position: relative;
+      }
+
+      paper-item{
+        --paper-item:{
+          cursor: pointer;
+          min-height: 34px;
+          padding: 0 10px;
+          border-right: 1px solid #BDBDBD;
+        };
+
+        --paper-item-focused-before:{
+          background: transparent;
+        }
+      }
+
+      paper-item.iron-selected{
+        background: rgba(0, 0, 0, 0.12);
+      }
+
+      #main-content {
+        @apply(--layout-flex);
+        @apply(--layout-vertical);
+      }
+
+      #pane-container{
+        @apply(--layout-flex);
+        @apply(--layout-horizontal);
+      }
+
+      #result-iframe{
+        width: 100%;
+        height: 100%;
+      }
+
+      .ace-editor{
+        @apply(--layout-flex);
+      }
+
+      .pane-label{
+        position: absolute;
+        color: #888;
+        opacity: 0.8;
+        top: 5px;
+        right: 10px;
+        background: #FFF;
+        border: 1px solid #DDD;
+        padding: 2px 5px;
+        z-index: 1;
+        font-size: 12px;
+      }
+
+      .v-seperator{
+        width: 4px;
+        background: #fafafa;
+        cursor: ew-resize;
+        position:absolute;
+        top: 0px;
+        bottom:0px;
+        right: auto;
+        z-index: 10;
+      }
+    </style>
+
+    <div class="content-wrapper">
+      <content id="contentTmpl" select="template[seed]"></content>
+      <content></content>
+    </div>
+
+    <div id="main-content">
+      <div id="toolbar">
+        <iron-selector id="tabSelector" multi attr-for-selected="name"  selected-values="{{selectedPanes}}">
+          <paper-item name="html">HTML</paper-item>
+          <paper-item name="js">JS</paper-item>
+          <paper-item name="css">CSS</paper-item>
+          <paper-item name="result">Result</paper-item>
+        </iron-selector>
+      </div>
+      <div id="pane-container">
+        <iron-selector id="paneSelector" multi attr-for-selected="name" selected-values="{{selectedPanes}}" activate-event=""> 
+          <div id="html-pane" class="pane" name="html">
+            <ace-element id="html" class="ace-editor" font-size="{{editorFontSize}}" theme="textmate" mode="html" on-value-changed="_editorValueChanged"></ace-element>
+            <div class="pane-label">HTML</div>
+          </div>
+          <div class="v-seperator" id="htmlVSep" on-mousedown="_onMousedown" hidden$="{{_hideSeperatorForPane('html',  selectedPanes.*)}}"></div>
+          <div id="js-pane" class="pane" name="js">
+            <ace-element id="js" class="ace-editor" font-size="{{editorFontSize}}" theme="textmate" mode="javascript"></ace-element>
+            <div class="pane-label">JavaScript</div>
+          </div>
+          <div class="v-seperator" id="jsVSep" on-mousedown="_onMousedown" hidden$="{{_hideSeperatorForPane('js',  selectedPanes.*)}}"></div>
+          <div id="css-pane" class="pane" name="css">
+            <ace-element id="css" class="ace-editor" font-size="{{editorFontSize}}" theme="textmate" mode="css"></ace-element>
+            <div class="pane-label">CSS</div>
+          </div>
+          <div class="v-seperator" id="cssVSep" on-mousedown="_onMousedown" hidden$="{{_hideSeperatorForPane('css',  selectedPanes.*)}}"></div>
+          <div id="result-pane" class="pane" name="result">
+            <iframe id="result-iframe" src="" frameborder="0"></iframe>
+            <div class="pane-label">Result</div>
+          </div>
+        </iron-selector>
+      </div>
+    </div>
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'asq-fiddle-q-viewer',
+
+    behaviors: [ASQ.asqQuestionElementBehavior],
+
+    properties: {
+
+      /**
+       * The value is an object with this structure:
+       * 
+       *    {
+       *      html: String,
+       *      css : String,
+       *      js : String
+       *    }
+       */
+      value:{
+        type: Object,
+        value: function(){return {
+          html: '',
+          css: '',
+          js: ''
+        };},
+        notify: true,
+      },
+
+      /**
+       * The panes to display. When specifying it as an attribute, use an array serialized as string.
+       * For Example: `selected-panes='["js", "result"]'`. Notice the single quotes for the attributes
+       * and the double quotes for the array items.
+       */
+      selectedPanes: {
+        type: Array,
+        value: function (){ return ['html', 'js', 'css', 'result'];},
+        reflectToAttribute: true,
+        notify: true,
+      },
+
+
+      /**
+       * The font size of the editors.
+       * Example: `font-size="16em"`
+       */
+      editorFontSize: {
+        type: String,
+        value: '12px',
+        reflectToAttribute: true,
+        notify: true
+      },
+
+      /**
+       * Event bus to communicate with ASQ
+       */
+      eventBus: {
+        type: Object,
+        observer: "_eventBusChanged",
+        notify: true,
+      }
+    },
+
+    observers: [
+      '_valueChanged(value.*)',
+      '_selectedPanesChanged(selectedPanes.*)'
+    ],
+
+    _baseTemplate: '<!doctype html>\n' +
+          '<html>\n\t' +
+          '<head>\n\t\t' +
+          '<meta charset="utf-8">\n\t\t' +
+          '<title>Test</title>\n\n\t\t\n\t' +
+          '</head>\n\t' +
+          '<body>\n\t\n\t' +
+          '</body>\n' +
+          '</html>',
+
+    attached: function() {
+      //delay to make sure ace-editors are initialized
+      this.debounce('init-editors', function(){
+
+        this._initPosition();
+
+        var editors = ['html', 'js', 'css'];
+        // listen for value change on editors
+        editors.forEach(function(editorId){
+          this.$[editorId].addEventListener('editor-input', this._editorValueChanged.bind(this))
+          this.$[editorId].editor.resize();
+        }.bind(this))
+
+        // initialize editor values
+        var tpl = Polymer.dom(this.$.contentTmpl).getDistributedNodes()[0];
+        if(!tpl) return;
+        
+        var initVal = {};
+        editors.forEach(function(editorId){
+          var el = tpl.content.querySelector('[' + editorId + ']')
+          if(!el) return;
+          initVal[editorId] = el.innerHTML;
+        }.bind(this))
+
+        this.value = initVal;
+
+      }, 1);
+    },
+
+    _valueChanged: function(newVal){
+      var editors = ['html', 'js', 'css'];
+      editors.forEach(function(editorId){
+        if(this.value[editorId] && this.$[editorId].editorValue != this.value[editorId]){
+          this.$[editorId].editorValue = this.value[editorId];
+          this.$[editorId].editor.clearSelection(1);
+        }
+      }.bind(this))
+    },
+
+    _editorValueChanged: function(evt){
+      this.set('value.'+evt.target.id, evt.target.editorValue);
+      this._render();
+    },
+
+    _prepareSource: function() {
+      var html =  this.$['html'].editorValue;
+      var css =  this.$['css'].editorValue;
+      var js =  this.$['js'].editorValue;
+      var src = '';
+
+      // HTML
+      src = this._baseTemplate.replace('</body>', html + '</body>');
+   
+      // CSS
+      css = '<style>' + css + '</style>';
+      src = src.replace('</head>', css + '</head>');
+
+      // JavaScript
+      js = '<script>' + js + '<'+'/script>';
+      src = src.replace('</body>', js + '</body>');
+   
+      return src;
+    },
+
+    _render: function(){
+      var source = this._prepareSource();
+
+      var iframe = this.$['result-iframe'];
+      var iframe_doc = iframe.contentDocument;
+      
+      iframe_doc.open();
+      iframe_doc.write(source);
+      iframe_doc.close();
+    },
+
+    resizeEditors: function(){
+      var editors = ['html', 'js', 'css'];
+      editors.forEach(function(editorId){
+       this.$[editorId].editor.resize();
+      }.bind(this));
+    },
+
+    _initPosition: function(){
+      var sepSize = 4;
+      var totalW = this.$.paneSelector.offsetWidth;
+      var n = this.selectedPanes.length;
+      var paneSize = (totalW - (n - 1) * sepSize)/n;
+      var paneSizePerc = 100 * paneSize / totalW;
+      var sepSizePerc = 100 * sepSize / totalW;
+
+      var l = 0;
+      var r = 100 - paneSizePerc;
+
+      var els = this.$.paneSelector.children;
+      [].forEach.call(els, function(el){
+        
+        if (el.classList.contains('pane')){
+          if (el.classList.contains('iron-selected')){
+            el.style.left = l + '%';
+            el.style.right = r + '%';
+            l += paneSizePerc;
+            r -= paneSizePerc;
+          }
+        } else { //separator
+          if (el.hasAttribute('hidden')) return;
+          el.style.left = l + '%';
+          l += sepSizePerc;
+          r -= sepSizePerc;
+        }
+      });
+
+      this.debounce('resize-editors', this.resizeEditors, 100);
+    },
+
+    calculateHorizontalResize: function(mouseX, paneName){
+      var panes = this.selectedPanes;
+      var pane =  this.$[paneName + '-pane'];
+      var sep = this.$[paneName + 'VSep'];
+      var rightPaneName = panes[panes.indexOf(paneName) + 1];
+      var rightPane = this.$[rightPaneName + '-pane'];
+      var X = mouseX - this.$.paneSelector.offsetLeft ;
+      var totalW = this.$.paneSelector.offsetWidth;
+      var left = 100 * X / totalW;
+      left = (left > 100) ? 100 : left;
+      left = (left < 1) ? 1 : left;
+      var sepSize = 4;
+      var sepSizePerc = 100 * sepSize / totalW;
+
+      var paneLeft = parseFloat(pane.style.left.replace('%', ''));
+      var newRight = 100 - (left + sepSizePerc);
+      var minPaneW = 150 * 100/ totalW;
+
+      // make sure it's not smaller than minPaneW
+      if((100 - newRight - paneLeft) < minPaneW){
+        newRight = 100 - paneLeft - minPaneW
+      }
+      pane.style.right = newRight + '%';
+      sep.style.left = (100 - newRight) + '%';
+      rightPane.style.left = (100 - newRight -sepSizePerc) + '%';
+
+      this.debounce('resize-editors', this.resizeEditors, 100)
+    },
+
+    _onMousedown: function(evt, detail){
+      event.preventDefault();
+      var sepEl = event.currentTarget;
+      var pane;
+
+      //prevent iframe from consuming mousemove events
+      this.$['result-pane'].style.pointerEvents = 'none';
+
+      if(sepEl.id.indexOf('VSep') > -1){
+        pane = sepEl.id.replace('VSep', '')
+      }
+
+      var onMousemove = function(evt){
+        this.calculateHorizontalResize(evt.pageX, pane);
+      }.bind(this);
+
+      var onMouseup = function(evt){
+        //restore iframe events
+        this.$['result-pane'].style.pointerEvents = 'auto';
+
+        document.removeEventListener('mousemove', onMousemove)
+        document.removeEventListener('mouseup', onMouseup)
+      }.bind(this);
+
+      document.addEventListener('mousemove', onMousemove)
+      document.addEventListener('mouseup', onMouseup)
+    },
+
+    _onQuestionType: function (evt) {
+      if (!evt || !evt.questionType)
+        return;
+      if (evt.questionType == 'asq-fiddle-q') {
+        if (evt.type == 'restoreViewer') {
+          this._onRestoreViewer(evt);
+        }
+      }
+    },
+
+    _onRestoreViewer: function (evt) {
+      evt.questions.forEach(function (q) {
+        if (q.uid != this.uid)
+          return;
+       this.value = q.submission;
+      }.bind(this));
+    },
+
+    /**
+     * The `submit` method returns an object that respresents the submission of this question. The object has the following structure:
+
+         {
+            questionUid: this.uid, 
+            timestamp: new Date(),
+            submission: this.value
+         }
+     * Only enabled when the `role` of the element is <b>viewer</b>.
+     *
+     * @method submit
+     */
+    submit: function () {
+      if (!this.value) {
+        this.value = {};
+      }
+      submission = this.value;
+      return {
+        questionUid: this.uid,
+        timestamp: new Date(),
+        submission: submission
+      };
+    },
+
+    get orderedPanes(){
+      var orderedPanes = this.selectedPanes.sort(function(a,b){
+        var order = { html: 0, js: 1, css: 2, result: 3 };
+
+        if(order[a] > order[b]){
+          return 1;
+        }
+        return -1;
+      })
+
+      return orderedPanes;
+    },
+
+    _hideSeperatorForPane: function(pane){
+      // hide if it's the last pane or if the pane is hidden
+      var idx = this.orderedPanes.indexOf(pane);
+      return idx < 0 || (idx + 1) == this.selectedPanes.length;
+    },
+
+    _selectedPanesChanged(){
+      this.debounce('selected-panes-changed', function(){
+        this._initPosition();
+      }, 1)
+    },
+
+    _eventBusChanged: function (eventBus, old) {
+      if(!eventBus) return;
+      eventBus.on('asq:question_type', this._onQuestionType.bind(this));
+    }
+  });
+
+</script>

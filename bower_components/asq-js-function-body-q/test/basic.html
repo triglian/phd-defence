@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="asq" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>asq-js-function-body-q</title>
+
+  <script src="../../webcomponentsjs/webcomponents.min.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+
+  <!-- Step 1: import the element to test -->
+  <link rel="import" href="../asq-js-function-body-q.html">
+  <link rel="import" href="../../asq-base/asq-base.html">
+</head>
+<body>
+
+  <!-- You use the document as a place to set up your fixtures. -->
+  <asq-js-function-body-q id="m" functionName="wrap(str, tagName)" question="wrap('hello World', 'div');">
+      <asq-stem><h2>Implement a function that wraps a given string with an HTML tag:</h2></asq-stem>
+    </asq-js-function-body-q>
+
+  <script>
+    var m = document.querySelector('#m');
+    suite('<asq-js-function-body-q>', function() {
+      test('test default values', function() {
+        assert.equal(m.functionName, "wrap(str, tagName)");
+        assert.equal(m.question, "wrap('hello World', 'div');");
+      });
+
+      test('test default mixin values', function() {
+        assert.isTrue(m.isASQElement);
+        assert.isTrue(m.isASQQuestionTypeElement);
+        assert.equal(m.uid, "");
+        assert.equal(m.role, ASQ.RoleMixin.roles.VIEWER);
+      });
+
+      
+    });
+  </script>
+
+</body>
+</html>

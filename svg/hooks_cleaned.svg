@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" viewBox="23 624 430 297">
+    <defs>
+        <filter id="a" filterUnits="userSpaceOnUse">
+            <feGaussianBlur in="SourceAlpha" result="blur" stdDeviation="1.308"/>
+            <feOffset in="blur" result="offset" dy="2"/>
+            <feFlood flood-color="#000" flood-opacity=".5" result="flood"/>
+            <feComposite in="flood" in2="offset" operator="in"/>
+        </filter>
+        <marker orient="auto" overflow="visible" id="b" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="#000">
+            <path d="M8 0L0-3v6z" fill="currentColor" stroke="currentColor"/>
+        </marker>
+    </defs>
+    <g fill="none">
+        <title>
+            Canvas 1
+        </title>
+        <title>
+            Layer 1
+        </title>
+        <xl:use xl:href="#id4279_Graphic" filter="url(#a)"/>
+        <xl:use xl:href="#id4280_Graphic" filter="url(#a)"/>
+        <xl:use xl:href="#id4281_Graphic" filter="url(#a)"/>
+        <xl:use xl:href="#id4298_Graphic" filter="url(#a)"/>
+        <xl:use xl:href="#id4301_Graphic" filter="url(#a)"/>
+        <xl:use xl:href="#id4302_Graphic" filter="url(#a)"/>
+        <xl:use xl:href="#id4303_Graphic" filter="url(#a)"/>
+        <xl:use xl:href="#id4307_Graphic" filter="url(#a)"/>
+<!--         <path fill="#f7f7f7" d="M25.512 626.457H450.71v291.97H25.51z"/>
+        <path stroke="#929292" stroke-linecap="round" stroke-linejoin="round" d="M25.512 626.457H450.71v291.97H25.51z"/> -->
+        <g class="fragment"> 
+            <path d="M60.693 680.315h54.362c2.21 0 4 1.79 4 4v11.842c0 2.21-1.79 4-4 4H60.693c-2.21 0-4-1.79-4-4v-11.842c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+            <text transform="translate(61.693 683.736)" fill="#3c3c3b">
+                <tspan font-family="Helvetica" font-size="11" font-weight="300" x="6.315" y="10" textLength="39.732">Plugin 1</tspan>
+            </text>
+        </g>
+        <g class="fragment"> 
+            <text transform="translate(136.334 675.984)" fill="#000">
+                <tspan font-family="Courier" font-size="10" font-weight="500" x=".485" y="10" textLength="180.029">registerHook(“h_name_1”, cbP1)</tspan>
+            </text>
+            <path marker-end="url(#b)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M119.055 690.236h205.533"/>
+        </g>
+        <g class="fragment"> 
+            <path d="M60.693 705.827h54.362c2.21 0 4 1.79 4 4v11.842c0 2.208-1.79 4-4 4H60.693c-2.21 0-4-1.792-4-4v-11.843c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+            <text transform="translate(61.693 709.248)" fill="#3c3c3b">
+                <tspan font-family="Helvetica" font-size="11" font-weight="300" x="6.315" y="10" textLength="39.732">Plugin 2</tspan>
+            </text>
+        </g>
+        <g class="fragment"> 
+            <text transform="translate(136.334 701.496)" fill="#000">
+                <tspan font-family="Courier" font-size="10" font-weight="500" x=".485" y="10" textLength="180.029">registerHook(“h_name_1”, cbP2)</tspan>
+            </text>
+         <path marker-end="url(#b)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M119.055 715.748h205.533"/>
+        </g>
+        <g class="fragment"> 
+            <path d="M60.693 731.34h54.362c2.21 0 4 1.79 4 4v11.84c0 2.21-1.79 4-4 4H60.693c-2.21 0-4-1.79-4-4v-11.84c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+            <text transform="translate(61.693 734.76)" fill="#3c3c3b">
+                <tspan font-family="Helvetica" font-size="11" font-weight="300" x="6.315" y="10" textLength="39.732">Plugin 3</tspan>
+            </text>
+        </g>
+        <g class="fragment"> 
+            <text transform="translate(136.334 727.835)" fill="#000">
+                <tspan font-family="Courier" font-size="10" font-weight="500" x=".485" y="10" textLength="180.029">registerHook(“h_name_1”, cbP3)</tspan>
+            </text>
+            <path marker-end="url(#b)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M119.055 741.26h205.533"/>
+        </g>
+        <text class="fragment" transform="translate(347.724 681.654)" fill="#3c3d3c">
+            <tspan font-family="Courier" font-size="10" font-weight="500" x="0" y="10" textLength="54.009">hooks = {</tspan><tspan font-family="Courier" font-size="10" font-weight="500" x="0" y="22" textLength="78.013"> h_name_1”: [</tspan><tspan font-family="Courier" font-size="10" font-weight="500" x="0" y="34" textLength="36.006"> cbP1,</tspan><tspan font-family="Courier" font-size="10" font-weight="500" x="0" y="46" textLength="36.006"> cbP2,</tspan><tspan font-family="Courier" font-size="10" font-weight="500" x="0" y="58" textLength="36.006"> cbP3]</tspan><tspan font-family="Courier" font-size="10" font-weight="500" x="0" y="70" textLength="6.001">}</tspan>
+        </text>
+        <path d="M133.228 640.63H317.48v266.457H133.228z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1,4"/>
+        <text transform="translate(138.228 645.63)" fill="#000">
+            <tspan font-family="Helvetica" font-size="12" font-weight="500" x="0" y="11" textLength="29.344">proxy</tspan>
+        </text>
+        <path d="M334.488 640.63h102.047v266.457H334.488z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1,4"/>
+        <text transform="translate(339.488 645.63)" fill="#000">
+            <tspan font-family="Helvetica" font-size="12" font-weight="500" x="0" y="11" textLength="23.344">core</tspan>
+        </text>
+        <path marker-end="url(#b)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M36.85 643.465v248.052"/>
+        <text transform="translate(41.858 644.79)" fill="#000">
+            <tspan font-family="Helvetica Neue" font-size="12" font-weight="500" x=".438" y="11" textLength="23.124">time</tspan>
+        </text>
+        <g class="fragment">        
+            <path d="M60.693 776.693h57.197c2.21 0 4 1.79 4 4v11.842c0 2.21-1.79 4-4 4H60.693c-2.21 0-4-1.79-4-4v-11.842c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+            <text transform="translate(61.693 780.114)" fill="#3c3c3b">
+                <tspan font-family="Helvetica" font-size="11" font-weight="300" x="7.732" y="10" textLength="39.732">Plugin 4</tspan>
+            </text>
+        </g>
+         <g class="fragment">
+            <text transform="translate(157.334 770.354)" fill="#000">
+                <tspan font-family="Courier" font-size="10" font-weight="500" x=".489" y="10" textLength="138.022">doHook(“h_name_1”, arg)</tspan>
+            </text>
+            <path marker-end="url(#b)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M121.89 787.55l211.206 6.063"/>
+        </g>
+        <g class="fragment">
+            <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width=".142" d="M342.992 785.197h85.04v19.843h-85.04z"/>
+            <text transform="translate(347.992 788.618)" fill="#3c3c3b">
+                <tspan font-family="Helvetica" font-size="11" font-weight="300" x="11.241" y="10" textLength="52.558">cbP1(arg);</tspan>
+            </text>
+        </g>
+        <g class="fragment">
+            <path marker-end="url(#b)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M385.512 805.04v12.777"/>
+            <text transform="translate(392.19 807.13)" fill="#000">
+                <tspan font-family="Helvetica Neue" font-size="11" font-weight="300" x=".209" y="11" textLength="31.779">result1</tspan>
+            </text>
+        </g>
+        <g class="fragment">
+            <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width=".142" d="M342.992 827.717h85.04v19.843h-85.04z"/>
+            <text transform="translate(347.992 831.138)" fill="#3c3c3b">
+                <tspan font-family="Helvetica" font-size="11" font-weight="300" x="3.084" y="10" textLength="69.069">cbP2(result1);</tspan>
+            </text>
+        </g>
+        <g class="fragment">
+            <path marker-end="url(#b)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M385.512 847.56v12.776"/>
+            <text transform="translate(392.19 849.398)" fill="#000">
+                <tspan font-family="Helvetica Neue" font-size="11" font-weight="300" x=".209" y="11" textLength="31.779">result2</tspan>
+            </text>
+        </g>
+        <g class="fragment">
+            <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width=".142" d="M342.992 870.236h85.04v19.843h-85.04z"/>
+            <text transform="translate(347.992 873.658)" fill="#3c3c3b">
+                <tspan font-family="Helvetica" font-size="11" font-weight="300" x="3.084" y="10" textLength="69.069">cbP3(result2);</tspan>
+            </text>
+        </g>
+        <g class="fragment">
+            <g>
+                <path d="M60.693 875.905h57.197c2.21 0 4 1.79 4 4v11.843c0 2.21-1.79 4-4 4H60.693c-2.21 0-4-1.79-4-4v-11.843c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+                <text transform="translate(61.693 879.327)" fill="#3c3c3b">
+                    <tspan font-family="Helvetica" font-size="11" font-weight="300" x="7.732" y="10" textLength="39.732">Plugin 4</tspan>
+                </text>
+            </g>
+            <text transform="translate(219.933 867.232)" fill="#000">
+                <tspan font-family="Helvetica Neue" font-size="11" font-weight="300" x=".209" y="11" textLength="31.779">result3</tspan>
+            </text>
+            <path marker-end="url(#b)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M342.992 880.97l-211.204 4.043"/>
+        </g>
+    </g>
+</svg>

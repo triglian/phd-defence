@@ -1,0 +1,244 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../asq-base/asq-base.html">
+<link rel="import" href="../paper-ripple/paper-ripple.html">
+<link rel="import" href="../paper-styles/default-theme.html">
+<link rel="import" href="../paper-behaviors/paper-inky-focus-behavior.html">
+<link rel="import" href="../paper-progress/paper-progress.html">
+<link rel="import" href="../paper-input/paper-input.html">
+
+<link rel="import" href="elements/asq-option-viewer/asq-option-viewer.html">
+<link rel="import" href="elements/asq-option-presenter/asq-option-presenter.html">
+
+<!--
+`asq-option` represents a single option of `asq-multi-choice-q` question. It is a variant of previous version of`asq-option`
+that allows user to input text for other option cases.
+
+In viewer's view, `asq-option` can:
+
+  - switch between radio button and checkbox according to the value of `multi`,
+
+  - switch between normal option and other option according to the value of `is-other`.
+
+In presenter's view, it will show:
+
+  - a progress bar instead in case of a normal option,
+
+  - a main progress bar with a drop-down list (containing all custom options) for a text input option.
+
+@element asq-option
+@demo demo/index.html
+@group ASQ Elements
+@blurb Element acting as option with `other` text input in multichoice questions.
+@homepage http://github.com/ASQ-USI-Elements/asq-option
+-->
+<dom-module id="asq-option">
+
+  <template>
+
+    <template is="dom-if" if="{{hasRole(role, roles.VIEWER)}}" restamp>
+      <asq-option-viewer
+        role="viewer"
+        uid="[[uid]]"
+        multi="{{multi}}"
+        disabled="{{disabled}}"
+        name$="{{name}}"
+        checked="{{checked}}">
+        <content></content>
+      </asq-option-viewer>
+
+      <template is="dom-if" if="{{_showTextfield(checked, isOther)}}" restamp>
+        <paper-input
+          name$="{{name}}"
+          placeholder="Enter your answer here"
+          required$="{{otherRequired}}"
+          disabled="{{disabled}}"
+          value="{{value}}"
+          error-message="This field is required!"
+          onfocusout="onFocusOut(this)"
+          oninput="onInput(this)">
+        </paper-input>
+      </template>
+    </template>
+
+    <template is="dom-if" if="{{hasRole(role, roles.PRESENTER)}}" restamp>
+      <asq-option-presenter
+        role="presenter"
+        uid="[[uid]]"
+        multi="{{multi}}"
+        name$="{{name}}"
+        disabled="{{disable}}]"
+        progress-value="{{progressValue}}"
+        progress-max="{{progressMax}}"
+        display-progress="[[displayProgress]]"
+        is-other="{{isOther}}"
+        other-required="{{otherRequired}}"
+        other-data="{{otherData}}">
+        <content></content>
+      </asq-option-presenter>
+    </template>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'asq-option',
+
+      behaviors: [
+        ASQ.asqElementBehavior
+      ],
+
+      properties: {
+        /**
+         * Decide the mode, single or multi.
+         */
+        multi: {
+          type: Boolean,
+          value: false,
+          notify: true,
+          reflectToAttribute: true
+        },
+
+        /**
+         * Make this element an 'other' option element.
+         * @type {Boolean}
+         */
+
+        isOther: {
+          type: Boolean,
+          value: false,
+          notify: true,
+          reflectToAttribute: true
+        },
+
+        /**
+         * Turns on/off 'required' property of the 'input-paper' element.
+         * @type {Boolean}
+         */
+
+        otherRequired: {
+          type: Boolean,
+          value: false,
+          notify: true,
+          reflectToAttribute: true
+        },
+
+        /**
+         * contains all submissions grouped in 'clusters' and the number of times submitted
+         *
+          example:
+
+            [ { text:"one", num: 2 }, { text:"two", num: 1} ]
+
+         */
+
+        otherData: {
+          type: Array,
+          notify: true
+        },
+
+        /**
+         * To set the value of progress bar in presenter view.
+         */
+        progressValue: {
+          type: Number,
+          value: 0,
+          notify: true,
+          reflectToAttribute: true
+        },
+
+        /**
+         * To set the max value of progress bar in presenter view.
+         */
+        progressMax: {
+          type: Number,
+          value: 100,
+          notify: true,
+          reflectToAttribute: true
+        },
+
+        /**
+         * Whether to display progress or not. Works only for `presenter` role.
+         * @type {Object}
+         */
+        displayProgress: {
+          type: Boolean,
+          value: false,
+          notify: true
+        },
+
+        /**
+         * @type {Object}
+         */
+
+        checked: {
+          type: Boolean,
+          value: false,
+          notify: true,
+          reflectToAttribute: true,
+          observer: '_onChecked'
+        },
+
+        /**
+         * Name of 'this' obj
+         *  @type {String}
+         */
+        name: {
+          type: String,
+          notify: true,
+          reflectToAttribute: true
+        },
+
+        /**
+         * Value of the input field
+         *  @type {String}
+         */
+        value: {
+          type: String,
+          notify: true,
+          reflectToAttribute: true
+        },
+      },
+
+      attached: function () {
+        this._isReady = true;
+
+        this.async(function () {
+          this.fire('asq-option-ready');
+        });
+      },
+
+      _showTextfield: function (checked, isOther) {
+        return (checked && isOther);
+      },
+
+      /**
+       *  Delete value when the 'other' option is unchecked
+       */
+
+      _onChecked: function (newVal, oldVal) {
+        if (this.isOther && !newVal && oldVal) {
+          this.value = '';
+        }
+      }
+
+    });
+
+    /**
+     *  Set invalid to false when user enter some text
+     */
+    function onInput(el) {
+      if (el.invalid && el.value.trim())
+        el.invalid = false;
+    }
+
+    /**
+     *  Set invalid to true when user leaves field blank (and required is true)
+     */
+    function onFocusOut(el) {
+      if (el.required && (!el.value || !el.value.trim()))
+        el.invalid = true;
+    }
+
+  </script>
+
+</dom-module>

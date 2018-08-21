@@ -1,0 +1,293 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../asq-base/asq-base.html">
+<link rel="import" href="./asq-rating-item.html">
+<link rel="import" href="../paper-toggle-button/paper-toggle-button.html">
+
+<!--
+`asq-rating-q` is a rating question type used in ASQ. Rating items should be `asq-rating-item` elements.
+
+##### Example
+    <asq-rating-q type="stars">
+      <asq-stem><h3>An asq-rating-q question.</h3></asq-stem>
+      <asq-rating-item name="item-1">Item to rate #1</asq-rating-item>
+      <asq-rating-item name="item-2">Item to rate #2</asq-rating-item>
+      <asq-rating-item name="item-3">Item to rate #3</asq-rating-item>
+      <asq-rating-item name="item-4">Item to rate #4</asq-rating-item>
+    </asq-rating-q>
+
+@element asq-rating-q
+@demo demo/index.html
+@group ASQ Elements
+@blurb `asq-rating` is a rating question type used in ASQ. Rating items should be `asq-rating-item` elements.
+@homepage http://github.com/ASQ-USI-Elements/asq-rating-q
+-->
+<dom-module id="asq-rating-q">
+  <style>
+      :host{
+        display: block;
+      }
+
+      /* Somehow the paper ripple inside the paper-toggle-button
+      has an absolute positioning, and then takes over the whole page up
+      to the nearest relative parent unless we set the toggle position to `relative` 
+      */
+      #statsToggle{
+        position:relative;
+        @apply(--asq-multi-choice-stats-toggle);
+      }
+    </style>
+  <template>
+
+    <!-- (for now) Keep same when either viewer or presenter -->
+    <content select="asq-stem"></content>
+    <template is="dom-if" if="{{hasRole(role, roles.PRESENTER)}}" restamp="true">
+      <paper-toggle-button id="statsToggle" on-iron-change="_onStatsToggleChange"></paper-toggle-button>
+    </template>
+    <content id="ratingItemsContent" select="asq-rating-item"></content>
+  </template>
+  <script>
+    (function () {
+      Polymer({
+        is: 'asq-rating-q',
+
+        behaviors: [ASQ.asqQuestionElementBehavior],
+
+        properties: {
+          /**
+            * Whether user interaction is allowed or not.
+            */
+           disabled: {
+             type: Boolean,
+             value: false
+           },
+          /**
+           * This attribute indicates whether the `type` passed to the
+           *  asq-rating-items. If an asq-rating-item has it's type set to a 
+           * value blah blah
+           */
+          type: {
+            type: String,
+            value: 'stars',
+            notify: true
+          },
+
+          /**
+           * This attribute indicates whether the `type` passed to the
+           *  asq-rating-items. If an asq-rating-item has it's type set to a 
+           * value blah blah
+           */
+          value: {
+            type: Array,
+            notify: true,
+            observer: '_valueChanged'
+          }
+        },
+
+        ready: function () {
+          //initialize type of rating items
+          var ari = Polymer.dom(this).querySelectorAll('asq-rating-item');
+          ari.forEach(function (item) {
+            if (item.type == '' || item.type == undefined || item.type == null) {
+              item.type = this.type;
+            }
+          }.bind(this));
+          role = this.roles.VIEWER;
+        },
+
+        created: function () {
+          document.addEventListener('asq-ready', function (evt) {
+            try {
+              this.subscribeToEvents(evt.detail.asqEventBus);
+            } catch (err) {
+              console.debug('failed to subscribeToEvents');
+            }
+          }.bind(this));
+        },
+
+        attached: function(){
+          this.async(function(){
+            this._updateItems();
+            Polymer.dom(this.$.ratingItemsContent).observeNodes(function(info){
+              this._updateItems();
+            }.bind(this))
+          })
+        },
+
+        _valueChanged: function(newVal){
+          this._updateRatingItemsFromValue();
+          this.fire('questioninput', newVal)
+        },
+
+        _updateItems: function(){
+          //remove old listeners
+          if(this._items){
+            this._items.forEach(function(item){
+              this.unlisten(item, 'ratingChanged', '_onRatingChangedForItem');
+            }, this);
+          }
+          
+          this._items = Polymer.dom(this).childNodes.filter(function (el) {
+            return el.isASQElement && el.nodeName == 'ASQ-RATING-ITEM';
+          });
+
+          // add ratingChanged listener
+          this._items.forEach(function(item){
+            this.listen(item, 'ratingChanged', '_onRatingChangedForItem');
+          }, this);
+
+          // sync value
+          this._updateValueFromRatingItems();
+        },
+
+        _onRatingChangedForItem: function(evt){
+          this._updateValueFromRatingItems();
+        },
+
+        _updateValueFromRatingItems: function(){
+          this.value = this._items.map(function (item, index) {
+            return { 
+              uid: item.uid,
+              rating: item.rating
+            };
+          });
+        },
+
+        _updateRatingItemsFromValue: function(){
+          this.value.forEach(function(rItem){
+            if (rItem.rating >= 0) {
+              this.updateRatingProgress(rItem.uid, rItem.rating);
+            }
+          }, this)
+        },
+
+        _onStatsToggleChange: function(evt, detail){
+          if(! this.hasRole(this.role, this.roles.PRESENTER)) return;
+
+          this.async(function(){
+            this._showRatingItems(this.$$('#statsToggle').checked);
+          })
+        },
+
+        _showRatingItems: function(val){
+          // We have to do this to wait for the ready of lightdom elements.
+          // See details here: https://goo.gl/huOBKi
+          this.async(function() {
+            Polymer.dom(this.$.ratingItemsContent).getDistributedNodes().forEach(function(it){
+              it.style.visibility = (val == false)? 'hidden' : 'visible';
+            })
+          });
+        },
+
+        onQuestionType: function (evt) {
+          if (!evt || !evt.questionType)
+            return;
+          if (evt.questionType == 'asq-rating-q') {
+            if (evt.type == 'progress') {
+              this.onProgress(evt.question);
+            } else if (evt.type == 'restorePresenter') {
+              if (this.role !== this.roles.PRESENTER)
+                return;
+              this.onRestorePresenter(evt);
+            } else if (evt.type == 'restoreViewer') {
+              if (this.role !== this.roles.VIEWER)
+                return;
+              this.onRestoreViewer(evt);
+            }
+          }
+        },
+
+        onRestorePresenter: function (evt) {
+          evt.questions.forEach(function (q) {
+            if (q.uid != this.uid)
+              return;
+            this.value = q.data.ratingItems;
+            // q.data.ratingItems.forEach(function (rItem) {
+            //   if (rItem.rating >= 0) {
+            //     this.updateRatingProgress(rItem.uid, rItem.rating);
+            //   }
+            // }.bind(this));
+          }, this);
+        },
+
+        onRestoreViewer: function (evt) {
+          evt.questions.forEach(function (q) {
+            if (q.uid != this.uid)
+              return;
+            this.value = q.ratingItems;
+            // q.ratingItems.forEach(function (rItem) {
+            //   if (rItem.rating >= 0) {
+            //     this.updateRatingProgress(rItem.uid, rItem.rating);
+            //   }
+            // }.bind(this));
+          }, this);
+        },
+
+        onProgress: function (question) {
+          if (question.uid !== this.uid)
+            return;
+          if (this.role !== this.roles.PRESENTER)
+            return;
+          this.updateProgress(question.ratings, question.total);
+        },
+
+        updateProgress: function (ratings) {
+          for (var key in ratings) {
+            if (ratings.hasOwnProperty(key)) {
+              this.updateRatingProgress(key, ratings[key]);
+            }
+          }
+        },
+
+        updateRatingProgress: function (uid, val) {
+          var ratingItem = Polymer.dom(this).querySelector('asq-rating-item[uid="' + uid + '"]');
+          if (!ratingItem) {
+            console.log('failed to updateRatingItemProgress, could not find rating item with uid %s', uid);
+            return;
+          }
+          if(ratingItem.rating !== val){
+            ratingItem.rating = val;
+          }
+        },
+
+        /**
+         * This question type is interested in  `asq:question_type`, which is emitted 
+         * when answer is submitted successfully.
+         *
+         */
+        subscribeToEvents: function (eventBus) {
+          eventBus.on('asq:question_type', this.onQuestionType.bind(this));
+        },
+        /**
+         * The `submit` method returns an object that respresents the submission of this question. The object has the following structure:
+             {
+                questionUid: this.uid, 
+                timestamp: new Date(),
+                submission: [] // Array of the result of submit() called for each <asq-rating-item> of the question
+             }
+         * Only useful when the `role` of the element is <b>viewer</b>.
+         *
+         * @method submit
+         */
+        submit: function () {
+          if (this.role !== this.roles.VIEWER) {
+            return;
+          }
+          
+          var submission = [];
+          this._items.forEach(function (item, index) {
+            submission.push(item.submit());
+          });
+          return {
+            questionUid: this.uid,
+            timestamp: new Date(),
+            submission: submission
+          };
+        },
+
+        hasRole: function (role, candidate) {
+          return role == candidate;
+        },
+      });
+    }());
+  </script>
+</dom-module>

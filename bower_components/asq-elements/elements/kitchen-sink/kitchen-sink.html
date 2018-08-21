@@ -1,0 +1,167 @@
+
+
+<link rel="import" href="../../../polymer/polymer.html">
+<link rel="import" href="../../../font-roboto/roboto.html">
+<link rel="import" href="../../../core-elements/core-elements.html">
+<link rel="import" href="../../../paper-elements/paper-elements.html">
+
+<link rel="import" href="../../asq-elements.html">
+
+<polymer-element name="kitchen-sink" attributes="label" >
+  <template>
+    <link rel="stylesheet" href="./css/kitchen-sink.css" type="text/css" />
+
+    <core-drawer-panel transition selected="main" id="core_drawer_panel" drawerWidth="220px" touch-action>
+      <section id="el-menu-section" drawer>
+        <core-toolbar id="title-toolbar">
+          <div id="div1" flex>{{label}}</div>
+        </core-toolbar>
+        <nav>
+          <core-menu selected="0" selectedindex="0" id="element_menu" on-core-select="{{elementSelect}}">
+            <content></content>
+          </core-menu>
+        </nav>
+      </section>
+ 
+      <section id="section1" main>
+        <core-header-panel mode="standard" id="main-panel" flex layout horizontal>
+          <core-toolbar id="toolbar">
+            
+            <span flex> <!-- 1/3 width-->  
+              <paper-icon-button id="hamburger" icon="menu" title="menu" role="button" tabindex="0" aria-label="menu" touch-action="pan-x pan-y" on-tap="{{menuTap}}"></paper-icon-button>
+              <img id="asq-logo" src="../../img/asq-logo.png">
+            </span>
+
+            <core-menu id="role-panel-tabs" noink role="tablist" on-core-select="{{roleSelect}}" flex horizontal center layout multi><!-- 2/3 width -->
+            
+              <core-item data-target="presenter-section" inline flex center-center horizontal layout>Presenter</core-item>
+              <core-item data-target="viewer-section" inline flex center-center horizontal layout>Viewer</core-item>
+              <core-item data-target="ta-section" inline flex center-center horizontal layout >Teaching Assistant</core-item>
+              
+          </core-menu>
+        <span flex></span> <!-- 3/3 width-->
+          </core-toolbar>
+
+          <section id="main" horizontal layout fit>
+            <section class="role-section" id="presenter-section" flex>
+              <span class="role-name">Presenter</span>
+              <div id="pframeContainer">
+                <iframe id="pframe" class="frame" on-load="{{pframeLoaded}}"></iframe>
+              </div>
+            </section>
+
+            <section class="role-section" id="viewer-section" flex layout vertical self-stretch>
+             <span class="role-name">Viewer</span>
+              <div id="vframeContainer">
+                <iframe id="vframe" class="frame" on-load="{{vframeLoaded}}"></iframe>
+              </div>
+            </section>
+
+            <section class="role-section" id="ta-section" flex layout vertical self-stretch>
+             <span class="role-name">Teaching Assistant</span>
+              <div id="tframeContainer">
+                <iframe id="tframe" class="frame" on-load="{{tframeLoaded}}"></iframe>
+              </div>
+            </section>
+          </section>
+
+          </section>
+        </core-header-panel>
+      </section>
+    </core-drawer-panel>
+  </template>
+
+
+  <script>
+    Polymer({
+      item: undefined,
+
+      menuTap: function () {
+        var isOpen = this.$.core_drawer_panel.forceNarrow;
+        this.$.core_drawer_panel.forceNarrow = !isOpen;
+      },
+
+      domReady: function() {
+        //hide role panels
+        this.shadowRoot.querySelectorAll('.role-section').array().forEach(function(elem) {
+          elem.style.display = "none";
+        });
+        this.shadowRoot.getElementById('role-panel-tabs').selected = ["0","1"];
+
+      },
+
+      ready: function() {
+        this.parseLocationHash();
+      },
+
+      parseLocationHash: function() {
+        var route = window.location.hash.slice(1);
+        for (var i = 0, item; item = this.$.element_menu.items[i]; i++) {
+          if (item.getAttribute('label') === route) {
+            this.$.element_menu.selected = i;
+            return;
+          }
+        }
+        this.$.element_menu.selected = this.$.element_menu.selected || 0;
+      },
+
+      roleSelect: function(e, detail, target) {
+        //setup toggling behavior
+        this.shadowRoot.getElementById(detail.item.dataset.target).style.display = detail.isSelected ? "block" : "none";
+      },
+
+      elementSelect: function(e, detail) {
+
+        if (detail.isSelected) {
+          this.item = detail.item;
+          
+          this.item.tag = this.item.getAttribute('label');
+          var url = this.item.getAttribute('url');
+          window.location.hash = this.item.tag;
+
+          this.$.pframe.contentWindow.location.replace(url);
+          this.$.vframe.contentWindow.location.replace(url);
+          this.$.tframe.contentWindow.location.replace(url);
+
+        }
+      },
+
+      pframeLoaded: function(e, detail) {
+
+        if (!this.item) {
+          return;
+        }
+        this.$.pframe.contentWindow.addEventListener('polymer-ready', function() {
+          this.$.pframe.contentWindow.postMessage({role: "presenter"}, "*");
+        }.bind(this));
+       
+      },
+
+      vframeLoaded: function(e, detail) {
+        
+        if (!this.item) {
+          return;
+        }
+        this.$.vframe.contentWindow.addEventListener('polymer-ready', function() {
+          this.$.vframe.contentWindow.postMessage({role: "viewer"}, "*");
+        }.bind(this));
+      },
+
+      tframeLoaded: function(e, detail) {
+
+        if (!this.item) {
+          return;
+        }
+
+        this.$.tframe.contentWindow.addEventListener('polymer-ready', function() {
+          this.$.tframe.contentWindow.postMessage({role: "ta"}, "*");
+        }.bind(this));
+
+      },
+
+      
+    });
+
+    </script>
+
+</polymer-element>

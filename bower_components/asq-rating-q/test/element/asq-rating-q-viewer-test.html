@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="asq" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>asq-rating viewer test</title>
+
+  <script src="../../../webcomponentsjs/webcomponents.min.js"></script>
+  <link rel="import" href="../../../test-fixture/test-fixture.html">
+  <script src="../../../web-component-tester/browser.js"></script>
+  <script src="../../../test-fixture/test-fixture-mocha.js"></script>
+
+  <!-- Step 1: import the element to test -->
+  <link rel="import" href="../../asq-rating-q.html">
+</head>
+<body>
+
+  <test-fixture id="leFixture">
+    <template>
+      <asq-rating-q type="stars" role="viewer" uid="my-uid">
+        <asq-stem><h3>An asq-rating question.</h3></asq-stem>
+        <asq-rating-item name="item-1">Item to rate #1</asq-rating-item>
+        <asq-rating-item name="item-2">Item to rate #2</asq-rating-item>
+        <asq-rating-item name="item-3">Item to rate #3</asq-rating-item>
+        <asq-rating-item name="item-4">Item to rate #4</asq-rating-item>
+      </asq-rating-q>
+    </template>
+  </test-fixture>
+
+<script>
+    var myEl;
+
+    describe('<asq-rating-q> viewer', function() {
+
+      beforeEach(function () {
+        myEl = fixture('leFixture');
+      });
+
+      describe('attributes', function() {
+
+        it('should define the "type" attribute', function() {
+          assert.equal(myEl.type, 'stars');
+        });
+      });
+
+      describe('template', function(){
+        it('should distribute <asq-stem> elements ', function(done) {
+          flush(function(){
+            var content = Polymer.dom(myEl.root).querySelector('content[select="asq-stem"]');
+            assert.equal(Polymer.dom(content).getDistributedNodes().length, 1);
+            done();
+          })
+        });
+
+        it('should distribute <asq-rating-item> elements ', function(done) {
+          flush(function(){
+            var content = Polymer.dom(myEl.root).querySelector('content[select="asq-rating-item"]');
+            assert.equal(Polymer.dom(content).getDistributedNodes().length, 4);
+            done();
+          })
+        });
+      });
+
+      describe('methods', function(){
+        describe('submit', function(){
+
+          before(function(){
+            stub('asq-rating-item', {
+              submit: function(){
+                return true;
+              }
+            });
+
+            this.result = myEl.submit();
+          });
+
+          it('should call `submit` on items', function() {
+            var proto = document.createElement('asq-rating-item').constructor.prototype;
+            assert.equal(proto.submit.callCount, 4);
+          });
+
+          it('should return properly formatted data', function() {
+            assert.equal(this.result.questionUid, 'my-uid');
+            assert.instanceOf(this.result.timestamp, Date);
+            assert.equal(this.result.submission.length, 4);
+          });
+        });
+      });
+
+    });
+  </script>
+
+</body>
+</html>

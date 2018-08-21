@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="513 848 462 198">
+    <defs>
+        <marker orient="auto" overflow="visible" id="a" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="#000">
+            <path d="M8 0L0-3v6z" fill="currentColor" stroke="currentColor"/>
+        </marker>
+    </defs>
+    <g fill="none">
+        <title>
+            Canvas 1
+        </title>
+        <title>
+            Layer 1
+        </title>
+       <!--  <path fill="#f7f7f7" d="M515.905 850.394h456.378v192.756H515.905z"/>
+        <path stroke="#929292" stroke-linecap="round" stroke-linejoin="round" d="M515.905 850.394h456.378v192.756H515.905z"/> -->
+        <path d="M692.82 856.063h102.55c2.21 0 4 1.79 4 4v170.583c0 2.21-1.79 4-4 4H692.82c-2.21 0-4-1.79-4-4V860.063c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1,4"/>
+        <text transform="translate(693.82 861.063)" fill="#3c3c3b">
+            <tspan font-family="Helvetica" font-size="11" font-weight="500" x="0" y="10" textLength="23.842">Core</tspan>
+        </text>
+        <g class="fragment">
+          <path d="M712.66 881.575h62.868c2.21 0 4 1.79 4 4v20.346c0 2.21-1.79 4-4 4H712.66c-2.208 0-4-1.79-4-4v-20.345c0-2.21 1.792-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+          <text transform="translate(713.66 889.248)" fill="#3c3c3b">
+              <tspan font-family="Helvetica" font-size="11" font-weight="500" x="4.751" y="10" textLength="34.235">Hooks </tspan><tspan font-family="Helvetica" font-size="11" font-weight="500" x="38.385" y="10" textLength="17.73">API</tspan>
+          </text>
+          <path d="M712.66 915.59h62.868c2.21 0 4 1.79 4 4v20.347c0 2.21-1.79 4-4 4H712.66c-2.208 0-4-1.79-4-4V919.59c0-2.21 1.792-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+          <text transform="translate(713.66 923.264)" fill="#3c3c3b">
+              <tspan font-family="Helvetica" font-size="11" font-weight="500" x="3.527" y="10" textLength="36.685">Events </tspan><tspan font-family="Helvetica" font-size="11" font-weight="500" x="39.61" y="10" textLength="17.73">API</tspan>
+          </text>
+          <path d="M712.66 949.606h62.868c2.21 0 4 1.79 4 4v26.016c0 2.21-1.79 4-4 4H712.66c-2.208 0-4-1.79-4-4v-26.016c0-2.21 1.792-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+          <text transform="translate(713.66 953.614)" fill="#3c3c3b">
+              <tspan font-family="Helvetica" font-size="11" font-weight="500" x="6.889" y="10" textLength="50.145">Database </tspan><tspan font-family="Helvetica" font-size="11" font-weight="500" x="21.568" y="23" textLength="17.73">API</tspan>
+          </text>
+          <path d="M712.66 989.29h62.868c2.21 0 4 1.792 4 4v20.348c0 2.21-1.79 4-4 4H712.66c-2.208 0-4-1.79-4-4V993.29c0-2.208 1.792-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+          <text transform="translate(713.66 996.965)" fill="#3c3c3b">
+              <tspan font-family="Helvetica" font-size="11" font-weight="500" x=".468" y="10" textLength="42.802">Settings </tspan><tspan font-family="Helvetica" font-size="11" font-weight="500" x="42.668" y="10" textLength="17.73">API</tspan>
+          </text>
+        </g>
+        <path d="M826.047 895.748H954.11c2.21 0 4 1.79 4 4v85.543c0 2.21-1.79 4-4 4H826.047c-2.21 0-4-1.79-4-4V899.75c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1,4"/>
+        <text transform="translate(827.047 900.748)" fill="#3c3c3b">
+            <tspan font-family="Helvetica" font-size="11" font-weight="500" x="26.35" y="10" textLength="73.364">System Plugin</tspan>
+        </text>
+
+        <g class="fragment">          
+          <path d="M834.55 922.677h31.686c2.21 0 4 1.79 4 4v40.19c0 2.208-1.79 4-4 4H834.55c-2.208 0-4-1.792-4-4v-40.19c0-2.21 1.792-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+          <text transform="translate(835.55 940.272)" fill="#3c3c3b">
+              <tspan font-family="Helvetica" font-size="11" font-weight="500" x=".784" y="10" textLength="28.118">Proxy</tspan>
+          </text>
+          <path d="M882.74 922.677h62.866c2.21 0 4 1.79 4 4v40.19c0 2.208-1.79 4-4 4H882.74c-2.21 0-4-1.792-4-4v-40.19c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+          <text transform="translate(883.74 933.772)" fill="#3c3c3b">
+              <tspan font-family="Helvetica" font-size="11" font-weight="500" x="8.116" y="10" textLength="44.634">Business</tspan><tspan font-family="Helvetica" font-size="11" font-weight="500" x="17.285" y="23" textLength="26.297">Logic</tspan>
+          </text>
+        </g>
+
+        <path d="M534.08 892.913H662.14c2.21 0 4 1.79 4 4v85.544c0 2.21-1.79 4-4 4H534.08c-2.21 0-4-1.79-4-4v-85.544c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1,4"/>
+        <text transform="translate(535.08 897.913)" fill="#3c3c3b">
+            <tspan font-family="Helvetica" font-size="11" font-weight="500" x="19.928" y="10" textLength="86.206">Third party Plugin</tspan>
+        </text>
+        <g class="fragment">   
+          <path d="M621.953 921.26h31.685c2.21 0 4 1.79 4 4v40.19c0 2.208-1.79 4-4 4h-31.685c-2.21 0-4-1.792-4-4v-40.19c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+          <text transform="translate(622.953 938.854)" fill="#3c3c3b">
+              <tspan font-family="Helvetica" font-size="11" font-weight="500" x=".784" y="10" textLength="28.118">Proxy</tspan>
+          </text>
+          <path d="M542.583 921.26h62.866c2.208 0 4 1.79 4 4v40.19c0 2.208-1.792 4-4 4h-62.867c-2.21 0-4-1.792-4-4v-40.19c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+          <text transform="translate(543.583 932.354)" fill="#3c3c3b">
+              <tspan font-family="Helvetica" font-size="11" font-weight="500" x="8.116" y="10" textLength="44.634">Business</tspan><tspan font-family="Helvetica" font-size="11" font-weight="500" x="17.285" y="23" textLength="26.297">Logic</tspan>
+          </text>
+        </g>
+        <g class="fragment">        
+          <path marker-end="url(#a)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M657.638 945.354l43.925-42.705"/>
+          <path marker-end="url(#a)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M657.638 945.354l41.556-12.697"/>
+          <path marker-end="url(#a)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M657.638 945.354l41.885 17.453"/>
+          <path marker-end="url(#a)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M657.638 945.354l44.49 50.67"/> 
+          <path marker-end="url(#a)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M830.55 946.772l-44.022-44.024"/>
+          <path marker-end="url(#a)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M830.55 946.772l-41.63-13.878"/>
+          <path marker-end="url(#a)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M830.55 946.772l-41.796 16.254"/>
+          <path marker-end="url(#a)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M830.55 946.772l-44.4 49.334"/>
+        </g>
+    </g>
+</svg>

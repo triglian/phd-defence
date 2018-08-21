@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>seed-element</title>
+  
+  <script src="../../../webcomponentsjs/webcomponents.min.js"></script>
+  <link rel="import" href="../../../test-fixture/test-fixture.html">
+  <script src="../../../web-component-tester/browser.js"></script>
+  <script src="../../../test-fixture/test-fixture-mocha.js"></script>
+
+  <link rel="import" href="../../asq-welcome.html">
+</head>
+<body>
+  <test-fixture id="leFixture">
+    <template>
+      <asq-welcome id="myEl" role="viewer"></asq-welcome>
+    </template>
+  </test-fixture>
+
+  
+
+  <script>
+    var myEl;
+
+    describe('<asq-welcome> viewer', function() {
+
+      beforeEach(function () {
+        myEl = fixture('leFixture');
+      });
+
+      describe('properties', function() {
+        it('should define the "liveUrl" property', function() {
+          assert.equal(myEl.liveUrl, '');
+        });
+
+        it('should define the "connected" property', function() {
+          assert.equal(myEl.connected, false);
+        });
+      });
+
+      describe('template', function(){
+        it('should correctly display the `connecting` message', function(done) {
+          myEl.liveUrl = "https://demo.com";
+          setTimeout(function(){
+            console.log(myEl.shadowRoot)
+            assert.equal(myEl.shadowRoot.getElementById("connectingMsg").textContent, "Connecting to https://demo.com");
+            assert.equal(myEl.shadowRoot.getElementById("connectedMsg"), undefined);
+            done();
+          }, 1);
+        });
+
+        it('should correctly display the `connected` message', function(done) {
+          myEl.connected = true;
+          setTimeout(function(){
+            console.log(myEl.shadowRoot)
+            assert.equal(myEl.shadowRoot.getElementById("connectedMsg").textContent, "Connected!");
+            assert.equal(myEl.shadowRoot.getElementById("connectingMsg"), undefined);
+            done();
+          }, 1);
+        });
+      });
+
+      describe('methods', function(){
+        describe('onConnectedClients', function(){
+          it('should not modify the `connectedViewers` property', function() {
+            var connectedViewers = [
+                {token:"token_a", screenName:"nameA"},
+                {token:"token_b", screenName:"nameB"}
+              ];
+            myEl.onConnectedClients({connectedViewers: connectedViewers})
+            assert.deepEqual(myEl.connectedViewers, []);
+          });
+        });
+      });
+
+    });
+  </script>
+
+</body>
+</html>

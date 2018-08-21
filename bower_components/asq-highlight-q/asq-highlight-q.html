@@ -1,0 +1,244 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../asq-base/asq-base.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+
+<link rel="import" href="elements/asq-highlight-presenter-q/asq-highlight-presenter-q.html">
+<link rel="import" href="elements/asq-highlight-viewer-q/asq-highlight-viewer-q.html">
+<link rel="import" href="elements/asq-hl-color-task/asq-hl-color-task.html">
+
+<!--
+ASQ-Highlight element can be used to to create, deliver and validate highlighting exercises utilizing the [Ace editor](http://ace.c9.io). It can be used in everything that has to do with languages from Programming exercises to English grammar exercises.
+
+##### Example
+
+      <asq-highlight-q  theme="textmate" mode="java" role="viewer" fontSize="1em">
+        <asq-stem><h3>Highlight with the appropriate color the following:</h3></asq-stem>
+        <asq-hl-color-task color="d9534f">Visibility Modifiers</asq-hl-color-task>
+          <asq-hl-color-task color="428bca">Variable Declarations</asq-hl-color-task>
+          <asq-hl-color-task color="f0ad4e">Other keywords</asq-hl-color-task>
+        <code>public class C {      
+     public void m() {
+       int i = i + 5 + ((int)5.0) + ((int)5f);
+     }
+    }</code>
+      </asq-highlight-q>
+
+@element asq-highlight-q
+@blurb
+@demo demo/index.html 
+@status alpha
+@homepage http://github.com/ASQ-USI/asq-highlight-q
+-->
+
+<dom-module id="asq-highlight-q">
+  <style>
+    :host{
+      min-height: 100px;
+     @apply(--layout-vertical);
+    }
+
+    asq-highlight {
+      height: 700px;
+    }
+    paper-input-decorator {
+      max-width: 80%;
+    }
+    paper-input::shadow paper-input-decorator {
+      padding: 0;
+    }
+    media only screen and (min-width : 320px) paper-input-decorator {
+      max-width: 100%;
+    }
+    iron-icon-button.rotate {
+      transform: rotate(90deg);
+      -webkit-transform: rotate(90deg);
+    }
+    .separator {
+      border-left: #656565 solid 1px;
+      opacity: .8;
+      height: 24px;
+    }
+    #addTask::shadow > iron-icon {
+      color: #4059a9;
+    }
+    #editLabel,
+    #highlightLabel {
+      cursor: pointer;
+    }
+    #editLabel.active {
+      color: #f1f1f1;
+    }
+    #highlightLabel.active {
+      color: #0f9d58;
+    }
+    #stemTextarea,
+    #newTaskTextarea {
+      overflow: hidden;
+    }
+    #newTaskContainer {
+      max-width: 700px;
+    }
+    #elementConf {
+      padding: 10px;
+    }
+    paper-button {
+      cursor: pointer;
+    }
+    paper-button:hover {
+      color: #40a8f2;
+    }
+    #aceContainer {
+      width: 600px;
+      height: 500px;
+    }
+  </style>
+  <template>    
+
+    <!-- Viewer -->
+    <template is="dom-if" if="{{hasRole(role, roles.VIEWER)}}" restamp="true">
+      <asq-highlight-viewer-q role="viewer" uid="[[uid]]" value="{{value}}" mode="{{mode}}" theme="{{theme}}" font-size="{{fontSize}}" tab-size="{{tabSize}}" disabled="{{disabled}}" ace-value="{{aceValue}}" wrap="{{wrap}}" event-bus="[[eventBus]]">
+        <content></content>
+      </asq-highlight-viewer-q>
+    </template>
+    
+    <!-- Presenter -->
+   <template is="dom-if" if="{{hasRole(role, roles.PRESENTER)}}" restamp="true">
+      <asq-highlight-presenter-q role="presenter" uid="[[uid]]" value="{{value}}" mode="{{mode}}" theme="{{theme}}" font-size="{{fontSize}}" tab-size="{{tabSize}}" disabled="{{disabled}}" ace-value="{{aceValue}}" wrap="{{wrap}}" event-bus="[[eventBus]]">
+        <content></content>
+      </asq-highlight-presenter-q>
+    </template>
+
+  </template>
+  <script>
+    (function () {
+      'use strict';
+      Polymer({
+        is: 'asq-highlight-q',
+
+        behaviors: [ASQ.asqQuestionElementBehavior],
+
+        properties: {
+          /**
+           * The user selected ranges.
+           */
+          value: {
+            type: Object,
+            notify: true,
+            observer: "_valueChanged"
+          },
+          /**
+           * Set to true to style the element as disabled.
+           * Binded to `readonly` of ace-editor.
+           */
+          disabled: {
+            type: Boolean,
+            value: false,
+            notify: true,
+            reflectToAttribute: true
+          },
+
+          /**
+           * The fontSize property of the ace-element.
+           */
+          fontSize: { 
+            type: String,
+            value: "12px",
+            notify: true,
+            reflectToAttribute: true
+          },
+
+          /**
+           * The mode property of the ace-element.
+           */
+          mode: {
+            type: String,
+            value: 'javascript',
+            reflectToAttribute: true,
+            notify: true
+          },
+
+          /**
+           * The tabSize property of the ace-element.
+           */
+          tabSize: { 
+            type: Number,
+            value: 2,
+            notify: true,
+            reflectToAttribute: true,
+          },
+
+          /**
+           * The theme property of the ace-element.
+           */
+          theme: {
+            type: String,
+            value: 'monokai',
+            notify: true,
+            reflectToAttribute: true,
+          },
+
+          /**
+           * The value property of the ace-element.
+           */
+          aceValue: {
+            type: String,
+            value: null,
+            notify: true,
+            reflectToAttribute: true,
+          },
+          /**
+           * The wrap property of the ace-element.
+           */
+          wrap: {
+            type: Boolean,
+            value: false,
+            notify: true,
+            reflectToAttribute: true,
+          },
+          solution: { notify: true },
+
+          /**
+           * Event bus to communicate with ASQ
+           */
+          eventBus: {
+            type: Object,
+            notify: true
+          }
+        },
+
+        ready: function () {
+          if (!this.aceValue) {
+            var code = Polymer.dom(this).querySelector('code');
+            if (code) {
+              this.aceValue = code.textContent;
+            }
+          }
+
+          document.addEventListener('asq-ready', function (evt) {
+            this.eventBus = evt.detail.asqEventBus
+          }.bind(this));
+        },
+
+        submit: function () {
+          if (this.role == this.roles.VIEWER) {
+            var el = this.$$('asq-highlight-viewer-q');
+            if (!el) {
+              throw new Error('submit(): expected asq-highlight-viewer-q element to exist');
+            }
+            var submission = el.submit();
+            submission.questionUid = this.uid;
+            return submission;
+          }
+        },
+
+        hasRole: function (role, candiate) {
+          return role == candiate;
+        },
+
+        _valueChanged:function(newVal, oldVal){
+          this.fire('questioninput', newVal)
+        }
+      });
+    }());
+  </script>
+</dom-module>

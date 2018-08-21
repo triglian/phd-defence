@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="asq" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>asq-option</title>
+
+  <script src="../../webcomponentsjs/webcomponents.min.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+
+  <!-- Step 1: import the element to test -->
+  <link rel="import" href="../asq-option.html">
+  <link rel="import" href="../../asq-base/asq-base.html">
+</head>
+<body>
+
+  <!-- You use the document as a place to set up your fixtures. -->
+  <asq-option multi id="m">This is a checkbox option</asq-option>
+  <asq-option multi id="m2" checked>This is a checkbox option</asq-option>
+
+  <asq-option multi id="m3" name="test">This is a checkbox option</asq-option>
+
+
+  <script>
+    var m = document.querySelector('#m');
+    var m2 = document.querySelector('#m2');
+    var m3 = document.querySelector('#m3');
+
+    suite('<asq-option>', function() {
+      test('test default values', function() {
+        assert.isTrue(m.multi);
+        assert.isFalse(m.checked);
+        assert.isFalse(m.disabled);
+        assert.isTrue(m2.checked);
+      });
+
+      test('test default mixin values', function() {
+        assert.isTrue(m.isASQElement);
+        assert.isFalse(m.isASQQuestionTypeElement);
+        assert.equal(m.uid, '');
+        assert.equal(m.role, 'viewer');
+      });
+
+      test('properly set name property ', function() {
+        assert.equal( m3.name , 'test');
+      });
+
+
+    });
+  </script>
+
+</body>
+</html>

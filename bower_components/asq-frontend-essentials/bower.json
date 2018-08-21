@@ -1,0 +1,27 @@
+{
+  "name": "asq-frontend-essentials",
+  "version": "0.0.1",
+  "homepage": "https://github.com/ASQ-USI-Elements/asq-frontend-essentials",
+  "authors": [
+    "Vassilis Triglianos"
+  ],
+  "description": "asq-frontend-essentials",
+  "main": "asq-frontend-essentials.html",
+  "keywords": [
+    "asq",
+    "shadowDOM"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.5.0",
+    "paper-dialog": "PolymerElements/paper-dialog#~1.1.0"
+  }
+}

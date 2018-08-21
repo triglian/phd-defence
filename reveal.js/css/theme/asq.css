@@ -159,6 +159,10 @@ body {
   color:#FFFFFF;
 }
 
+.reveal .light-grey{ color: #a0a0a0;}
+.reveal .light-blue{ color: #0c93e8;}
+.reveal .light-red{ color: #f72e2b;}
+
 .reveal .text-shadow{
   text-shadow: 1px 1px 1px rgba(94, 94, 94, 0.5);
 }
@@ -426,6 +430,28 @@ body {
 }
 
 
+/*********************************************
+ * CYCLE CONTAINER
+ *********************************************/
+.cycle-container{
+  display: none;
+  position: fixed;
+  top: -40px;
+  right: 30px;
+  z-index: 1000;
+}
+
+.cycle-container svg{
+  width: 300px;
+}
+
+body.on-cycle-1-students #cycle-present-asq-answer,
+body.on-cycle-1-presenter #cycle-present-asq-answer-assess,
+body.on-cycle-2-presenter #cycle-present-asq-answer-assess,
+body.on-cycle-1-feedback #asq-cycle-full,
+body.on-cycle-2-feedback #asq-cycle-full{
+  display: block;
+}
 
 
 /*********************************************
@@ -582,6 +608,55 @@ body {
     font-style: italic;
   }
 
+/*********************************************
+ * Accordion
+ *********************************************/
+
+.reveal .accordion{ 
+  overflow: hidden;
+  background: rgb(232, 238, 253);
+  border-left: 10px solid rgb(89, 118, 182);
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px; 
+  padding-top: 0.5em;
+  padding-bottom: 0.5em; 
+  -webkit-transition: max-height 0.3s  ease-out,
+    margin-top 0.3s  ease-out,
+    margin-bottom 0.3s  ease-out,
+    padding-top 0.3s  ease-out,
+    padding-bottom 0.3s  ease-out;
+  -moz-transition: max-height 0.3s  ease-out,
+    margin-top 0.3s  ease-out,
+    margin-bottom 0.3s  ease-out,
+    padding-top 0.3s  ease-out,
+    padding-bottom 0.3s  ease-out;
+  transition: max-height 0.3s  ease-out,
+    margin-top 0.3s  ease-out,
+    margin-bottom 0.3s  ease-out,
+    padding-top 0.3s  ease-out,
+    padding-bottom 0.3s  ease-out;
+}
+
+.reveal .fragment .accordion{
+   max-height: 0;
+   margin-top: 0;
+   margin-bottom: 0; 
+   padding-top: 0;
+   padding-bottom: 0; 
+}
+
+.reveal .fragment.current-fragment .accordion{
+  max-height: 1000px;
+  margin-top: 10px;
+  margin-bottom: 10px; 
+  padding-top: 0.5em;
+  padding-bottom: 0.5em; 
+}
+
 
 /*********************************************
  * Intro animation
@@ -603,14 +678,13 @@ body {
 
 .backfacing{
   transform: rotateY( 180deg );
-  display:none;
 }
 
 .a{ left: 0px;}
 .s{ left: 110px;}
 .q{ left: 220px;}
 
-/*.anim {
+.anim {
   -webkit-animation: frontsideAnimation 6s ease infinite;
   -moz-animation: frontsideAnimation 6s ease infinite;
   -o-animation: frontsideAnimation 6s ease infinite;
@@ -622,7 +696,7 @@ body {
   -moz-animation: backsideAnimation 6s ease infinite;
   -o-animation: backsideAnimation 6s ease infinite;
   animation: backsideAnimation 6s ease infinite;
-}*/
+}
 
 @-webkit-keyframes frontsideAnimation {
 0% { -webkit-transform: rotateY(0deg); }
@@ -748,6 +822,13 @@ body.on-splash #usi-logo-round-holder{
   opacity: 1;
 }
 
+body.on-modeling .backgrounds .slide-background.present{
+  width: 1280px;
+  height: 100%;
+  background-color: #444;
+  left: 1060px;
+}
+
 #joinasqmsg{
   opacity: 1;
   transition: opacity 250ms ease-out;
@@ -803,6 +884,7 @@ body.on-splash #joinasqmsg{
   position: relative;
   width: 1050px;
   height: 636px;
+  margin-top: 20px;
 }
 
 #question-type-list .img-frame{
@@ -917,6 +999,28 @@ body.on-splash #joinasqmsg{
   color: white;
 }
 
+/* question-strategies-results */
+#question-strategies-results th{
+  text-align: right;
+}
+
+#question-strategies-results th:first-child{
+  text-align: left;
+}
+
+#question-strategies-results td{
+  text-align: right;
+}
+
+#question-strategies-results td:first-child{
+  text-align: left;
+}
+
+/* questions strategies */
+tr.no-border-bottom td{
+  border-bottom: 1px solid transparent;
+}
+
 /*********************************************
  * Plan
  *********************************************/
@@ -944,6 +1048,89 @@ body.on-splash #joinasqmsg{
  }
 
 
+/*********************************************
+ * Attention Measurement Methods
+ *********************************************/
+.reveal .tg{
+  width:100%;
+  font-size: 0.8em;
+  table-layout: fixed;
+}
+
+.reveal #methods-tbl td:first-child{
+  /*font-weight: bold;*/
+  /*font-size: 1em;*/
+  width: 310px;
+}
+
+.reveal .tg-yw4l{
+  padding: 5px 2px;
+}
+
+/*********************************************
+ * Indicators table
+ *********************************************/
+.reveal #indicators-tbl td,
+.reveal #indicators-tbl th{
+  border: none;
+  padding: 6px 40px;
+}
+
+.reveal #indicators-tbl th {
+    color: rgb(116, 152, 228);
+}
+
+/*********************************************
+ * Modeling
+ *********************************************/
+
+#modeling th{
+  font-weight:bold;
+  padding: 2px 8px;
+  color: rgb(116, 152, 228);
+  border: none;
+}
+
+#modeling td{
+  padding: 0 10px;
+  border: none;
+}
+
+#modeling td{
+  text-align: center;
+}
+
+#modeling td:last-child{
+  text-align: left;
+}
+
+#modeling-tbl{
+  width:100%;
+  table-layout:fixed;
+  font-size: 0.8em;
+}
+
+#modeling-tbl tr.substep.previous{
+  opacity: 1;
+}
+
+#modeling-tbl tr:hover{
+  background: #ff5d5d;
+}
+
+#modeling-tbl td:last-child{
+  color: white;
+  font-weight: bold;
+}
+
+#modeling-tbl .state-color{
+  display: inline-block;
+  position: relative;
+  top: 5px;
+  left: 1px;
+  width: 1.1em;
+  height: 1.1em;
+}
 
 /*********************************************
  * Usage Stats
@@ -989,11 +1176,12 @@ body.on-splash #joinasqmsg{
  *********************************************/
  .reveal .timeline-ul{
   margin-top: 20px;
+  list-style: none;
  }
 
 .reveal .timeline-ul li{
   position:relative;
-  height: 90px;
+  height: 100px;
 }
 
  .reveal .timeline-ul li:last-child{
@@ -1003,19 +1191,29 @@ body.on-splash #joinasqmsg{
 .reveal .timeline-ul li.fragment:before{
   content: "";
   height: 0;
-  border-left: 2px solid transparent;
+  border-left: 3px solid transparent;
   transition: height 0.5s ease-out;
   display: block;
   position: absolute;
-  left: -18.5px;
+  left: 8.5pt;
   top: -10px;
   z-index: -1;
 }
 
 .reveal .timeline-ul li.fragment.visible:before{
   height: 100%;
-  border-left: 2px solid #5e9ff7;
+  border-left: 3px solid #5e9ff7;
 }
+
+.reveal .timeline-ul li.fragment.visible:nth-child(2):before,
+.reveal .timeline-ul li.fragment.visible:nth-child(5):before,
+.reveal .timeline-ul li.fragment.visible:nth-child(6):before{
+  height: 75px;
+}
+.reveal .timeline-ul li.fragment.visible:nth-child(7):before{
+  height: 100px;
+}
+
 
 .reveal .timeline-ul li.fragment:after{
   content: "";
@@ -1027,9 +1225,16 @@ body.on-splash #joinasqmsg{
   border-right: 8px solid transparent;
   border-top: 12px solid #5e9ff7;
   position: absolute;
-  left: -25.5px;
+  left: 3.5pt;
   top: 0;
   z-index: -2;
+}
+
+.reveal .timeline-ul li.fragment.visible.current-fragment:nth-child(2):after,
+.reveal .timeline-ul li.fragment.visible.current-fragment:nth-child(5):after,
+.reveal .timeline-ul li.fragment.visible.current-fragment:nth-child(6):after{
+  visibility: visible;
+  top: 60px;
 }
 
 .reveal .timeline-ul li.fragment.visible.current-fragment:after{
@@ -1038,7 +1243,12 @@ body.on-splash #joinasqmsg{
 }
 
  .reveal .timeline-ul li.fragment.visible.current-fragment:last-child:after{
-  top: 100px;
+  top: 90px;
+}
+
+.reveal .timeline-bullet{
+  color: #5e9ff7;
+  font-size: 1.4em;
 }
 
 

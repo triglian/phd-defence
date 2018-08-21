@@ -1,0 +1,134 @@
+:host{
+  font-family: Helvetica;  
+};
+
+#core_drawer_panel {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+}
+#el-menu-section {
+  box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 3px;
+  background-color: rgb(250, 250, 250);
+}
+#section1 {
+  height: 100%;
+  box-sizing: border-box;
+  background-color: rgb(221, 221, 221);
+}
+#core_field {
+  left: 1170px;
+  top: 350px;
+}
+
+#toolbar {
+  color: rgb(255, 255, 255);
+  background-color: rgb(79, 125, 201);
+}
+
+nav {
+  background-color: rgb(202, 204, 208);
+  height: 100%;
+}
+
+#element_menu {
+  font-size: 16px;
+  top: 70px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+
+}
+#title-toolbar {
+  right: 0px;
+  left: 0px;
+  color: rgb(255, 255, 255);
+  fill: rgb(255, 255, 255);
+  top: 0px;
+  position: absolute;
+  width: 100%;
+  height: 64px;
+  background-color: grey;
+  font-family: 'RobotoDraft', sans-serif;
+}
+
+#main-panel {
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  position: relative;
+}
+
+#toolbar {
+  color: rgb(255, 255, 255);
+  background-color: #78909C;
+}
+
+#role-panel-tabs core-item {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+
+#role-panel-tabs core-item:hover {
+  background-color: #607D8B;
+}
+
+
+
+.role-section {
+  border-right: 1px solid rgba(0,0,0,0.12);
+/*  padding: 1em 2em;*/
+  overflow-x: scroll;
+}
+
+.role-name {
+  display: block;
+  padding: 5px;
+  color: rgb(79, 125, 201);
+}
+
+#element_menu{
+  margin: 0;
+  overflow: auto;
+  font-size: 14px;
+}
+
+polyfill-next-selector { content: 'core-menu#element_menu core-item'; }
+::content core-item{
+  padding: 0 12px;
+  cursor: pointer;
+}
+polyfill-next-selector { content: 'core-menu#element_menu core-item'; }
+::content core-item:hover{
+  background: rgba(79, 125, 201, 0.3);
+}
+
+#element_menu-header{
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-weight: 500;
+  font-size: 22px;
+  padding:15px 10px 16px;
+  margin: 0px 0;
+  color: rgb(79, 125, 201);
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+}
+
+.frame {
+  display: block;
+  width: 100%;
+  min-height: 600px;
+  border: none;
+}
+#main {
+  background-color: white;
+}
+
+#asq-logo {
+  height: 30px;
+}

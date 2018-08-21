@@ -1,0 +1,54 @@
+{
+  "name": "asq-elements",
+  "homepage": "https://github.com/ASQ-USI-Elements/asq-elements",
+  "authors": [
+    "Vasileios Triglianos",
+    "ZhenfeiNie <youyis2fox@gmail.com>"
+  ],
+  "description": "asq-elements",
+  "main": "app.js",
+  "keywords": [
+    "asq",
+    "shadowDOM"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "asq-base": "ASQ-USI-Elements/asq-base#master",
+    "asq-buckets-q": "ASQ-USI-Elements/asq-buckets-q#master",
+    "asq-code-q": "ASQ-USI-Elements/asq-code-q#master",
+    "asq-css-select-q": "ASQ-USI-Elements/asq-css-select-q#master",
+    "asq-exercise": "ASQ-USI-Elements/asq-exercise#master",
+    "asq-fiddle-q": "ASQ-USI-Elements/asq-fiddle-q#master",
+    "asq-frontend-essentials": "ASQ-USI-Elements/asq-frontend-essentials#master",
+    "asq-highlight-q": "ASQ-USI-Elements/asq-highlight-q#master",
+    "asq-js-eval-q": "ASQ-USI-Elements/asq-js-eval-q#master",
+    "asq-js-function-body-q": "ASQ-USI-Elements/asq-js-function-body-q#master",
+    "asq-matchable-behavior": "ASQ-USI-Elements/asq-matchable-behavior#master",
+    "asq-multi-choice-q": "ASQ-USI-Elements/asq-multi-choice-q#master",
+    "asq-option": "ASQ-USI-Elements/asq-option#master",
+    "asq-order-q": "ASQ-USI-Elements/asq-order-q#master",
+    "asq-rating-q": "ASQ-USI-Elements/asq-rating-q#master",
+    "asq-solution": "ASQ-USI-Elements/asq-solution#master",
+    "asq-sqlite-q": "ASQ-USI-Elements/asq-sqlite-q#master",
+    "asq-stem": "ASQ-USI-Elements/asq-stem#master",
+    "asq-text-input-q": "ASQ-USI-Elements/asq-text-input-q#master",
+    "asq-welcome": "ASQ-USI-Elements/asq-welcome#master"
+  },
+  "_release": "2f4658b781",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "2f4658b7817bb0043b084d90eb26d7bb875f4aaa"
+  },
+  "_source": "https://github.com/ASQ-USI-Elements/asq-elements.git",
+  "_target": "master",
+  "_originalSource": "ASQ-USI-Elements/asq-elements"
+}

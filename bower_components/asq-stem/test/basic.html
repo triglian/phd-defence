@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="asq" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>asq-stem</title>
+
+  <script src="../../webcomponentsjs/webcomponents.min.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+
+  <!-- Step 1: import the element to test -->
+  <link rel="import" href="../asq-stem.html">
+  <link rel="import" href="../../asq-base/asq-base.html">
+</head>
+<body>
+
+  <!-- You use the document as a place to set up your fixtures. -->
+  <asq-stem id="a1"><h1>An asq stem element.</h1></asq-stem>
+
+  <script>
+    var a1 = document.querySelector('#a1');
+    suite('<asq-option>', function() {
+
+      test('test default mixin values', function() {
+        assert.isTrue(a1.isASQElement);
+        assert.isFalse(a1.isASQQuestionTypeElement);
+        assert.equal(a1.uid, "");
+      });
+
+      
+    });
+  </script>
+
+</body>
+</html>

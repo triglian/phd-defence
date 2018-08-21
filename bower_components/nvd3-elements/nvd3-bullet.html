@@ -1,0 +1,64 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="nvd3-behavior.html">
+
+<!--
+An element to create bullet chart using nvd3.
+
+Example:
+
+    <nvd3-bullet data="[[data]]" auto-resize></nvd3-bullet>
+
+Data Format:
+
+```
+{
+  "title": "Revenue",
+  "subtitle": "US$, in thousands",
+  "ranges": [150,225,300],
+  "measures": [220],
+  "markers": [250]
+}
+```
+
+@group NVD3 Elements
+@element nvd3-bullet
+@demo demo/nvd3-bullet.html
+@hero hero.svg
+-->
+
+<dom-module id="nvd3-bullet">
+  <template>
+    <style include="nvd3-shared-styles"></style>
+    <!-- We need to put svg tag inside a div to set correct margins -->
+    <div>
+      <svg id="svg"></svg>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'nvd3-bullet',
+      behaviors: [NVD3.ChartBehavior],
+      properties: {
+        /**
+         * NVD3 chart object.
+         */
+        _chart: {
+          type: Object,
+          value: function() {
+            return nv.models.bulletChart();
+          }
+        },
+
+        /**
+         * NVD3 components which are used in this chart.
+         * It's required for binding events.
+         */
+        _components: {
+          type: Array,
+          value: ['bullet', 'tooltip']
+        }
+      }
+    });
+  </script>
+</dom-module>

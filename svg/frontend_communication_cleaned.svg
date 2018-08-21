@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" viewBox="519 51 473 238">
+    <defs>
+        <filter id="a" filterUnits="userSpaceOnUse">
+            <feGaussianBlur in="SourceAlpha" result="blur" stdDeviation="1.308"/>
+            <feOffset in="blur" result="offset" dy="2"/>
+            <feFlood flood-color="#000" flood-opacity=".5" result="flood"/>
+            <feComposite in="flood" in2="offset" operator="in"/>
+        </filter>
+        <marker orient="auto" overflow="visible" id="b" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="#000">
+            <path d="M8 0L0-3v6z" fill="currentColor" stroke="currentColor"/>
+        </marker>
+        <marker orient="auto" overflow="visible" id="c" viewBox="-9 -4 10 8" markerWidth="10" markerHeight="8" color="#000">
+            <path d="M-8 0l8 3v-6z" fill="currentColor" stroke="currentColor"/>
+        </marker>
+    </defs>
+    <g fill="none">
+        <title>
+            Canvas 1
+        </title>
+        <title>
+            Layer 1
+        </title>
+        <xl:use xl:href="#id3963_Graphic" filter="url(#a)"/>
+        <xl:use xl:href="#id3962_Graphic" filter="url(#a)"/>
+        <xl:use xl:href="#id3961_Graphic" filter="url(#a)"/>
+        <xl:use xl:href="#id3960_Graphic" filter="url(#a)"/>
+        <xl:use xl:href="#id3959_Graphic" filter="url(#a)"/>
+        <xl:use xl:href="#id3964_Graphic" filter="url(#a)"/>
+        <xl:use xl:href="#id3965_Graphic" filter="url(#a)"/>
+       <!--  <path fill="#f7f7f7" d="M521.575 53.858h467.717v232.44H521.575z"/>
+        <path stroke="#929292" stroke-linecap="round" stroke-linejoin="round" d="M521.575 53.858h467.717v232.44H521.575z"/> -->
+        <path d="M538.718 69.974H667.81c2.21 0 4 1.79 4 4V270.96c0 2.21-1.79 4-4 4H538.72c-2.21 0-4-1.79-4-4V73.975c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+        <text transform="translate(539.718 74.974)" fill="#3c3c3b">
+            <tspan font-family="Helvetica" font-size="11" font-weight="300" x="0" y="10" textLength="9.779">W</tspan><tspan font-family="Helvetica" font-size="11" font-weight="300" x="9.581" y="10" textLength="73.359">eb Component</tspan>
+        </text>
+        <path d="M551.99 102.047h102.55c2.21 0 4 1.79 4 4v28.85c0 2.21-1.79 4-4 4H551.99c-2.21 0-4-1.79-4-4v-28.85c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+        <text transform="translate(552.99 107.047)" fill="#3c3c3b">
+            <tspan font-family="Helvetica" font-size="11" font-weight="300" x="0" y="10" textLength="9.779">W</tspan><tspan font-family="Helvetica" font-size="11" font-weight="300" x="9.581" y="10" textLength="73.359">eb Component</tspan>
+        </text>
+        <path d="M551.99 147.402h102.55c2.21 0 4 1.79 4 4v105.385c0 2.21-1.79 4-4 4H551.99c-2.21 0-4-1.79-4-4V151.402c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+        <text transform="translate(552.99 152.402)" fill="#3c3c3b">
+            <tspan font-family="Helvetica" font-size="11" font-weight="300" x="0" y="10" textLength="9.779">W</tspan><tspan font-family="Helvetica" font-size="11" font-weight="300" x="9.581" y="10" textLength="73.359">eb Component</tspan>
+        </text>
+        <g>
+            <path d="M559.075 175.748h88.378c2.21 0 4 1.79 4 4v23.18c0 2.21-1.79 4-4 4h-88.378c-2.21 0-4-1.79-4-4v-23.18c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+            <text transform="translate(560.075 180.748)" fill="#3c3c3b">
+                <tspan font-family="Helvetica" font-size="11" font-weight="300" x="0" y="10" textLength="9.779">W</tspan><tspan font-family="Helvetica" font-size="11" font-weight="300" x="9.581" y="10" textLength="73.359">eb Component</tspan>
+            </text>
+        </g>
+        <g>
+            <path d="M559.075 218.268h88.378c2.21 0 4 1.79 4 4v23.18c0 2.21-1.79 4-4 4h-88.378c-2.21 0-4-1.79-4-4v-23.18c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+            <text transform="translate(560.075 223.268)" fill="#3c3c3b">
+                <tspan font-family="Helvetica" font-size="11" font-weight="300" x="0" y="10" textLength="9.779">W</tspan><tspan font-family="Helvetica" font-size="11" font-weight="300" x="9.581" y="10" textLength="73.359">eb Component</tspan>
+            </text>
+        </g>
+        <path d="M748.346 65.197h229.607v201.26H748.346z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1,4"/>
+        <text transform="translate(753.346 70.197)" fill="#000">
+            <tspan font-family="Helvetica" font-size="12" font-weight="500" x="0" y="11" textLength="26.01">Core</tspan>
+        </text>
+        <g class="fragment">
+            <path d="M885.575 93.543h79.874c2.208 0 4 1.79 4 4v150.74c0 2.21-1.792 4-4 4h-79.875c-2.21 0-4-1.79-4-4V97.543c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+            <text transform="translate(886.575 166.413)" fill="#3c3c3b">
+                <tspan font-family="Helvetica" font-size="11" font-weight="500" x="10.911" y="10" textLength="10.382">W</tspan><tspan font-family="Helvetica" font-size="11" font-weight="500" x="21.1" y="10" textLength="45.864">ebSocket</tspan>
+            </text>
+        </g>
+        <g class="fragment">
+            <path d="M766.52 93.543h79.874c2.21 0 4 1.79 4 4v150.74c0 2.21-1.79 4-4 4H766.52c-2.21 0-4-1.79-4-4V97.543c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+            <text transform="translate(767.52 140.413)" fill="#3c3c3b">
+                <tspan font-family="Helvetica" font-size="11" font-weight="500" x="24.873" y="10" textLength="31.185">Event </tspan><tspan font-family="Helvetica" font-size="11" font-weight="500" x="10.814" y="23" textLength="59.302">middleware </tspan><tspan font-family="Helvetica" font-size="11" font-weight="500" x="3.772" y="36" textLength="73.385">(can be on top </tspan><tspan font-family="Helvetica" font-size="11" font-weight="500" x="19.99" y="49" textLength="40.949">of DOM </tspan><tspan font-family="Helvetica" font-size="11" font-weight="500" x="5.005" y="62" textLength="34.848">EventT</tspan><tspan font-family="Helvetica" font-size="11" font-weight="500" x="38.634" y="62" textLength="34.235">argets)</tspan>
+            </text>
+            <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M850.394 172.913h31.18"/>
+        </g>
+        <g class="fragment">
+            <path marker-end="url(#b)" marker-start="url(#c)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M681.71 172.64l70.91.155"/>
+            <text transform="translate(680.902 149.554)" fill="#000">
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="500" x=".084" y="15" textLength="62.832">Pub/Sub</tspan>
+        </text>
+        </g>
+    </g>
+</svg>

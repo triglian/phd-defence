@@ -1,0 +1,308 @@
+<link rel="import" href="../../../polymer/polymer.html">
+<link rel="import" href="../../../asq-base/asq-base.html">
+<link rel="import" href="../../../paper-styles/default-theme.html">
+<link rel="import" href="../../../paper-behaviors/paper-inky-focus-behavior.html">
+<link rel="import" href="../../../paper-progress/paper-progress.html">
+<link rel="import" href="../../../paper-behaviors/paper-checked-element-behavior.html">
+<link rel="import" href="../../../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../../iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../../iron-icon/iron-icon.html">
+<link rel="import" href="../../../iron-icons/iron-icons.html">
+<link rel="import" href="../../../paper-styles/color.html">
+
+<!--
+`asq-option-presenter` is use to show to the presenter and according to the `is-other` property:
+
+  - displays a progress bar if `is-other=false`,
+  - display a main progress bar and a drop-down list containing the custom option if `is-other=true`
+
+
+##### Examples
+
+    <asq-option role="presenter" multi>A checkbox option</asq-option>
+
+    <asq-option role="presenter" disabled>A disabled radio option</asq-option>
+
+    <asq-option role="presenter" is-other>An input option</asq-option>
+
+### Styling progress bar:
+
+To change the active progress bar color:
+
+    asq-option-presenter {
+       --asq-option-presenter-progress-active-color: #e91e63;
+    }
+
+
+To change the progress bar background color:
+
+    asq-option-presenter {
+      --asq-option-presenter-progress-container-color: #64ffda;
+    }
+
+
+The followings are available for styling (presenter's view) ( adapted from PolymerElements/paper-progress):
+
+Custom property                             | Description                                 | Default
+--------------------------------------------|---------------------------------------------|----------------------
+--asq-option-presenter-progress-container-color            | Mixin applied to container                   | --google-grey-300
+--asq-option-presenter-progress-transition-duration        | Duration of the transition                   | 0.008s
+--asq-option-presenter-progress-transition-timing-function | The timing function for the transition       | ease
+--asq-option-presenter-progress-transition-delay           | delay for the transition                     | 0s
+--asq-option-presenter-progress-active-color               | The color of the active bar                  | --google-green-500
+--asq-option-presenter-progress-disabled-active-color      | The color of the active bar if disabled      | --google-grey-500
+--asq-option-presenter-progress-height                     | The height of the progress bar               | 4px
+--asq-option-presenter-main-label                          | Mixin applied to the option label            | {}
+--asq-option-presenter-main-progress                       | Mixin applied to the progress bar  container | {}
+--asq-option-presenter-text-list-container                 | Mixin applied to the list container          | {}
+--asq-option-presenter-text-list-container-width           | The width of list container                  | 90%
+--asq-option-presenter-text-list-container-max-height      | The height of the list container             | 100px
+--asq-option-presenter-text-list-container-overflow-y      | The overflow-y property of the list container| scroll
+--asq-option-presenter-text-list-container-margin          | The margin property of the list container    | auto
+
+
+
+
+@element asq-option-presenter
+@demo demo/index.html
+@group ASQ Elements
+@blurb Element acting as option with `other` text input in multichoice questions.
+@homepage http://github.com/ASQ-USI-Elements/asq-option-presenter
+-->
+<dom-module id="asq-option-presenter">
+  <template>
+
+    <!--<style include="iron-flex iron-positioning">-->
+    <style>
+
+      #progress {
+        width: 100%;
+        margin-right: 0.1em;
+
+        --paper-progress-container-color: var(--asq-option-presenter-progress-container-color, --google-grey-300);
+
+        --paper-progress-active-color: var(--asq-option-presenter-progress-active-color, --google-green-500);
+
+        --paper-progress-disabled-active-color: var(--asq-option-presenter-progress-disabled-active-color, --google-grey-500);
+
+        --paper-progress-height: var(--asq-option-presenter-progress-height, 4px);
+
+        --paper-progress-transition-duration: var(--asq-option-presenter-progress-transition-duration, 0.08s);
+
+        --paper-progress-transition-delay: var(--asq-option-presenter-progress-transition-delay, 0s);
+        @apply(--asq-option-progress);
+      }
+
+      #progress-wrapper {
+        position: relative;
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+        @apply(--asq-option-progress-wrapper);
+      }
+
+      #progress-num {
+        line-height: 0.2;
+        @apply(--asq-option-progress-number);
+      }
+
+      #main-label{
+        @apply(--asq-option-presenter-main-label);
+      }
+
+      #main-progress{
+        @apply(--asq-option-presenter-main-progress);
+      }
+
+      #other-text-list-container{
+
+        width: var(--asq-option-presenter-text-list-container-width, 98%);
+
+        max-height: var(--asq-option-presenter-text-list-container-max-height, 150px);
+
+        overflow-y: var(--asq-option-presenter-text-list-container-overflow-y, scroll);
+
+        margin: var(--asq-option-presenter-text-list-container-margin, auto);
+
+        @apply(--asq-option-presenter-text-list-container);
+      }
+
+    </style>
+
+    <div id="main-label">
+      <content></content>
+      <template is="dom-if" if="{{displayProgress}}" restamp>
+        <template is="dom-if" if="{{isOther}}" restamp>
+          <paper-icon-button id="opt-btn" icon="{{_computeClass(showOptions)}}" on-click="_onClicked"></paper-icon-button>
+        </template>
+      </template>
+    </div>
+    <template is="dom-if" if="{{displayProgress}}" restamp>
+      <div id="main-progress">
+        <div id="progress-wrapper">
+          <paper-progress id="progress" value="[[progressValue]]" max="[[progressMax]]"></paper-progress>
+          <div id="progress-num">[[progressValue]]</div>
+        </div>
+      </div>
+      <template is="dom-if" if="{{isOther}}" restamp>
+        <div id="other-text-list-container" hidden$="{{!showOptions}}">
+          <template is="dom-repeat" items="{{otherData}}">
+            <div class="list-element">
+              <div id="label">
+                <template is="dom-if" if="{{!item.text}}" restamp><em>{{_label(item.text)}}</em></template>
+                <template is="dom-if" if="{{item.text}}" restamp>{{item.text}}</template>
+              </div>
+              <div id="progress-wrapper">
+                <paper-progress id="progress" value="[[item.num]]" max="[[progressValue]]"></paper-progress>
+                <div id="progress-num">[[item.num]]</div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </template>
+    </template>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'asq-option-presenter',
+
+      behaviors: [
+        ASQ.asqElementBehavior
+      ],
+
+      listeners: {},
+
+      hostAttributes: {
+        'aria-checked': false,
+        tabindex: 0
+      },
+
+      properties: {
+
+
+        /**
+         * Decide the mode, single or multi.
+         */
+        multi: {
+          type: Boolean,
+          value: false,
+          notify: true,
+          reflectToAttribute: true
+        },
+        /**
+         * Fired when the checked state changes due to user interaction.
+         *
+         * @event change
+         */
+
+        /**
+         * Fired when the checked state changes.
+         *
+         * @event asq-option-presenter-change
+         */
+
+        ariaActiveAttribute: {
+          value: 'aria-checked'
+        },
+
+        /**
+         * To set the value of progress bar in presenter view.
+         */
+        progressValue: {
+          type: Number,
+          value: 0,
+          notify: true,
+          reflectToAttribute: true
+        },
+
+        /**
+         * To set the max value of progress bar in presenter view.
+         */
+        progressMax: {
+          type: Number,
+          value: 100,
+          notify: true,
+          reflectToAttribute: true
+        },
+
+        /**
+         * Whether to display progress or not.
+         */
+        displayProgress: {
+          type: Boolean,
+          value: false,
+          notify: true
+        },
+
+
+        isOther: {
+          type: Boolean,
+          value: false,
+          notify: true,
+          reflectToAttribute: true
+        },
+
+        otherRequired: {
+          type: Boolean,
+          value: false,
+          notify: true,
+          reflectToAttribute: true
+        },
+
+        /**
+         * contains all 'other' items
+         *
+         * @type {Array}
+         * [
+         *    { text:"one", num: 2},
+         *    { text:"two", num: 1 }
+         *  ]
+         */
+
+        otherData: {
+          type: Array,
+          notify: true
+        },
+
+        /**
+         * If true the drop-down list is shown
+         *
+         * @type {Boolean}
+         */
+
+        showOptions: {
+          type : Boolean,
+          value: true,
+          notify: true,
+          reflectToAttribute: true
+        }
+      },
+
+      attached: function () {
+        this._isReady = true;
+      },
+
+      _computeClass: function (showOptions) {
+        return showOptions? 'expand-less' : 'expand-more';
+      },
+
+      _label:function(text){
+        return text.trim() || 'NO-TEXT';
+      },
+
+      _onClicked: function (e) {
+        this.showOptions = !this.showOptions
+      },
+
+      _containsElement: function(elements, el){
+        for (var i in elements){
+          if(elements[i].nodeName === el)
+            return true;
+        }
+        return false;
+      }
+    });
+  </script>
+
+</dom-module>

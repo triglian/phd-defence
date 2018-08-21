@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" viewBox="377 1100 465 167">
+   <defs>
+      <filter id="a" filterUnits="userSpaceOnUse">
+         <feGaussianBlur in="SourceAlpha" result="blur" stdDeviation="1.308" />
+         <feOffset in="blur" result="offset" dy="2" />
+         <feFlood flood-color="#000" flood-opacity=".5" result="flood" />
+         <feComposite in="flood" in2="offset" operator="in" />
+      </filter>
+      <marker orient="auto" overflow="visible" id="b" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="#000">
+         <path d="M8 0L0-3v6z" fill="currentColor" stroke="currentColor" />
+      </marker>
+      <marker orient="auto" overflow="visible" id="c" viewBox="-9 -4 10 8" markerWidth="10" markerHeight="8" color="#000">
+         <path d="M-8 0l8 3v-6z" fill="currentColor" stroke="currentColor" />
+      </marker>
+   </defs>
+   <g fill="none">
+      <title>Canvas 1</title>
+      <title>Layer 1</title>
+      <xl:use xl:href="#id4448_Graphic" filter="url(#a)" />
+      <xl:use xl:href="#id4449_Graphic" filter="url(#a)" />
+      <xl:use xl:href="#id4450_Graphic" filter="url(#a)" />
+      <xl:use xl:href="#id4451_Graphic" filter="url(#a)" />
+      <xl:use xl:href="#id4452_Graphic" filter="url(#a)" />
+      <xl:use xl:href="#id4453_Graphic" filter="url(#a)" />
+      <xl:use xl:href="#id4459_Graphic" filter="url(#a)" />
+      <xl:use xl:href="#id4460_Graphic" filter="url(#a)" />
+      <!-- <path fill="#f7f7f7" d="M379.843 1102.677h459.213v161.575H379.843z" /> -->
+<!--       <path stroke="#929292" stroke-linecap="round" stroke-linejoin="round" d="M379.843 1102.677h459.213v161.575H379.843z" /> -->
+
+      <g class="fragment"> 
+        <text transform="translate(462.642 1109.017)" fill="#000">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="500" x=".396" y="15" textLength="46.208">Server</tspan>
+        </text>
+        <text transform="translate(702.756 1109.017)" fill="#000">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="500" x=".384" y="15" textLength="58.588">Browser</tspan>
+        </text>
+      </g>
+      <g>
+        <path fill="#fcf7e4" d="M388.346 1136.693H830.55v62.362H388.347z" />
+        <path d="M388.346 1136.693H830.55v62.362H388.347z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1,4" />
+        <text transform="translate(393.346 1158.374)" fill="#000">
+           <tspan font-family="Helvetica" font-size="16" font-weight="500" x="193.864" y="15" textLength="44.477">Plugin</tspan>
+        </text>
+      </g>
+      <g class="fragment">
+         <path d="M440.535 1142.362h91.213c2.21 0 4 1.79 4 4v45.858c0 2.21-1.79 4-4 4h-91.213c-2.21 0-4-1.79-4-4v-45.858c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" />
+         <text transform="translate(441.535 1162.79)" fill="#3c3c3b">
+            <tspan font-family="Helvetica" font-size="11" font-weight="500" x="9.141" y="10" textLength="70.931">Node modules</tspan>
+         </text>
+      </g>
+      <g class="fragment">
+         <path d="M395.18 1142.362h37.355c2.21 0 4 1.79 4 4v45.858c0 2.21-1.79 4-4 4H395.18c-2.208 0-4-1.79-4-4v-45.858c0-2.21 1.792-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" />
+         <text transform="rotate(90 -365.628 785.986)" fill="#3c3c3b">
+            <tspan font-family="Helvetica" font-size="11" font-weight="500" x="6.978" y="10" textLength="21.398">npm</tspan>
+         </text>
+      </g>
+      <g class="fragment">
+         <path d="M440.535 1196.22h91.213c2.21 0 4 1.79 4 4v14.678c0 2.21-1.79 4-4 4h-91.213c-2.21 0-4-1.79-4-4v-14.678c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" />
+         <text transform="translate(441.535 1201.06)" fill="#3c3c3b">
+            <tspan font-family="Helvetica" font-size="11" font-weight="500" x="10.674" y="10" textLength="67.864">Hooks/Events</tspan>
+         </text>
+      </g>
+      <g class="fragment">
+        <path d="M440.535 1218.898h91.213c2.21 0 4 1.79 4 4v14.677c0 2.21-1.79 4-4 4h-91.213c-2.21 0-4-1.79-4-4v-14.677c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" />
+        <text transform="translate(441.535 1223.736)" fill="#3c3c3b">
+         <tspan font-family="Helvetica" font-size="11" font-weight="500" x="32.685" y="10" textLength="23.842">Core</tspan>
+      </text>
+      </g>
+      <g class="fragment">
+         <path d="M687.15 1142.362h91.212c2.21 0 4 1.79 4 4v45.858c0 2.21-1.79 4-4 4H687.15c-2.21 0-4-1.79-4-4v-45.858c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" />
+         <text transform="translate(688.15 1162.79)" fill="#3c3c3b">
+            <tspan font-family="Helvetica" font-size="11" font-weight="500" x=".681" y="10" textLength="88.943">Web Components</tspan>
+         </text>
+      </g>
+      <g class="fragment">
+         <path d="M786.362 1142.362h37.355c2.21 0 4 1.79 4 4v45.858c0 2.21-1.79 4-4 4h-37.355c-2.21 0-4-1.79-4-4v-45.858c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" />
+         <text transform="rotate(90 -170.037 981.577)" fill="#3c3c3b">
+            <tspan font-family="Helvetica" font-size="11" font-weight="500" x="2.088" y="10" textLength="31.179">Bower</tspan>
+         </text>
+      </g>
+      <g class="fragment">
+         <path d="M687.15 1196.22h91.212c2.21 0 4 1.79 4 4v14.678c0 2.21-1.79 4-4 4H687.15c-2.21 0-4-1.79-4-4v-14.678c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" />
+         <text transform="translate(688.15 1201.06)" fill="#3c3c3b">
+            <tspan font-family="Helvetica" font-size="11" font-weight="500" x="27.792" y="10" textLength="33.628">Events</tspan>
+         </text>
+      </g>
+      <g class="fragment">
+         <path d="M687.15 1218.898h91.212c2.21 0 4 1.79 4 4v14.677c0 2.21-1.79 4-4 4H687.15c-2.21 0-4-1.79-4-4v-14.677c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" />
+         <text transform="translate(688.15 1223.736)" fill="#3c3c3b">
+            <tspan font-family="Helvetica" font-size="11" font-weight="500" x="32.685" y="10" textLength="23.842">Core</tspan>
+         </text>
+      </g>
+      <g class="fragment">
+        <path marker-end="url(#b)" marker-start="url(#c)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M551.317 1222.9h113.43" />
+        <text transform="translate(568.532 1205.276)" fill="#000">
+           <tspan font-family="Helvetica Neue" font-size="14" font-weight="500" x=".097" y="13" textLength="79.604">WebSockets</tspan>
+        </text>
+        <text transform="translate(580.532 1224.065)" fill="#000">
+           <tspan font-family="Helvetica Neue" font-size="14" font-weight="500" x=".011" y="13" textLength="54.978">Pub/Sub</tspan>
+        </text>
+      </g>
+   </g>
+</svg>

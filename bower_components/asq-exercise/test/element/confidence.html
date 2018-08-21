@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="asq" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>asq-confidence</title>
+
+  <script src="../../../webcomponentsjs/webcomponents.min.js"></script>
+  <script src="../../../web-component-tester/browser.js"></script>
+
+  <!-- Step 1: import the element to test -->
+  <link rel="import" href="../../asq-confidence.html">
+  <link rel="import" href="../../../asq-base/asq-base.html">
+</head>
+<body>
+
+  <!-- You use the document as a place to set up your fixtures. -->
+  <test-fixture id="aec-fixture">
+    <template>
+      <asq-confidence></asq-confidence>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('<asq-confidence>', function() {
+      test('test get and set', function() {
+        var aec = fixture('aec-fixture');
+
+        assert.equal(aec.confidence, 0);
+
+        aec.confidence = 5;
+        assert.equal(aec.confidence, 5);
+
+        aec.confidence = 1;
+        assert.equal(aec.confidence, 1);
+
+        aec.confidence = 0;
+        assert.equal(aec.confidence, 0);
+
+        aec.confidence = -1;
+        assert.equal(aec.confidence, 0);
+
+        aec.confidence = -100;
+        assert.equal(aec.confidence, 0);
+
+        aec.confidence = 6;
+        assert.equal(aec.confidence, 5);
+
+        aec.confidence = 100;
+        assert.equal(aec.confidence, 5);
+      });
+
+      test('test default mixin values', function() {
+        var aec = fixture('aec-fixture');
+
+        assert.isTrue(aec.isASQElement);
+        assert.isFalse(aec.isASQQuestionTypeElement);
+        assert.equal(aec.uid, '');
+        assert.equal(aec.role, 'viewer');
+      });
+
+
+    });
+  </script>
+
+</body>
+</html>

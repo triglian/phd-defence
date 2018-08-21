@@ -1,0 +1,150 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../asq-base/asq-base.html">
+<link rel="import" href="./asq-stars.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+
+
+<!--
+`asq-rating-item` defines an item for `asq-rating` elements. Internally it uses other elements depending on the rating `type`. Right now, only `<asq-stars>` is supported
+
+##### Example
+    <asq-rating-item name="rating-1">Answer 1</asq-rating-item>
+
+@element asq-rating-item
+@group ASQ Elements
+@blurb Element defining items to rate. Internally it uses other elements depending on the rating `type`. Right now, only `<asq-stars>` is supported
+-->
+<dom-module id="asq-rating-item">
+  <style>
+    :host{
+      display:block;
+    }
+
+    #container{
+      @apply(--layout-horizontal)
+    }
+
+    #container > *{ margin-right: 5px; }    
+    #container > :last-child{ margin-right: 0; }
+
+    </style>
+  <template>
+
+    <!-- template for viewer -->
+    <template is="dom-if" if="{{hasRole(role, roles.VIEWER)}}">
+      <div id="container">
+        <div id="content"><content></content></div>
+        <template is="dom-if" if="{{_hasTypeStars(type)}}">
+          <asq-stars name="{{name}}" rating="{{rating}}" disabled$="{{disabled}}"></asq-stars> <div> <span>{{truncatedRating}}</span></div>
+        </template> 
+      </div>
+    </template>
+    
+
+    <!-- template for presenter -->
+    <template is="dom-if"  if="{{hasRole(role, roles.PRESENTER)}}">
+      <div id="container">
+        <div id="content"><content></content></div>
+        <template is="dom-if" if="{{_hasTypeStars(type)}}">
+          <asq-stars name="{{name}}" rating="{{rating}}" disabled$="{{disabled}}"></asq-stars> <div> <span>{{truncatedRating}}</span></div>
+        </template> 
+      </div>
+    </template> 
+    
+    <!-- template for teaching assistants -->
+    <template is="dom-if" if="{{hasRole(role, roles.TA)}}">
+      <div id="container">
+        <div id="content"><content></content></div>
+      </div>
+    </template>    
+
+  </template>
+  <script>
+    (function () {
+      // function roundToTwoDecimals(val){
+      //   // round to 2 decimals
+      //   // Note the plus sign that drops any "extra" zeroes at the end.
+      //   // It changes the result (which is a string) into a number again (think "0 + foo"),
+      //   // which means that it uses only as many digits as necessary.
+      //   //from http://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-in-javascript
+      //   return  +val.toFixed(2);
+      // }
+      Polymer({
+        is: 'asq-rating-item',
+
+        behaviors: [ASQ.asqElementBehavior],
+
+        properties: {
+          /**
+           * If true, the user cannot interact with this element.
+           */
+          disabled: {
+            type: Boolean,
+            value: false,
+            notify: true,
+            reflectToAttribute: true
+          },
+          /**
+           * This attribute identifies the rating item. For rating items that use `input type="radio"`, like `<asq-stars>`, it is needed to group the radio buttons. __Important__: make sure to use unique names for such item otherwise they will be grouped together (Clicking will deselect the others). 
+           */
+          name: {
+            type: String,
+            value: '',
+            notify: true,
+            reflectToAttribute: true
+          },
+          /**
+           * The rating number
+           */
+          rating: {
+            type: Number,
+            value: 0,
+            notify: true,
+            observer: 'ratingChanged',
+            reflectToAttribute: true
+          },
+          /**
+           * The type of the rating item. 
+           */
+          type: {
+            type: String,
+            value: 'stars',
+            notify: true,
+            reflectToAttribute: true
+          }
+        },
+        ratingChanged: function (oldRating, newRating) {
+          var val = (+oldRating)
+          // 2 decimals but zero should have not decimals
+          val = (val === 0) ? val.toString() : val.toFixed(2);
+          this.truncatedRating = val;
+          this.fire('ratingChanged', {rating: this.truncatedRating});
+        },
+        /**
+         * The `submit` method will submit the answer to a wrapped 'asq-exercise' instance.
+         * Only useful when the `role` is `viewer`.
+         * 
+         * @method submit
+         */
+        submit: function () {
+          if (this.role === this.roles.VIEWER) {
+            if (this.type == 'stars') {
+              return {
+                uid: this.uid,
+                rating: this.rating
+              };
+            }
+          }
+        },
+
+        hasRole: function (role, candidate) {
+          return role == candidate;
+        },
+
+        _hasTypeStars: function (type) {
+          return type == 'stars';
+        }
+      });
+    }());
+  </script>
+</dom-module>

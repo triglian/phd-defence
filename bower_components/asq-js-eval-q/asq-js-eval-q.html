@@ -1,0 +1,111 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../asq-base/asq-base.html">
+
+<link rel="import" href="elements/asq-js-eval-q-presenter.html">
+<link rel="import" href="elements/asq-js-eval-q-viewer.html">
+
+<!--
+`asq-js-eval-q` is an element that is designed to evaluate JavaScript inside a worker thread
+and print the results.
+
+##### Example
+      <asq-js-eval-q>
+        <asq-stem><h4>Implement a function that wraps a given 
+            string with an HTML tag:</h4></asq-stem>
+      </asq-js-eval-q>
+
+
+@element asq-js-eval-q
+@demo demo/index.html
+@group ASQ Elements
+@blurb ASQ JavaScript Eval question type element
+@homepage http://github.com/ASQ-USI-Elements/asq-js-eval-q
+-->
+<dom-module id="asq-js-eval-q">
+
+  <template>
+     <!-- Viewer -->
+     <template is="dom-if" if="{{hasRole(role, roles.VIEWER)}}" restamp>
+       <asq-js-eval-q-viewer role="viewer" uid="[[uid]]" event-bus="[[eventBus]]" value="{{value}}">
+         <content></content>
+       </asq-js-eval-q-viewer>
+     </template>
+     
+     <!-- Presenter -->
+    <template is="dom-if" if="{{hasRole(role, roles.PRESENTER)}}" restamp>
+       <asq-js-eval-q-presenter role="presenter" uid="[[uid]]" event-bus="[[eventBus]]" value="{{value}}">
+         <content></content>
+       </asq-js-eval-q-presenter>
+     </template>
+  </template>
+
+  <script>
+    (function () {
+      Polymer({
+        is: 'asq-js-eval-q',
+
+        behaviors: [ASQ.asqQuestionElementBehavior],
+
+        properties: {
+          /**
+           * Set to true to disable the element.
+           */
+          disabled: {
+            type: Boolean,
+            value: false,
+            notify: true
+          },
+
+          /**
+           * Get or set the text.
+           */
+          value: {
+            type: 'String',
+            value: '',
+            notify: true
+          },
+
+          /**
+           * Event bus to communicate with ASQ
+           */
+          eventBus: {
+            type: Object,
+            notify: true
+          }
+        },
+
+        created: function () {
+          document.addEventListener('asq-ready', function (evt) {
+            this.eventBus = evt.detail.asqEventBus
+          }.bind(this));
+        },
+
+        /**
+         * The `submit` method returns an object that represents the submission of this question. The object has the following structure:
+
+             {
+                questionUid: this.uid, 
+                timestamp: new Date(),
+                submission: ''
+             }
+         * Only enabled when the `role` of the element is <b>viewer</b>.
+         *
+         * @method submit
+         */
+        submit: function () {
+          if (this.role == this.roles.VIEWER) {
+            var el = this.$$('asq-js-eval-q-viewer');
+            if (!el) {
+              throw new Error('submit(): expected asq-js-eval-q-viewer element to exist');
+            }
+            return el.submit();
+          }
+        },
+
+        hasRole: function (role, candidate) {
+          return role == candidate;
+        }
+      });
+    }());
+  </script>
+</dom-module>

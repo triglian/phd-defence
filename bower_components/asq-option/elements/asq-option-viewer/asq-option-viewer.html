@@ -1,0 +1,213 @@
+<link rel="import" href="../../../polymer/polymer.html">
+<link rel="import" href="../../../asq-base/asq-base.html">
+<link rel="import" href="../../../paper-ripple/paper-ripple.html">
+<link rel="import" href="../../../paper-styles/default-theme.html">
+<link rel="import" href="../../../paper-progress/paper-progress.html">
+<link rel="import" href="../../../paper-behaviors/paper-checked-element-behavior.html">
+<link rel="import" href="../../../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../../paper-styles/color.html">
+<link rel="import" href="./asq-option-viewer-styles.html">
+
+<!--
+`asq-option-viewer` is use to show to the viewer. It adapts from
+PolymerElements/paper-checkbox and PolymerElements/paper-radio-button depending.
+
+
+
+
+
+##### Examples
+
+    <asq-option role="viewer" multi>A checkbox option</asq-option>
+    <asq-option role="viewer" disabled>A disabled radio option</asq-option>
+
+### Styling the checkbox or radio button in viewer's view:
+
+To change the color (as well as backgound color) when checked:
+
+    asq-option-viewer {
+      --asq-option-viewer-checked-color: #FF1744;
+    }
+
+To change the color and background color when unchecked:
+
+    asq-option-viewer {
+      --asq-option-viewer-unchecked-color: #2E7D32;
+      --asq-option-viewer-unchecked-background-color: white;
+    }
+
+To change the color of ink when checked or unchecked:
+
+    asq-option-viewer {
+      --asq-option-viewer-checked-ink-color: #2E7D32;
+    }
+
+    asq-option-viewer {
+      --asq-option-viewer-unchecked-ink-color: #FF1744;
+    }
+
+To change the color of checked mark of *checkbox* when checked:
+
+    asq-option-viewer {
+      --asq-option-viewer-checkmark-color: white;
+    }
+
+To change the color when disabled:
+
+    asq-option-viewer {
+      --asq-option-viewer-disabled-color: #757575;
+    }
+
+To change the color of label:
+
+    asq-option-viewer {
+      --asq-option-viewer-label-color: black;
+    }
+
+The followings are available for styling (viewer's view) 
+
+Custom property                             | Description                                          | Default
+--------------------------------------------|------------------------------------------------------|----------
+--asq-option-viewer-checked-color:                 | The color when checked                               | --default-primary-color
+--asq-option-viewer-unchecked-color:               | The color when unchecked                             | --primary-text-color
+--asq-option-viewer-unchecked-background-color:    | The background color when unchecked                  | transparent
+--asq-option-viewer-checked-ink-color:             | The color of ink when checked                        | --default-primary-color
+--asq-option-viewer-unchecked-ink-color:           | The color of ink when unchecked:                     | --primary-text-color
+--asq-option-viewer-checkmark-color:               | The color of checked mark of *checkbox* when checked | white
+--asq-option-viewer-disabled-color:                | The color when disabled                              | --primary-text-color
+--asq-option-viewer-label-color:                   | The color when disabled                              | --primary-text-color
+
+
+
+@element asq-option-viewer
+@demo demo/index.html
+@group ASQ Elements
+@blurb Element acting as option with `other` text input in multichoice questions.
+@homepage http://github.com/ASQ-USI-Elements/asq-option
+-->
+<dom-module id="asq-option-viewer">
+
+  <style include="asq-option-viewer-styles"></style>
+
+  <template>
+    <template is="dom-if" if="{{!multi}}" restamp>
+      <div id="container">
+        <div id="offRadio"></div>
+        <div id="onRadio"></div>
+      </div>
+      <div id="label">
+        <content></content>
+      </div>
+    </template>
+
+    <template is="dom-if" if="{{multi}}" restamp>
+      <div id="container">
+        <div id="checkbox" class$="[[_computeCheckboxClass(checked, invalid)]]">
+          <div id="checkmark" class$="[[_computeCheckmarkClass(checked)]]"></div>
+        </div>
+      </div>
+      <div id="label">
+        <content></content>
+      </div>
+    </template>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'asq-option-viewer',
+
+      behaviors: [
+        Polymer.PaperCheckedElementBehavior,
+        ASQ.asqElementBehavior
+      ],
+
+      hostAttributes: {
+        'aria-checked': false,
+        tabindex: 0
+      },
+
+      ready: function () {
+        this.listen(this, 'checked-changed', '_onCheckedChanged');
+      },
+
+      _onCheckedChanged: function (event) {
+        event.preventDefault();
+        this.fire('asq-option-change', {
+          is: this.is,
+          which: this,
+          checked: this.checked
+        });
+      },
+
+      /**
+       * Override from Polymer.PaperCheckedElementBehavior
+       * Prevent radio button to be unchecked
+       */
+      _buttonStateChanged: function () {
+        Polymer.PaperRippleBehavior._buttonStateChanged.call(this);
+        if (this.disabled) {
+          return;
+        }
+        if (this.isAttached) {
+          if ((this.checked !== true && this.active) || this.multi)
+            this.checked = this.active;
+        }
+      },
+
+      properties: {
+
+        /**
+         * Decide the mode, single or multi.
+         */
+        multi: {
+          type: Boolean,
+          value: false,
+          notify: true,
+          reflectToAttribute: true
+        },
+
+        /**
+         * Fired when the checked state changes.
+         *
+         * @event asq-option-viewer-change
+         */
+
+        ariaActiveAttribute: {
+          value: 'aria-checked'
+        }
+      },
+
+      attached: function () {
+        this._isReady = true;
+
+        this.async(function () {
+          this._createRipple();
+        });
+      },
+
+      _computeCheckboxClass: function (checked, invalid) {
+        var className = '';
+        if (checked) {
+          className += 'checked ';
+        }
+        if (invalid) {
+          className += 'invalid';
+        }
+        return className;
+      },
+
+      _computeCheckmarkClass: function (checked) {
+        return checked ? '' : 'hidden';
+      },
+
+      _createRipple: function () {
+        if (!this.$$('#container')) return;
+        this._rippleContainer = this.$$('#container');
+        return Polymer.PaperInkyFocusBehaviorImpl._createRipple.call(this);
+      }
+
+    });
+  </script>
+
+</dom-module>
