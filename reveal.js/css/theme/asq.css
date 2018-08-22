@@ -904,7 +904,7 @@ body.on-splash #joinasqmsg{
 }
 
 #question-type-list .img-frame img{
-  width: 250px;
+  width: 240px;
 }
 
 #img-asq-multi-choice-q.visible{
@@ -917,7 +917,7 @@ body.on-splash #joinasqmsg{
   transform: translateZ(0px) rotate(-5deg);
 }
 #img-asq-rating-q.visible{
-  top: 0;
+  top: -10px;
   left: 600px;
   transform: translateZ(0px);
 }
@@ -931,12 +931,12 @@ body.on-splash #joinasqmsg{
   transform: translateZ(0px);
 }
 #img-asq-highlight-q.visible{
-  top: 160px;
+  top: 140px;
   left: 600px;
   transform: translateZ(0px) rotate(5deg);
 }
 #img-asq-js-function-body-q.visible{
-  top: 230px;
+  top: 210px;
   left: 80px;
   transform: translateZ(0px) rotate(4deg);
 }
@@ -946,12 +946,12 @@ body.on-splash #joinasqmsg{
   transform: translateZ(0px) rotate(-4deg);
 }
 #img-asq-sqlite-q.visible{
-  top: 300px;
+  top: 270px;
   left: 590px;
   transform: translateZ(0px) rotate(0deg);
 }
 #img-asq-diagram-q.visible{
-  top: 360px;
+  top: 340px;
   left: 60px;
   transform: translateZ(0px) rotate(0deg);
 }
@@ -961,14 +961,19 @@ body.on-splash #joinasqmsg{
   transform: translateZ(0px) rotate(0deg);
 }
 #img-asq-code-q.visible{
-  top: 470px;
+  top: 440px;
   left: 590px;
   transform: translateZ(0px) rotate(2deg);
 }
-#img-asq-fiddle-q.visible{
-  top: 520px;
+#img-asq-java-q.visible{
+  top: 480px;
   left: 60px;
   transform: translateZ(0px) rotate(-5deg);
+}
+#img-asq-fiddle-q.visible{
+  top: 520px;
+  left: 585px;
+  transform: translateZ(0px) rotate(-3deg);
 }
 
 
@@ -1047,6 +1052,26 @@ tr.no-border-bottom td{
   border-bottom: 4px solid #efc66d;
  }
 
+
+/*********************************************
+ * NASA-TLX table
+ *********************************************/
+.reveal #tlx-tbl tbody tr:nth-child(odd){
+  background-color: #ffebde;
+}
+
+.reveal #tlx-tbl tbody tr:nth-child(even){
+  background-color: #f1f7ff;
+}
+
+.reveal #tlx-tbl td:nth-child(2){
+  text-align: center;
+}
+
+.reveal #tlx-tbl td:nth-child(3){
+  text-align: right;
+  padding: 0 20px 0 0;
+}
 
 /*********************************************
  * Attention Measurement Methods
