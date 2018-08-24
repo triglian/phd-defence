@@ -667,6 +667,48 @@ body.on-cycle-2-feedback #asq-cycle-full{
   padding-bottom: 0.5em; 
 }
 
+
+/*********************************************
+ * Strong Fragment
+ *********************************************/
+.reveal .slides section .fragment.font-bold-fragment,
+.reveal .slides section .fragment.text-highlight-fragment,
+.reveal .slides section .fragment.font-bold-text-highlight-fragment{
+  opacity: 1;
+  visibility: visible;
+}
+
+.reveal .slides section .fragment.font-bold-fragment.visible{
+  font-weight: bold;
+}
+
+.reveal .slides section .fragment.text-highlight-fragment.visible{
+  background: #f1e412;
+}
+
+.reveal .slides section .fragment.font-bold-text-highlight-fragment.visible{
+  font-weight: bold;
+  background: #f1e412;
+}
+
+/*********************************************
+ * Challenges badges
+ *********************************************/
+.reveal section .challenge-badge-container{
+  position: fixed;
+  top: 50px;
+  right: 50px;
+  opacity:0;
+  visibility: hidden;
+}
+
+/*.reveal section.present .challenge-badge-container{
+  visibility: visible;
+  opacity: 1;
+}*/
+
+
+
 /*********************************************
  * Intro animation
  *********************************************/
@@ -1382,7 +1424,7 @@ position: relative;
  *********************************************/
 
 .reveal #overview-screens img{
-  width: 260px;
+  height: 230px;
 }
 
 

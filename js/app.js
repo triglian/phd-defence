@@ -6,8 +6,13 @@
   // cache question-type-name-label
   var questionTypeNameLabelEl = document.getElementById('question-type-name-label');
 
+  window.addEventListener('resize', function(){
+    setTimeout(resizeAceEditors, 50);
+  });
+
   Reveal.addEventListener( 'ready', function( event ) {
     document.body.classList.add("on-"+event.currentSlide.id);
+    resizeAceEditors();
   });
 
   Reveal.addEventListener( 'slidechanged', function( event ) {
