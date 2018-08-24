@@ -147,6 +147,15 @@ body {
   color:#f5af18;
 }
 
+.reveal .paper-pink{
+  color: #e91e63;
+}
+
+.reveal .google-green{
+ color: #0f9d58;
+}
+
+
 .reveal .brown{
   color: #9c5030;
 }
@@ -336,6 +345,7 @@ body {
 
 .reveal small * {
   vertical-align: top; }
+
 
 /*********************************************
  * LINKS
@@ -656,7 +666,6 @@ body.on-cycle-2-feedback #asq-cycle-full{
   padding-top: 0.5em;
   padding-bottom: 0.5em; 
 }
-
 
 /*********************************************
  * Intro animation
@@ -1211,20 +1220,77 @@ tr.no-border-bottom td{
   transform: translate3D(70px, -670px, 0) rotateZ(25deg);
 }
 
+/*********************************************
+ * Publish Deploy
+ *********************************************/
+.reveal #publish-deploy ol li{
+  margin-top: 0;
+}
+
+
+/*********************************************
+ * Publications
+ *********************************************/
+.reveal ol.split { 
+list-style-type: none; 
+position: relative;
+}
+.reveal ol.split li:before
+{
+  counter-increment: mycounter;
+  content: counter(mycounter) ".\00A0\00A0";
+}
+.reveal ol.split li
+{
+  text-indent: -1.3em;
+}
+.reveal ol.start { counter-reset: mycounter; }
+
+.reveal ol.split:before{
+  text-align: center;
+  position: absolute;
+  left: -35px;
+  top: 15px;
+  color: white;
+  font-weight: bold;
+  transform: rotateZ(90deg);
+  transform-origin: left top 0;
+  font-size: 1.6em;
+  line-height: 1;
+}
+
+.reveal ol.split.start:before{
+  content: "Engineering";
+  background: #ef4a65;
+  padding: 4px 22px 10px;
+}
+
+.reveal ol.split.end:before{
+  content: "Education";
+  background: #5e9ff7;
+  padding: 4px 112px 10px;
+}
+
 
 /*********************************************
  * Eye-tracker Combine
  *********************************************/
 
-#eye-tracker-combine-tbl th:first-child,
-#eye-tracker-combine-tbl td:first-child{
+.reveal .eye-tracker-combine-tbl th,
+.reveal .eye-tracker-combine-tbl td{
+  vertical-align: middle;
+  padding: 10px;
+}
+
+.reveal .eye-tracker-combine-tbl th:first-child,
+.reveal .eye-tracker-combine-tbl td:first-child{
   border-right: 1px solid black;
 }
 
-#eye-tracker-combine-tbl .tile{
+.reveal .eye-tracker-combine-tbl .tile{
   width: 50px;
   height: 50px;
-  margin: 6px auto 0;
+  margin: 0 auto;
 }
 
 
@@ -1353,6 +1419,10 @@ body.on-closing #closing-blockquote{
   quotes: "\201C""\201D""\2018""\2019";
   width: 700px;
   line-height: 48px;
+}
+
+#active-learning blockquote{
+  border-left: 10px solid #f5af18;
 }
 
 
