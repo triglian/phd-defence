@@ -148,6 +148,10 @@ body {
   color:#f5af18;
 }
 
+.reveal .cyan{
+  color: #80DEEA;
+}
+
 .reveal .paper-pink{
   color: #e91e63;
 }
@@ -707,10 +711,10 @@ body.on-cycle-2-feedback #asq-cycle-full{
   visibility: hidden;
 }
 
-/*.reveal section.present .challenge-badge-container{
+.reveal section.present .challenge-badge-container{
   visibility: visible;
   opacity: 1;
-}*/
+}
 
 
 
@@ -1445,8 +1449,12 @@ position: relative;
  *********************************************/
 
 .reveal #overview-screens img{
-  height: 230px;
+  height: 210px;
   border-radius: 3px;
+}
+
+.reveal #overview-screens > div > div {
+  margin-top: 15px;
 }
 
 
