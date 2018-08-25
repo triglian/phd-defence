@@ -1362,13 +1362,13 @@ position: relative;
  * So far
  *********************************************/
  .reveal .timeline-ul{
-  margin-top: 20px;
+  margin: -20px 0 0 0;
   list-style: none;
  }
 
 .reveal .timeline-ul li{
   position:relative;
-  height: 100px;
+  height: 130px;
 }
 
  .reveal .timeline-ul li:last-child{
@@ -1393,10 +1393,14 @@ position: relative;
 }
 
 .reveal .timeline-ul li.fragment.visible:nth-child(2):before,
-.reveal .timeline-ul li.fragment.visible:nth-child(5):before,
 .reveal .timeline-ul li.fragment.visible:nth-child(6):before{
   height: 75px;
 }
+
+.reveal .timeline-ul li.fragment.visible:nth-child(5):before{
+  height: 90px;
+}
+
 .reveal .timeline-ul li.fragment.visible:nth-child(7):before{
   height: 100px;
 }
@@ -1441,6 +1445,87 @@ position: relative;
 .reveal .brown-bullet{
   color: #9c5030;
   font-size: 1.4em;
+}
+
+
+/* Done sections*/
+.reveal .timeline-ul li.section-done,
+.reveal .timeline-ul li.section-future{
+  opacity: 0.4;
+}
+
+.reveal .timeline-ul li.section-current:before{
+  content: "";
+  height: 100%;
+  opacity: 0.4;
+  border-left: 3px solid #5e9ff7;
+  transition: height 0.5s ease-out;
+  display: block;
+  position: absolute;
+  left: -13.5pt;
+  top: -10px;
+  z-index: -1;
+}
+
+.reveal .timeline-ul li.section-current:nth-child(1):before{
+  height: 170px;
+}
+
+.reveal .timeline-ul li.section-current:nth-child(2):before{
+  top: -140px;
+  height: 170px;
+}
+
+.reveal .timeline-ul li.section-current:nth-child(3):before{
+  top: -190px;
+  height: 210px;
+}
+
+.reveal .timeline-ul li.section-current:nth-child(4):before{
+  top: -320px;
+  height: 340px;
+}
+
+.reveal .timeline-ul li.section-current:nth-child(5):before{
+  top: -450px;
+  height: 470px;
+}
+
+.reveal .timeline-ul li.section-current:nth-child(6):before{
+  top: -540px;
+  height: 560px;
+}
+
+.reveal .timeline-ul li.section-current:nth-child(7):before{
+  top: -590px;
+  height: 610px;
+}
+
+
+.reveal .timeline-ul li.section-current:after{
+  visibility: visible;
+  top: 80px;
+}
+
+ .reveal .timeline-ul li.section-current:last-child:after{
+  top: 90px;
+}
+
+.reveal .timeline-ul li.section-done > div,
+.reveal .timeline-ul li.section-current > div,
+.reveal .timeline-ul li.section-future > div{
+  position: relative;
+}
+
+.reveal .timeline-ul li.section-done > div:before,
+.reveal .timeline-ul li.section-current > div:before,
+.reveal .timeline-ul li.section-future > div:before{
+  position: absolute;
+  left: -30px;
+  content: "•";
+  color: #5e9ff7;
+  font-size: 1.4em;
+  top: -9px; 
 }
 
 

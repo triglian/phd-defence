@@ -54,16 +54,16 @@
         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
            viewBox="0 0 77 67" style="enable-background:new 0 0 67 67;" xml:space="preserve">
         <style type="text/css">
-          .st0{fill:none;}
-          .st1{font-family:'AkzidenzGroteskBE';}
-          .st2{font-weight: 500;}
-          .st3{font-size:13px;}
+          .stusi0{fill:none;}
+          .stusi1{font-family:'AkzidenzGroteskBE';}
+          .stusi2{font-weight: 500;}
+          .stusi3{font-size:13px;}
         </style>
-        <rect x="1.8" y="4.5" class="st0" width="62.3" height="58"/>
-        <text transform="matrix(1 0 0 1 1.7744 14.2289)" class="st1 st2">Università</text>
-        <text transform="matrix(1 0 0 1 1.7744 29.8289)" class="st1 st2">della</text>
-        <text transform="matrix(1 0 0 1 1.7744 45.4289)" class="st1 st2">Svizzera</text>
-        <text transform="matrix(1 0 0 1 1.7744 61.0289)" class="st1 st2">italiana</text>
+        <rect x="1.8" y="4.5" class="stusi0" width="62.3" height="58"/>
+        <text transform="matrix(1 0 0 1 1.7744 14.2289)" class="stusi1 stusi2">Università</text>
+        <text transform="matrix(1 0 0 1 1.7744 29.8289)" class="stusi1 stusi2">della</text>
+        <text transform="matrix(1 0 0 1 1.7744 45.4289)" class="stusi1 stusi2">Svizzera</text>
+        <text transform="matrix(1 0 0 1 1.7744 61.0289)" class="stusi1 stusi2">italiana</text>
         </svg>
 
       </div>
@@ -183,17 +183,41 @@
         </section>
 
         <section id="outline">
-           <h2>Outline</h2>
-          <ul class="timeline-ul">
-            <li class="fragment"><span class="timeline-bullet">•</span> Challenges of <strong>scaling active learning</strong></li>
-            <li class="fragment" style="height: 50px;"><span class="timeline-bullet">•</span> <img src="img/ASQLogoBlack.png" style="height: 1.1em; position:relative; top: 10px;"> in the <strong>classroom</strong></li>
-            <li class="fragment"><span class="timeline-bullet">•</span> <img src="img/ASQLogoBlack.png" style="height: 1.1em; position:relative; top: 10px;"> platform <strong>architecture</strong></li>
-            <li class="fragment"><span class="timeline-bullet">•</span> Real-world <strong>deployments</strong> and user <strong>feedback</strong></li>
-            <li class="fragment" style="height: 50px;"><span class="timeline-bullet">•</span> Modelling <strong>student behavior dynamics</strong></li>
-            <li class="fragment" style="height: 50px;"><span class="timeline-bullet">•</span> Student attention</li>
-            <li class="fragment" style="height: 50px;"><span class="timeline-bullet">•</span> Question spacing</li>
-          </ul>
-          <aside class="notes">As we're nearing the end I would likte to talk a bit about the future. We're aware that one of the hardest parts is clustering open ended questions. To this end we're hard at work and we have some preliminary results in successfully clustering JavaScript questions. We will continue working on it. We are also working at analyzing data from an experiment where we used ASQ in computers equipped with eye-trackers in an effort to compare the real world with what ASQ logs. What's more we're working on an experiment to measure how students perform in on different question type format in ASQ. If the proposal review is successful I will immediately start writing my thesis and see you on the defence!</aside>
+          <div class="layout horizontal center">
+            <h2 style="width: 300px;">Outline</h2>
+            <ul class="timeline-ul text-left">
+              <li class="fragment">
+                <div class="layout horizontal center">
+                  <div><span class="timeline-bullet">•</span> </div>
+                  <div style="padding-left:10px;">
+                    Challenges of<br><strong>scaling active learning</strong>
+                  </div>
+                </div>
+              </li>
+              <li class="fragment" style="height: 50px;"><span class="timeline-bullet">•</span> <img src="img/ASQLogoBlack.png" style="height: 1.1em; position:relative; top: 10px;"> in the <strong>classroom</strong></li>
+              <li class="fragment"><span class="timeline-bullet">•</span> <img src="img/ASQLogoBlack.png" style="height: 1.1em; position:relative; top: 10px;"> platform <strong>architecture</strong></li>
+              <li class="fragment">
+                <div class="layout horizontal center">
+                  <div><span class="timeline-bullet">•</span> </div>
+                  <div style="padding-left:10px;">
+                    Real-world <strong>deployments</strong><br>and user <strong>feedback</strong>
+                  </div>
+                </div>
+              </li>
+              <li class="fragment" style="height: 80px;">
+                <div class="layout horizontal center">
+                  <div><span class="timeline-bullet">•</span> </div>
+                  <div style="padding-left:10px;">
+                    Modelling<br><strong>student behavior dynamics</strong></strong>
+                  </div>
+                </div>
+              </li>
+              <li class="fragment" style="height: 50px;"><span class="timeline-bullet">•</span> Student attention</li>
+              <li class="fragment" style="height: 50px;"><span class="timeline-bullet">•</span> Question spacing</li>
+            </ul>
+          </div>
+
+          <aside class="notes"></aside>
         </section>
 
 
@@ -341,6 +365,51 @@
             <h1 class="white" data-autoslide="0" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.6); font-size: 4em;">Privacy &amp; fairness</h1>
           </div>
           <aside class="notes">These issues of privacy and fairness are not compatible with the requirements of a real-world course, where students must be guaranteed equal treatment, and privacy must be preserved.</aside>
+        </section>
+
+        <section id="so-far-asq">
+          <div class="layout horizontal center">
+            <h2 class="orange" style="width: 300px;"></h2>
+            <ul class="timeline-ul text-left">
+              <li class="section-done">
+                <div>
+                  Challenges of<br><strong>scaling active learning</strong>
+                </div>
+              </li>
+              <li class="section-current" style="height: 50px;">
+                <div>
+                  <img src="img/ASQLogoBlack.png" style="height: 1.1em; position:relative; top: 10px;"> in the <strong>classroom</strong>
+                </div>
+              </li>
+              <li class="section-future">
+                <div>
+                  <img src="img/ASQLogoBlack.png" style="height: 1.1em; position:relative; top: 10px;"> platform <strong>architecture</strong>
+                </div>
+              </li>
+              <li class="section-future">
+                <div>
+                  Real-world <strong>deployments</strong><br>and user <strong>feedback</strong>
+                </div>
+              </li>
+              <li class="section-future" style="height: 90px;">
+                <div>
+                  Modelling<br><strong>student behavior dynamics</strong>
+                </div>
+              </li>
+              <li class="section-future" style="height: 50px;">
+                <div>
+                  Student attention
+                </div>
+              </li>
+              <li class="section-future" style="height: 50px;">
+                <div>
+                  Question spacing
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <aside class="notes"></aside>
         </section>
 
 
@@ -603,12 +672,58 @@
         </section>
 
 
+        <section id="so-far-architecture">
+          <div class="layout horizontal center">
+            <h2 class="orange" style="width: 300px;"></h2>
+            <ul class="timeline-ul text-left">
+              <li class="section-done">
+                <div>
+                  Challenges of<br><strong>scaling active learning</strong>
+                </div>
+              </li>
+              <li class="section-done" style="height: 50px;">
+                <div>
+                  <img src="img/ASQLogoBlack.png" style="height: 1.1em; position:relative; top: 10px;"> in the <strong>classroom</strong>
+                </div>
+              </li>
+              <li class="section-current">
+                <div>
+                  <img src="img/ASQLogoBlack.png" style="height: 1.1em; position:relative; top: 10px;"> platform <strong>architecture</strong>
+                </div>
+              </li>
+              <li class="section-future">
+                <div>
+                  Real-world <strong>deployments</strong><br>and user <strong>feedback</strong>
+                </div>
+              </li>
+              <li class="section-future" style="height: 90px;">
+                <div>
+                  Modelling<br><strong>student behavior dynamics</strong>
+                </div>
+              </li>
+              <li class="section-future" style="height: 50px;">
+                <div>
+                  Student attention
+                </div>
+              </li>
+              <li class="section-future" style="height: 50px;">
+                <div>
+                  Question spacing
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <aside class="notes"></aside>
+        </section>
+
+
         <section id="architecture" data-background-image="img/architecture.jpg">
           <h1 class="white" style="font-size: 3em; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);"><img src="img/ASQLogoWhite.png" style="height:100px;"><br>Architecture</h1>
         </section>
 
 
-        <section id="architecture-overview">
+        <section id="architecture-overview" data-background-color="#ffffff">
           <img class="svg" src="svg/asqDevices.svg" alt="architecture devices" style="width: 100%;">
           <aside class="related-publications small brown" style="position: fixed; top: 0px;">[Triglianos2014ICWE]</aside>
            <aside class="notes">ASQ is a liquid application. Web application with distributed UI running across multiple devices. We have different roles like presenters and viewers and different views like beamer and cockpit. </aside>
@@ -913,6 +1028,51 @@
           </aside>
         </section>
 
+        <section id="so-far-real-world">
+          <div class="layout horizontal center">
+            <h2 class="orange" style="width: 300px;"></h2>
+            <ul class="timeline-ul text-left">
+              <li class="section-done">
+                <div>
+                  Challenges of<br><strong>scaling active learning</strong>
+                </div>
+              </li>
+              <li class="section-done" style="height: 50px;">
+                <div>
+                  <img src="img/ASQLogoBlack.png" style="height: 1.1em; position:relative; top: 10px;"> in the <strong>classroom</strong>
+                </div>
+              </li>
+              <li class="section-done">
+                <div>
+                  <img src="img/ASQLogoBlack.png" style="height: 1.1em; position:relative; top: 10px;"> platform <strong>architecture</strong>
+                </div>
+              </li>
+              <li class="section-current">
+                <div>
+                  Real-world <strong>deployments</strong><br>and user <strong>feedback</strong>
+                </div>
+              </li>
+              <li class="section-future" style="height: 90px;">
+                <div>
+                  Modelling<br><strong>student behavior dynamics</strong>
+                </div>
+              </li>
+              <li class="section-future" style="height: 50px;">
+                <div>
+                  Student attention
+                </div>
+              </li>
+              <li class="section-future" style="height: 50px;">
+                <div>
+                  Question spacing
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <aside class="notes"></aside>
+        </section>
+
         <section id="rq1-1a" class="text-justify">
          <div style="width: 800px; margin: 0 auto;">
           <p class="x-large"><strong class="pastel-blue">RQ1.1a</strong> To what extent can a ASQ be <strong class="fragment text-highlight-fragment">reliably</strong> used to enable <strong class="fragment text-highlight-fragment">active learning</strong class="fragment text-highlight-fragment"> and help assess <strong>learning outcomes</strong> in <strong class="fragment text-highlight-fragment">real classrooms</strong> with <strong class="fragment text-highlight-fragment">large number</strong> of students?</p>
@@ -1032,6 +1192,51 @@
                 </div>
             </div>
           </div>
+        </section>
+
+        <section id="so-far-behavior-dynamics">
+          <div class="layout horizontal center">
+            <h2 class="orange" style="width: 300px;"></h2>
+            <ul class="timeline-ul text-left">
+              <li class="section-done">
+                <div>
+                  Challenges of<br><strong>scaling active learning</strong>
+                </div>
+              </li>
+              <li class="section-done" style="height: 50px;">
+                <div>
+                  <img src="img/ASQLogoBlack.png" style="height: 1.1em; position:relative; top: 10px;"> in the <strong>classroom</strong>
+                </div>
+              </li>
+              <li class="section-done">
+                <div>
+                  <img src="img/ASQLogoBlack.png" style="height: 1.1em; position:relative; top: 10px;"> platform <strong>architecture</strong>
+                </div>
+              </li>
+              <li class="section-done">
+                <div>
+                  Real-world <strong>deployments</strong><br>and user <strong>feedback</strong>
+                </div>
+              </li>
+              <li class="section-current" style="height: 90px;">
+                <div>
+                  Modelling<br><strong>student behavior dynamics</strong>
+                </div>
+              </li>
+              <li class="section-future" style="height: 50px;">
+                <div>
+                  Student attention
+                </div>
+              </li>
+              <li class="section-future" style="height: 50px;">
+                <div>
+                  Question spacing
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <aside class="notes"></aside>
         </section>
 
         <section id="rq1-1b" class="text-justify">
@@ -1214,6 +1419,52 @@
 
               <section id="slide-question-cor-2" data-background-color="white" data-background-image="img/passive_active_scatter.png" data-background-size="95%">
               </section>
+
+
+            <section id="so-far-attention">
+              <div class="layout horizontal center">
+                <h2 class="orange" style="width: 300px;"></h2>
+                <ul class="timeline-ul text-left">
+                  <li class="section-done">
+                    <div>
+                      Challenges of<br><strong>scaling active learning</strong>
+                    </div>
+                  </li>
+                  <li class="section-done" style="height: 50px;">
+                    <div>
+                      <img src="img/ASQLogoBlack.png" style="height: 1.1em; position:relative; top: 10px;"> in the <strong>classroom</strong>
+                    </div>
+                  </li>
+                  <li class="section-done">
+                    <div>
+                      <img src="img/ASQLogoBlack.png" style="height: 1.1em; position:relative; top: 10px;"> platform <strong>architecture</strong>
+                    </div>
+                  </li>
+                  <li class="section-done">
+                    <div>
+                      Real-world <strong>deployments</strong><br>and user <strong>feedback</strong>
+                    </div>
+                  </li>
+                  <li class="section-done" style="height: 90px;">
+                    <div>
+                      Modelling<br><strong>student behavior dynamics</strong>
+                    </div>
+                  </li>
+                  <li class="section-current" style="height: 50px;">
+                    <div>
+                      Student attention
+                    </div>
+                  </li>
+                  <li class="section-future" style="height: 50px;">
+                    <div>
+                      Question spacing
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <aside class="notes"></aside>
+            </section>
 
               
 
@@ -1441,9 +1692,9 @@
       <section id="stacked-area-exercise-dissection"  data-background-color="#FFFFFF">
         <div class="graph-slideshow">
           <img src="img/step_ex_slide_1.png" alt="single attention State">
-          <img class="fragment" src="img/step_ex_slide_2.png" alt="single attention State">
-          <img class="fragment" src="img/step_ex_slide_3.png" alt="single attention State">
-          <img class="fragment" src="img/step_ex_slide_4.png" alt="single attention State">
+          <img class="" src="img/step_ex_slide_2.png" alt="single attention State">
+          <img class="" src="img/step_ex_slide_3.png" alt="single attention State">
+          <img class="" src="img/step_ex_slide_4.png" alt="single attention State">
           <img class="fragment" src="img/step_ex_slide_5.png" alt="single attention State">
           <img class="fragment" src="img/step_ex_slide_6.png" alt="single attention State">
         </div>
@@ -1630,6 +1881,51 @@
               </tr>
             </tbody>
           </table>
+        </section>
+
+        <section id="so-far-question-strategy">
+          <div class="layout horizontal center">
+            <h2 class="orange" style="width: 300px;"></h2>
+            <ul class="timeline-ul text-left">
+              <li class="section-done">
+                <div>
+                  Challenges of<br><strong>scaling active learning</strong>
+                </div>
+              </li>
+              <li class="section-done" style="height: 50px;">
+                <div>
+                  <img src="img/ASQLogoBlack.png" style="height: 1.1em; position:relative; top: 10px;"> in the <strong>classroom</strong>
+                </div>
+              </li>
+              <li class="section-done">
+                <div>
+                  <img src="img/ASQLogoBlack.png" style="height: 1.1em; position:relative; top: 10px;"> platform <strong>architecture</strong>
+                </div>
+              </li>
+              <li class="section-done">
+                <div>
+                  Real-world <strong>deployments</strong><br>and user <strong>feedback</strong>
+                </div>
+              </li>
+              <li class="section-done" style="height: 90px;">
+                <div>
+                  Modelling<br><strong>student behavior dynamics</strong>
+                </div>
+              </li>
+              <li class="section-done" style="height: 50px;">
+                <div>
+                  Student attention
+                </div>
+              </li>
+              <li class="section-current" style="height: 50px;">
+                <div>
+                  Question spacing
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <aside class="notes"></aside>
         </section>
 
 
