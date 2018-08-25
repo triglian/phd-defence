@@ -128,7 +128,7 @@
 @font-face {
   font-family: 'HelveticaNeue-CondensedBold';
   src: url('../../../fonts/helvetica-neue/LatoLatin-Bold.eot'); /* IE9 Compat Modes */
-       url('../../../fonts/helvetica-neue/HelveticaNeue-CondensedBold.woff') format('woff'); /* Modern Browsers */
+  src: url('../../../fonts/helvetica-neue/HelveticaNeue-CondensedBold.woff') format('woff'); /* Modern Browsers */
   font-style: normal;
   font-weight: bold;
 }
