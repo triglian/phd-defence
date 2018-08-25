@@ -14,8 +14,9 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
  * GLOBAL STYLES
  *********************************************/
 body {
-  background: #fafafa;
-  background-color: #fafafa; }
+  background: #eeeeee;
+  background-color: #eeeeee; 
+}
 
 .reveal {
   font-family: "Lato", Helvetica, sans-serif;
@@ -103,7 +104,7 @@ body {
   text-decoration: underline;
 }
 
-.reveal span.text-highlight {
+.reveal .text-highlight {
  background: #f1e412;
 }
 
@@ -683,7 +684,11 @@ body.on-cycle-2-feedback #asq-cycle-full{
 }
 
 .reveal .slides section .fragment.text-highlight-fragment.visible{
-  background: #f1e412;
+  background: rgba(241,228,18,0.3);
+}
+
+.reveal .slides section .fragment.text-highlight-fragment.visible.current-fragment{
+  background: rgba(241,228,18,1);
 }
 
 .reveal .slides section .fragment.font-bold-text-highlight-fragment.visible{
@@ -933,9 +938,10 @@ body.on-splash #joinasqmsg{
  *********************************************/
 #question-type-list{
   position: relative;
-  width: 1050px;
+  width: 1100px;
   height: 636px;
   margin-top: 20px;
+  margin-left: -75px;
 }
 
 #question-type-list .img-frame{
@@ -955,76 +961,78 @@ body.on-splash #joinasqmsg{
 }
 
 #question-type-list .img-frame img{
-  width: 240px;
+  width: 270px;
 }
 
 #img-asq-multi-choice-q.visible{
   top: 0;
+  left: 0;
   transform: translateZ(0px);
 }
 #img-asq-text-input-q.visible{
   top: -13px;
-  left: 330px;
+  left: 280px;
   transform: translateZ(0px) rotate(-5deg);
 }
 #img-asq-rating-q.visible{
   top: -10px;
-  left: 600px;
+  left: 560px;
   transform: translateZ(0px);
 }
 #img-asq-order-q.visible{
-  top: 110px;
-  transform: translateZ(0px) rotate(-5deg);
-}
-#img-asq-buckets-q.visible{
-  top: 140px;
-  left: 330px;
-  transform: translateZ(0px);
-}
-#img-asq-highlight-q.visible{
-  top: 140px;
-  left: 600px;
+  top: -10px;
+  left: 840px;
   transform: translateZ(0px) rotate(5deg);
 }
 #img-asq-js-function-body-q.visible{
-  top: 210px;
-  left: 80px;
-  transform: translateZ(0px) rotate(4deg);
+  top: 128px;
+  left: -5px;
+  transform: translateZ(0px) rotate(-4deg);
+}
+#img-asq-highlight-q.visible{
+  top: 154px;
+  left: 275px;
+  transform: translateZ(0px) rotate(2deg);
+}
+#img-asq-buckets-q.visible{
+  top: 150px;
+  left: 556px;
+  transform: translateZ(0px) rotate(6deg);
 }
 #img-asq-css-select-q.visible{
-  top: 230px;
-  left: 320px;
+  top: 110px;
+  left: 840px;
   transform: translateZ(0px) rotate(-4deg);
 }
 #img-asq-sqlite-q.visible{
-  top: 270px;
-  left: 590px;
-  transform: translateZ(0px) rotate(0deg);
-}
-#img-asq-diagram-q.visible{
-  top: 340px;
-  left: 60px;
-  transform: translateZ(0px) rotate(0deg);
-}
-#img-asq-js-eval-q.visible{
-  top: 440px;
-  left: 320px;
-  transform: translateZ(0px) rotate(0deg);
-}
-#img-asq-code-q.visible{
-  top: 440px;
-  left: 590px;
+  top: 284px;
+  left: 0px;
   transform: translateZ(0px) rotate(2deg);
 }
-#img-asq-java-q.visible{
-  top: 480px;
-  left: 60px;
-  transform: translateZ(0px) rotate(-5deg);
+#img-asq-diagram-q.visible{
+  top: 310px;
+  left: 280px;
+  transform: translateZ(0px) rotate(-3deg);
+}
+#img-asq-js-eval-q.visible{
+  top: 260px;
+  left: 560px;
+  transform: translateZ(0px) rotate(2deg);
+}
+#img-asq-code-q.visible{
+  top: 320px;
+  left: 840px;
+  transform: translateZ(0px) rotate(4deg);
 }
 #img-asq-fiddle-q.visible{
-  top: 520px;
-  left: 585px;
+  top: 490px;
+  left: 320px;
   transform: translateZ(0px) rotate(-3deg);
+}
+#img-asq-java-q.visible{
+  top: 430px;
+  left: 560px;
+  transform: translateZ(0px) rotate(1deg);
 }
 
 
@@ -1142,6 +1150,14 @@ tr.no-border-bottom td{
 .reveal .tg-yw4l{
   padding: 5px 2px;
 }
+
+/*********************************************
+ * Events table
+ *********************************************/
+#events-tbl tr:hover{
+  background: #f1e412;
+}
+
 
 /*********************************************
  * Indicators table
@@ -1418,6 +1434,11 @@ position: relative;
   font-size: 1.4em;
 }
 
+.reveal .brown-bullet{
+  color: #9c5030;
+  font-size: 1.4em;
+}
+
 
 /*********************************************
  * closing-blockquote
@@ -1425,6 +1446,7 @@ position: relative;
 
 .reveal #overview-screens img{
   height: 230px;
+  border-radius: 3px;
 }
 
 
