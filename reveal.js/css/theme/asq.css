@@ -1355,11 +1355,34 @@ position: relative;
   margin: 0 auto;
 }
 
+/*********************************************
+ * Clickers Table
+ *********************************************/
+#clickers-tbl td{
+  text-align: center;
+}
 
+#clickers-tbl td:first-child{
+  text-align: left;
+}
 
+#clickers-tbl iron-icon[icon="icons:check"]{
+  color: #4CAF50;
+}
+#clickers-tbl iron-icon[icon="icons:close"]{
+  color: #F44336;
+}
+
+#clickers-tbl tbody tr:nth-child(odd){
+  background-color: #ffffff;
+}
+
+#clickers-tbl tbody tr:nth-child(even){
+  background-color: #f1f7ff;
+}
 
 /*********************************************
- * So far
+ * Outlines
  *********************************************/
  .reveal .timeline-ul{
   margin: -20px 0 0 0;

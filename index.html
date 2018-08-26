@@ -270,7 +270,7 @@
 
         <section id="answer-format-2">
           <h3>Answer Depth Format - <span class="text-highlight">Cued/Free Recall</span></h3>
-          <div class="text-left" style="width: 650px; height: 500px; overflow: scroll; margin: 0 auto;">
+          <div class="text-left" style="width: 650px; height: 500px; overflow-y: auto; margin: 0 auto;">
             <asq-exercise class="medium">
               <asq-js-eval-q>
                 <asq-stem><h4 class="pastel-blue">Implement a for-loop that prints numbers 1 to 5 in the console</h4></asq-stem>
@@ -350,7 +350,7 @@
           </aside>
         </section>
 
-        <section id="cloud" data-background-image="img/tu_delft_wtd_14_Nov_2016.jpeg" data-autoslide="1000">
+        <section id="cloud" data-background-image="img/ash-1372-auditorium.jpg" data-autoslide="1000">
           <div class="fragment" data-autoslide="0">
             <div class="challenge-icon-container cyan" style="margin: 0 auto;"><iron-icon class="challenge-icon big" icon="icons:cloud-circle"></iron-icon></div>
             <h1 class="white" data-autoslide="0" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.6); font-size: 4em;">Scalability &amp; availability</h1>
@@ -644,14 +644,16 @@
           <aside class="notes">Then he moves on to discuss particular solutions. Notice that he can execute each student submission in his own question instance and discuss the result of the query</aside>
         </section>
 
-        <section id="cycle-2-presenter"  data-background-image="img/delft_highlight.jpg">
+<!--         <section id="cycle-2-presenter"  data-background-image="img/delft_highlight.jpg">
           <iron-icon class="challenge-icon pastel-blue fragment big" icon="social:sentiment-satisfied"></iron-icon>
           <aside class="notes">
             Here's a nice example of visualizing the answers in a concise way. This question types works like this. Students are given tasks to highlight portion of text with specific colors. For example "highlight all entities with Yellow". Then as the students answers the presenter can choose to view a heatmap of each task. Darker versions of a color denote that the specific portion of text has been highlighted by many students. The opposite is true for lighter versions. This question type started as a project with Margarita Grinvald supervised by Matthias and me and now it's one of our favourites in ASQ. if you wish I can show you a demo in the end.
           </aside>
-          
+        </section> -->
+
+        <section id="cycle-2-feedback"  data-background-image="img/delft_highlight_feedback.jpg">
+          <iron-icon class="challenge-icon pastel-blue fragment big" icon="social:sentiment-satisfied"></iron-icon>
         </section>
-        <section id="cycle-2-feedback"  data-background-image="img/delft_highlight_feedback.jpg"></section>
 
         <section id="asq-highlight-example">
             <h3>Getting the <span class="text-highlight">"big picture"</span></h3>
@@ -848,7 +850,7 @@
          </section> -->
 
          <section id="frontend">
-           <h2 class="">Frontend Web Components</h2>
+           <h2 class="pastel-blue">Frontend Web Components</h2>
            <p><strong class="orange">Questions</strong> are <strong>composable HTML Elements</strong> <br> with <strong>encapsulated</strong> logic and appearance</p>
            <div class="layout horizontal center">
               <asq-exercise class="medium flex fragment" style="flex: 1;">
@@ -1168,11 +1170,11 @@
             <div class="flex fragment">
               <h2 class="pastel-blue alsscripticus">Professors</h2>
                 <ul class="small text-left" style="list-style: none;">
-                  <li style="margin-bottom: 10px;"><span class="brown-bullet">•</span> "I discovered there were submissions and misconceptions that I hadn't thought of. And I teach this course since 1992."</li>
+                  <li style="margin-bottom: 10px;"><span class="brown-bullet">•</span> "I discovered there were submissions and misconceptions that I hadn't thought of. And I teach this course since 1992." </li>
                   <li style="margin-bottom: 10px;"><span class="brown-bullet">•</span> "With ASQ students can try to answer anonymously and still get useful feedback when their solution is shared and discussed with everyone."</li>
                   <li><span class="brown-bullet">•</span> "While the students are still working (I usually create examples that take no more than 3-4 minutes to solve) I can already scroll through the first submitted solutions and mark those I want to discuss."</li>
                 </ul>
-                <div class="fragment">
+                <div class="" style="margin-top:20px;">
                   <iron-icon class="challenge-icon pastel-blue" icon="social:sentiment-satisfied">
                     
                   </iron-icon></div>
@@ -1187,7 +1189,7 @@
                   <li style="margin-bottom: 10px;"><span class="brown-bullet">•</span> It works nice, even though i do not like CSS." (for CSS Select)</li>
                   <li><span class="brown-bullet">•</span> "The live feedback you get is great." (for JS Function)</li>
                 </ul>
-                <div class="fragment">
+                <div class="" style="margin-top:20px;">
                   <iron-icon class="challenge-icon orange" icon="communication:forum"></iron-icon>
                 </div>
             </div>
@@ -2135,18 +2137,167 @@
         </section>
 
         <section id="million-dollar-question">
-          <asq-multi-choice-q>
-            <asq-stem><h2>May I use the <span class="pastel-blue">"Dr."</span> option at the "title" dropdown for my next conference flight?</h2></asq-stem>
-            <asq-option name="a" correct>Pass</asq-option>
-            <asq-option name="b">Repeat</asq-option>
-            <asq-option name="c">Fail(are you serious?)</asq-option>
-          </asq-multi-choice-q>
+          <asq-exercise>
+            <asq-multi-choice-q>
+              <asq-stem><h2>May I use the "<span class="text-highlight">Dr.</span>" option at the "title" dropdown for my next conference flight?</h2></asq-stem>
+              <asq-option name="a" correct>Pass</asq-option>
+              <asq-option name="b">Repeat</asq-option>
+              <asq-option name="c">Fail (are you serious!?)</asq-option>
+            </asq-multi-choice-q>
+          </asq-exercise>
         </section>
 
         <section id="active-learning-3">
           <img src="svg/active_learning.svg" class="svg">
           <aside class="related-publications small brown" style="position: fixed; top: 600px; left:-400px;">[Prince2004does, Freeman2014active]</aside>
           <aside class="notes"> Also using problems has an effect size of 0.20</aside>
+        </section>
+
+        <section id="clickers" style="width: 1200px; margin-left: -120px;">
+          <table id="clickers-tbl" class="x-small">
+            <col width="200">
+            <col>
+            <col>
+            <col>
+            <col>
+            <col width=200">
+            <col>
+            <col>
+          <thead>
+            <tr>
+              <td><strong>Features</strong></td>
+              <td><strong>Nearpod</strong></td>
+              <td><strong>Socrative</strong></td>
+              <td><strong>Blackboard Collaborate</strong></td>
+              <td><strong>PropProfs</strong></td>
+              <td><strong>Informa</strong></td>
+              <td><strong>Glisser</strong></td>
+              <td><strong>Slido</strong></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Platform</td>
+              <td>Web/ iOS/ Android</td>
+              <td>Web</td>
+              <td>Web/ Java</td>
+              <td>Web</td>
+              <td>Java</td>
+              <td>Web</td>
+              <td>Web</td>
+            </tr>
+
+            <tr>
+              <td>Sync Presentations/ Questions</td>
+              <td><iron-icon icon="icons:check"></iron-icon>/<iron-icon icon="icons:check"></iron-icon></td>
+              <td><iron-icon icon="icons:close"></iron-icon>/<iron-icon icon="icons:check"></iron-icon></td>
+              <td><iron-icon icon="icons:check"></iron-icon>/<iron-icon icon="icons:check"></iron-icon></td>
+              <td><iron-icon icon="icons:close"></iron-icon>/<iron-icon icon="icons:close"></iron-icon></td>
+              <td><iron-icon icon="icons:close"></iron-icon>/<iron-icon icon="icons:check"></iron-icon></td>
+              <td><iron-icon icon="icons:check"></iron-icon>/<iron-icon icon="icons:check"></iron-icon></td>
+              <td><iron-icon icon="icons:check"></iron-icon>/<iron-icon icon="icons:check"></iron-icon></td>
+            </tr>
+
+            <tr>
+              <td>Async Presentations/ Questions</td>
+              <td><iron-icon icon="icons:check"></iron-icon>/<iron-icon icon="icons:check"></iron-icon></td>
+              <td><iron-icon icon="icons:close"></iron-icon>/<iron-icon icon="icons:check"></iron-icon></td>
+              <td><iron-icon icon="icons:check"></iron-icon>/<iron-icon icon="icons:check"></iron-icon></td>
+              <td><iron-icon icon="icons:close"></iron-icon>/<iron-icon icon="icons:check"></iron-icon></td>
+              <td><iron-icon icon="icons:close"></iron-icon>/<iron-icon icon="icons:close"></iron-icon></td>
+              <td><iron-icon icon="icons:check"></iron-icon>/<iron-icon icon="icons:check"></iron-icon></td>
+              <td><iron-icon icon="icons:check"></iron-icon>/<iron-icon icon="icons:check"></iron-icon></td>
+            </tr>
+
+            <tr>
+              <td>Slide Format</td>
+              <td>image/ video/ audio</td>
+              <td>--</td>
+              <td>Powerpoint</td>
+              <td>--</td>
+              <td>--</td>
+              <td>HTML5</td>
+              <td>Powerpoint/ Keynote/ Prezi/ PDF</td>
+            </tr>
+
+            <tr>
+              <td>Question Format</td>
+              <td>Proprietary</td>
+              <td>Proprietary</td>
+              <td>Proprietary</td>
+              <td>Proprietary</td>
+              <td>Java</td>
+              <td>Proprietary</td>
+              <td>Proprietary</td>
+            </tr>
+
+            <tr>
+              <td>Cued/Free Recall Question Types</td>
+              <td>Text, Draw</td>
+              <td>Text</td>
+              <td>Essay, Fill in the Blanks, Opinion, Short Answer</td>
+              <td>Fill in the Blanks, Essay</td>
+              <td>Highlight, Infer Type, Text Edit, Graph, Stack and Heap Diagram, Regular Expression</td>
+              <td>Free Text</td>
+              <td>World Cloud (open text)</td>
+            </tr>
+
+            <tr>
+              <td>Questions, Presentations as URIs</td>
+              <td><iron-icon icon="icons:close"></iron-icon>/<iron-icon icon="icons:close"></iron-icon></td>
+              <td><iron-icon icon="icons:check"></iron-icon>/<iron-icon icon="icons:check"></iron-icon></td>
+              <td><iron-icon icon="icons:check"></iron-icon>/<iron-icon icon="icons:check"></iron-icon></td>
+              <td><iron-icon icon="icons:check"></iron-icon>/<iron-icon icon="icons:check"></iron-icon></td>
+              <td><iron-icon icon="icons:check"></iron-icon>/<iron-icon icon="icons:check"></iron-icon></td>
+              <td><iron-icon icon="icons:close"></iron-icon>/<iron-icon icon="icons:check"></iron-icon></td>
+              <td><iron-icon icon="icons:close"></iron-icon>/<iron-icon icon="icons:check"></iron-icon></td>
+            </tr>
+
+            <tr>
+              <td>Send feedback back to students</td>
+              <td>Teacher can focus and broadcast a specific answer</td>
+              <td>Share stat results/ correctness (2015)</td>
+              <td>Share stat results</td>
+              <td><iron-icon icon="icons:close"></iron-icon></td>
+              <td>Share stats, Share results</td>
+              <td>Share stat results/ correctness</td>
+              <td>Share stat results</td>
+            </tr>
+
+            <tr>
+              <td>Peer- / self-assessment</td>
+              <td><iron-icon icon="icons:close"></iron-icon>/<iron-icon icon="icons:close"></iron-icon></td>
+              <td><iron-icon icon="icons:close"></iron-icon>/<iron-icon icon="icons:close"></iron-icon></td>
+              <td><iron-icon icon="icons:check"></iron-icon>/<iron-icon icon="icons:check"></iron-icon></td>
+              <td><iron-icon icon="icons:close"></iron-icon>/<iron-icon icon="icons:close"></iron-icon></td>
+              <td><iron-icon icon="icons:check"></iron-icon>/<iron-icon icon="icons:check"></iron-icon></td>
+              <td><iron-icon icon="icons:close"></iron-icon>/<iron-icon icon="icons:close"></iron-icon></td>
+              <td><iron-icon icon="icons:close"></iron-icon>/<iron-icon icon="icons:close"></iron-icon></td>
+            </tr>
+
+            <tr>
+              <td>Platform host</td>
+              <td>Company-hosted</td>
+              <td>Company-hosted</td>
+              <td>Educational Institution/ Company-hosted</td>
+              <td>Company-hosted</td>
+              <td>Educational Institution</td>
+              <td>Company-hosted</td>
+              <td>Company-hosted</td>
+            </tr>
+
+            <tr>
+              <td>Share websites within presentation</td>
+              <td><iron-icon icon="icons:check"></iron-icon></td>
+              <td><iron-icon icon="icons:close"></iron-icon></td>
+              <td><iron-icon icon="icons:check"></iron-icon></td>
+              <td><iron-icon icon="icons:close"></iron-icon></td>
+              <td><iron-icon icon="icons:check"></iron-icon> </td>
+              <td><iron-icon icon="icons:check"></iron-icon></td>
+              <td><iron-icon icon="icons:check"></iron-icon></td>
+            </tr>
+          </tbody>
+          </table>
         </section>
 
         <section id="le-res">
