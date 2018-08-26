@@ -1433,6 +1433,17 @@ position: relative;
 }
 
 /*********************************************
+ * Related Studies
+ *********************************************/
+
+#related-studies-tbl iron-icon[icon="icons:check"]{
+  color: #4CAF50;
+}
+#related-studies-tbl iron-icon[icon="icons:close"]{
+  color: #F44336;
+}
+
+/*********************************************
  * Outlines
  *********************************************/
  .reveal .timeline-ul{
@@ -1496,15 +1507,19 @@ position: relative;
 }
 
 .reveal .timeline-ul li.fragment.visible.current-fragment:nth-child(2):after,
-.reveal .timeline-ul li.fragment.visible.current-fragment:nth-child(5):after,
 .reveal .timeline-ul li.fragment.visible.current-fragment:nth-child(6):after{
   visibility: visible;
   top: 60px;
 }
 
+.reveal .timeline-ul li.fragment.visible.current-fragment:nth-child(5):after{
+  visibility: visible;
+  top: 70px;
+}
+
 .reveal .timeline-ul li.fragment.visible.current-fragment:after{
   visibility: visible;
-  top: 80px;
+  top: 110px;
 }
 
  .reveal .timeline-ul li.fragment.visible.current-fragment:last-child:after{

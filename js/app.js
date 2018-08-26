@@ -172,7 +172,7 @@
         _submissionsNum: 0,
         _workingViewersNum: 60,
         _focusedViewersNum: 35,
-        _idleViewersNum: 5
+        _idleViewersNum: 58
       },
       {
         _submissionsNum: 2,

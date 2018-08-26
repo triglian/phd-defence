@@ -256,7 +256,7 @@
             <asq-exercise>
               <asq-multi-choice-q class="fragment">
                 <asq-stem><h4 class="pastel-blue">What's the ouput of the following function?</h4>
-  <pre class="large"><code class="js">for(i=1; i&lt;6; i++){
+  <pre class="large"><code class="js">for(var i=1; i&lt;6; i++){
   console.log(i)
 }</code></pre>
                 </asq-stem>
@@ -282,9 +282,9 @@
 
         <section id="question-format-3" class="small text-left">
           <div class="layout horizontal center" style="position: relative;">
-            <asq-multi-choice-q class="fragment">
+            <asq-multi-choice-q>
               <asq-stem><h4>What's the ouput of the following function?</h4>
-<pre class="large"><code class="js">for(i=1; i&lt;6; i++){
+<pre class="large"><code class="js">for(var i=1; i&lt;6; i++){
   console.log(i)
 }
 </code></pre>
@@ -294,8 +294,8 @@
               <asq-option name="c">2 3 4 5</asq-option>
               <asq-option name="d">1 2 3 4 5 6</asq-option>
             </asq-multi-choice-q>
-            <h1 class="pastel-blue fragment" style="font-size: 4em; margin: 0 20px;">vs.</h1>
-            <asq-js-eval-q class="fragment">
+            <h1 class="pastel-blue " style="font-size: 4em; margin: 0 20px;">vs.</h1>
+            <asq-js-eval-q class="">
               <asq-stem><h4>Implement a for-loop that print numbers 1 to 5 in the console</h4></asq-stem>
             </asq-js-eval-q>
           </div>
@@ -857,7 +857,7 @@
               <asq-exercise class="medium flex fragment" style="flex: 1;">
               <asq-multi-choice-q>
                 <asq-stem><h4 class="pastel-blue">What's the ouput of the following function?</h4>
-  <pre class="large"><code class="js medium">for(i=1; i&lt;6; i++){
+  <pre class="large"><code class="js medium">for(var i=1; i&lt;6; i++){
   console.log(i)
 }</code></pre>
                 </asq-stem>
@@ -872,7 +872,7 @@
 <span class="fragment">  &lt;asq-multi-choice-q&gt;
 <span class="fragment">    &lt;asq-stem&gt;&lt;h4&gt;What&#039;s the ouput of the following 
   function?&lt;/h4&gt;
-  &lt;pre&gt;&lt;code&gt;for(i=1; i&amp;lt;6; i++){
+  &lt;pre&gt;&lt;code&gt;for(var i=1; i&amp;lt;6; i++){
   console.log(i)
 }&lt;/code&gt;&lt;/pre&gt;
     &lt;/asq-stem&gt;</span>
@@ -1172,7 +1172,7 @@
         </section>
 
         <section id="retrospective-2" data-background-color="#FFFFFF">
-            <h4>Rating Evolution</h4>
+            <h4 class="pastel-blue">Rating evolution over time</h4>
            <img src="img/question-type-retrospective-by-course.png" alt="question type retrospective by course">
         </section>
 
@@ -1585,7 +1585,7 @@
          <aside class="related-publications small brown" style="position: fixed; top: -20px;">[Triglianos2016ECTEL]</aside>
         </section>
 
-        <section id="stacked-area-connected-focus-2">
+        <section id="stacked-area-connected-focus-2" data-background-color="#FFFFFF">
          <div style="position: relative; width: 700px; height: 900px; margin: 0 auto;">
          <img src="img/ER_Conceptual_Design_2016-01-04_at_09h43m13sall_single_session_connected_focus_stacked_area.png" alt="connected-focus indicators for ER Conceptual Design lecture" style="width: 100%; position: absolute; left:0; top: 0; z-index: 2;">
          <img src="img/Web_Security_2016-01-11_at_09h37m56sall_single_session_connected_focus_stacked_area.png" alt="connected-focus indicators for Web Security lecture" style="width: 100%; position: absolute; left:0; top: 320px;">
@@ -2407,6 +2407,134 @@
           </tbody>
           </table>
         </section>
+
+        <section id="related-studies" style="width: 1200px; margin-left: -120px;">
+          <table id="related-studies-tbl" class="x-small">
+          <thead>
+            <tr>
+              <th>Study</th>
+              <th>#Lectures (time)</th>
+              <th>#Students</th>
+              <th>Simulated</th>
+              <th>#Exp. conditions</th>
+              <th>Logging type(s)</th>
+              <th>Learning performance measurement </th>
+              <th>Class </th>
+              <th>Incentive</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>[wood2012examining]</td>
+              <td>3 (20 minutes)</td>
+              <td>145</td>
+              <td><iron-icon icon="icons:check"></iron-icon></td>
+              <td>7: Facebook - Texting - Natural Technology Use - Word Processing - pen and paper - MSN - email</td>
+              <td>Assigned condition</td>
+              <td>15 multiple-choice (MC) questions immediately after tde lecture</td>
+              <td>Research metdods, Statistics</td>
+              <td>$15 or course credit</td>
+            </tr>
+
+            <tr>
+              <td>[sana2013laptop]</td>
+              <td>1 (45 minutes)</td>
+              <td>44</td>
+              <td><iron-icon icon="icons:check"></iron-icon></td>
+              <td>2: Multitasking - Non-multitasking</td>
+              <td>Assigned condition</td>
+              <td>20 MC questions immediately after the lecture</td>
+              <td> Introductory Psychology</td>
+              <td>Course credit</td>
+            </tr>
+            
+            <tr>
+              <td>[fried2008class]</td>
+              <td>20 (75 minutes)</td>
+              <td>137</td>
+              <td><iron-icon icon="icons:close"></iron-icon></td>
+              <td>2: Open laptop - Closed laptop</td>
+              <td>Weekly self-reports</td>
+              <td>4 exams and 10 homework assignments</td>
+              <td>General Psychology</td>
+              <td>None</td>
+            </tr>
+            
+            <tr>
+              <td>[hembrooke2003laptop]</td>
+              <td>1 (N/A)</td>
+              <td>44</td>
+              <td><iron-icon icon="icons:close"></iron-icon></td>
+              <td>2: Open laptop - Closed laptop</td>
+              <td>Assigned condition and voluntary online activity logging</td>
+              <td>20 MC and open questions immediately after the lecture</td>
+              <td>Communications</td>
+              <td>None</td>
+            </tr>
+            
+            <tr>
+              <td>[risko2013everyday]</td>
+              <td>1 (60 minutes)</td>
+              <td>64</td>
+              <td><iron-icon icon="icons:check"></iron-icon></td>
+              <td>2: Open laptop - Closed laptop</td>
+              <td>Assigned condition</td>
+              <td> 10 MC questions immediately after the lecture</td>
+              <td>N/A</td>
+              <td>\$15 or course credit</td>
+            </tr>
+            
+            <tr>
+              <td>[ravizza2016logged]</td>
+              <td>15 (100 minutes)</td>
+              <td>84</td>
+              <td><iron-icon icon="icons:close"></iron-icon></td>
+              <td>3: Class-related Internet usage - Nonacademic Internet usage - No Internet usage</td>
+              <td>Online activity logging</td>
+              <td>Final exam</td>
+              <td>Introductory Psychology</td>
+              <td>Course credit</td>
+            </tr>
+            
+            <tr>
+              <td>[gauci2009promoting]</td>
+              <td>36 (50 minutes)</td>
+              <td>175</td>
+              <td><iron-icon icon="icons:close"></iron-icon></td>
+              <td>2: Personal response system (PRS) usage - No PRS</td>
+              <td>PRS logging</td>
+              <td>Midterm, final exam</td>
+              <td>Psychology: Control of Body Function</td>
+              <td>None</td>
+            </tr>
+            
+            <tr>
+              <td>[aguilar2012impact]</td>
+              <td>13 (50 minutes)</td>
+              <td>800</td>
+              <td><iron-icon icon="icons:close"></iron-icon></td>
+              <td>2: Zoned laptop use - Uncontrolled laptop use</td>
+              <td>Assigned condition</td>
+              <td>Final exam</td>
+              <td>Bio 93: DNA to Organisms</td>
+              <td>None</td>
+            </tr>
+            
+            <tr>
+              <td>Our work</td>
+              <td>14 (90 minutes)</td>
+              <td>89-319</td>
+              <td><iron-icon icon="icons:close"></iron-icon></td>
+              <td> 2: High engagement with ASQ - Low engagement with ASQ</td>
+              <td>ASQ activity logging</td>
+              <td>123 questions (MC, highlight, fill-in-the-blank) interspersed in lectures</td>
+              <td>Web &amp; Database Technology</td>
+              <td>None</td>
+            </tr>
+          </tbody>
+          </table>
+        </section>
+
       </div>
     </div>
 
