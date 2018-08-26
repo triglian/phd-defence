@@ -493,6 +493,7 @@
           <div class="challenge-badge-container">
             <iron-icon class="challenge-icon orange" icon="communication:forum"></iron-icon>
             <iron-icon class="challenge-icon paper-pink" icon="icons:face"></iron-icon>
+            <iron-icon class="challenge-icon cyan" icon="icons:cloud-circle"></iron-icon>
             <iron-icon class="challenge-icon google-green" icon="image:remove-red-eye"></iron-icon>
           </div>
         </section>
@@ -741,13 +742,11 @@
         </section>
 
         <section id="design-goals">
+          <h2 class="orange"> Requirements</h2>
         <ul class="dash" style="min-height: 450px;">
-          <li class="fragment">Application Domain Conformance 
-            <p class="accordion medium">
-              entities, relationships, information flow
-            </p>
+          <li class="fragment">Validate presentations, remove solutions, testing and assessing answers, giving feedback to students
           </li>
-          <li class="fragment">Encapsulation
+          <li class="fragment" style="margin-top: 20px;">Encapsulation
             <div class="accordion medium">
               <ul class="dash">
                 <li><strong class="grey">CSS:</strong> Base rule changes, Naming collisions, subtree matches
@@ -774,7 +773,7 @@
               </ul>
             </div>
           </li>
-          <li class="fragment">Communication  <div class="accordion">
+          <li class="fragment" style="margin-top: 20px;">Communication  <div class="accordion">
                <ul class="dash medium">
                  <li>Serverside</li>
                  <li>Clientside</li>
@@ -782,7 +781,7 @@
                  <li>intra-plugin (between client-side and server-side components)</li>
                </ul>
             </div></li>
-          <li class="fragment">Deployment and Publication
+          <li class="fragment" style="margin-top: 20px;">Deployment and Publication
             <div class="accordion">
                <ul class="dash medium">
                  <li>Single code repository</li>
@@ -902,6 +901,9 @@
         <section id="architecture-full">
             <img class="svg" src="svg/asq/asq.svg" alt="architecture full">
             <aside class="related-publications small brown" style="position: fixed; top: -20px;">[Triglianos2014ICWE, Triglianos2015ICWE]</aside>
+            <div class="challenge-badge-container">
+              <iron-icon class="challenge-icon cyan" icon="icons:cloud-circle"></iron-icon>
+            </div>
             <aside class="notes">To dive down a bit more, the client talks to the server with WebSockets after loading initial assets with HTTP. Both the client and the server have a plugin layers which interacts with the core in a decoupled fashing. We persist volatile information like session identifiers in redis and more permament information, like answers to a MongoDB</aside>
         </section>
 
@@ -1092,10 +1094,11 @@
         </section>
 
         <section id="sus" data-background-color="#FFFFFF" style="position: relative;" data-autoslide="800">
-            <h4>System Usability Scale(Students)</h4>
+            <h4 class="pastel-blue">System Usability Scale (Students)</h4>
             <img src="img/sus-delft-students.png">
             <div id="sus-delft-stamp" class="stamp fragment smaller" data-autoslide="0" style="z-index:2"> Web &amp; Database <br> Technology (2015/2016)</div> 
             <img class="fragment" src="img/sus-delft-students-annotated.png" data-autoslide="0" style="position: absolute; top: 77px; left: 24px;">
+            <h4 class="small" style="position: absolute; right: -130px; top: calc(50% - 50px);">301 ratings</h4>
         </section>
 
 <!--         <section id="nasa-tlx">
@@ -1151,14 +1154,20 @@
         </section> -->
 
         <section id="nasa-tlx" data-background-color="#FFFFFF" data-autoslide="800" style="position: relative;">
-            <h4>NASA-TLX Load Index by Instructor</h4>
+            <h4 class="orange">NASA-TLX Load Index by Instructor</h4>
            <img src="img/nasa-tlx-instructor.png" alt="nasa-tlx by instructor">
            <div id="tlx-delft-stamp" class="stamp fragment smaller" data-autoslide="none"> Web &amp; Database <br> Technology (2015/2016)</div> 
         </section>
 
-        <section id="retrospective-1" data-background-color="#FFFFFF">
-            <h4>1-5 Rating Scale for Question Types</h4>
+        <section id="retrospective-1" data-background-color="#FFFFFF" data-autoslide="800" style="position: relative;">
+            <h4 class="pastel-blue">1-5 Rating Scale for Question Types</h4>
            <img src="img/question-type-retrospective-boxplot.png" alt="question type retrospective boxplot">
+           <h4 class="small" style="position: absolute; right: -110px; top: 440px;">77 ratings</h4>
+           <div class="stamp fragment smaller" data-autoslide="400" style="left: 920px; top: 20px; right: initial; bottom: initial; width: 160px;">Software Atelier  III<br>(2015/2016)</div> 
+           <div class="stamp fragment smaller" data-autoslide="400" style="left: 910px; top: 90px; right: initial; bottom: initial; width: 180px;"> Web &amp; Database <br> Technology (2015/2016)</div> 
+           <div class="stamp fragment smaller" data-autoslide="400" style="left: 925px; top: 160px; right: initial; bottom: initial; width: 150px;"> Web Atelier <br> (2016/2017)</div> 
+           <div class="stamp fragment smaller" data-autoslide="400" style="left: 925px; top: 230px; right: initial; bottom: initial; width: 150px;"> Web Atelier <br> (2017/2018)</div>  
+           <div class="stamp fragment smaller" data-autoslide="none" style="left: 900px; top: 300px; right: initial; bottom: initial; width: 200px;"> Software Architecture <br> &amp; Design (2017/2018)</div> 
         </section>
 
         <section id="retrospective-2" data-background-color="#FFFFFF">
@@ -1176,9 +1185,7 @@
                   <li><span class="brown-bullet">•</span> "While the students are still working (I usually create examples that take no more than 3-4 minutes to solve) I can already scroll through the first submitted solutions and mark those I want to discuss."</li>
                 </ul>
                 <div class="" style="margin-top:20px;">
-                  <iron-icon class="challenge-icon pastel-blue" icon="social:sentiment-satisfied">
-                    
-                  </iron-icon></div>
+                  <iron-icon class="challenge-icon pastel-blue" icon="social:sentiment-satisfied"></iron-icon></div>
             </div>
             <div class="flex fragment">
               <h2 class="orange alsscripticus" style="text-shadow: 1px 1px 1px rgba(94, 94, 94, 0.5);">Students</h2>
@@ -1331,9 +1338,10 @@
                   <aside class="notes">Plot for three students</aside>
               </section> -->
 
-              <section id="events-img" data-background-color="#FFFFFF" data-background-transition="none">
-                <h2 class="text-center">Browser events for 2 students</h2>
+              <section id="events-img" data-background-color="#FFFFFF"  data-autoslide="800" data-background-transition="none">
+                <h2 class="text-center orange">Browser events for 2 students</h2>
                 <img src="img/single_viewer_events.png" alt="single viewer events" style="width: 100%;">
+                <div id="events-img-stamp" class="stamp fragment smaller" data-autoslide="none"> Web &amp; Database <br> Technology (2015/2016)</div> 
               </section>
 
                      <section id="low-level" class=" text-center">
@@ -1343,7 +1351,7 @@
                      </section>
 
                      <section id="activity-indicators">
-                       <h2 class="text-center" style="margin-bottom: 0.7em;">State indicators</h2>
+                       <h2 class="text-center" style="margin-bottom: 0.7em;">Activity indicators</h2>
                        <table id="indicators-tbl" class="medium">
                <thead>
                  <tr>
@@ -1377,13 +1385,14 @@
               </section>
 
 
-              <section id="http-lecture-visible" data-background-color="#FFFFFF" data-background-transition="none">
-                <h4 class="text-center">Temporal evolution of connected and slide engaged students during the HTTP lecture</h4>
+              <section id="http-lecture-visible" data-autoslide="800" data-background-color="#FFFFFF" data-background-transition="none">
+                <h4 class="text-center orange">Temporal evolution of connected and slide engaged students during the HTTP lecture</h4>
                 <img src="img/http_visible.png" alt="Temporal evolution of connected and slide engaged students during the HTTP lecture" style="width: 100%;">
+                <div id="http-lecture-visible-stamp" class="stamp fragment smaller" data-autoslide="none"> Web &amp; Database <br> Technology (2016/2017)</div> 
               </section>
 
               <section id="javascript-lecture-visible" data-background-color="#FFFFFF" data-background-transition="none">
-                <h4 class="text-center">Temporal evolution of connected and slide engaged students during the JavaScript lecture</h4>
+                <h4 class="text-center orange">Temporal evolution of connected and slide engaged students during the JavaScript lecture</h4>
                 <img src="img/javascript_visible.png" alt="Temporal evolution of connected and slide engaged students during the JavaScript lecture" style="width: 100%;">
               </section>
 
@@ -1394,11 +1403,13 @@
                     
                   <span class="xx-large">\[\text{MSE}(v,s) = \frac{1}{T(s)}\sum_{t=1}^{T(s)} visible(v,s,t)\]</span>
                   </div>
+                  <aside class="related-publications small brown" style="position: fixed; top: -50px;">[Triglianos2017UMAP]</aside>
               </section>
 
-              <section id="slide-engagement" data-background-color="#FFFFFF" data-background-transition="none">
+              <section id="slide-engagement" data-autoslide="800" data-background-color="#FFFFFF" data-background-transition="none">
                 <h3 class="pastel-blue">Slide Engagement</h3>
                 <img src="img/mean-slide-engagement.png" alt="slide engagement">
+                <div id="slide-engagement-stamp" class="stamp fragment smaller" data-autoslide="none"> Web &amp; Database <br> Technology (2016/2017)</div>
               </section>
 
               <section id="equation-2">
@@ -1559,15 +1570,18 @@
                 <li class="fragment" style="margin-top: 10px;"><span class="timeline-bullet">•</span> <strong>F3</strong>: Attention rises when <strong class="text-highlight">interactive elements</strong> are introduced.</li>
                 <li class="fragment" style="margin-top: 10px;"><span class="timeline-bullet">•</span> <strong>F4</strong>: Immediately <strong class="text-highlight">after interactive teaching elements</strong>, the <strong class="text-highlight">level of distraction is lower</strong> than before the start of the interaction.</li>
                </ul>
+               <aside class="related-publications small brown" style="position: relative; top:30px;">[lindquist2011daydreaming, johnstone1976attention, scerbo1992role, bunce2010long, burke2008re]</aside>
              </section>
 
-      <section id="stacked-area-connected-focus" data-background-color="#FFFFFF">
+      <section id="stacked-area-connected-focus" data-autoslide="800" data-background-color="#FFFFFF">
+         <div id="stacked-area-connected-focus-stamp" class="stamp fragment smaller" data-autoslide="none"> Web &amp; Database <br> Technology (2015/2016)</div>
          <h3 class="text-center pastel-blue">Connected-focus indicators for the whole class</h3>
          <img src="img/Advanced_SQL_Topics_2015-12-14_at_09h40m34sall_single_session_connected_focus_stacked_area.png" alt="connected-focus indicators" style="width: 100%;">
          <ul class="medium">
            <li class="fragment" style="margin-top: 10px; font-weight: bold;">F1: Students' attention drops over the class period.</li>
            <li class="fragment" style="margin-top: 10px; font-weight: bold;">F3: Attention rises when interactive elements are introduced.</li>
          </ul>
+         <aside class="related-publications small brown" style="position: fixed; top: -20px;">[Triglianos2016ECTEL]</aside>
         </section>
 
         <section id="stacked-area-connected-focus-2">
@@ -1670,7 +1684,8 @@
           <img src="img/single_viewer_state.png" alt="single attention State" style="width: 100%;">
       </section>
 
-      <section id="stacked-area-dissection" data-background-color="#FFFFFF">
+      <section id="stacked-area-dissection" data-autoslide="800" data-background-color="#FFFFFF">
+        <div id="stacked-area-dissection-stamp" class="stamp fragment smaller" data-autoslide="none"> Web &amp; Database <br> Technology (2015/2016)</div>
         <div class="graph-slideshow" style="width: 700px; height: 520px; margin: 0 auto;">
           <img src="img/step1.png" alt="single attention State" style="width: 700px; max-height: initial; max-width: initial;">
           <img class="fragment" src="img/step2.png" alt="single attention State" style="width: 700px; max-height: initial; max-width: initial;">
@@ -1726,6 +1741,9 @@
             </tr>
           </tbody>
         </table>
+         <div class="challenge-badge-container" style="top: -100px;">
+           <iron-icon class="challenge-icon pastel-blue" icon="social:sentiment-satisfied"></iron-icon>
+         </div>
       </section>
 
       <section id="dataset-2"  data-background-color="#FFFFFF">
@@ -1792,7 +1810,7 @@
             <h4 style="margin-top: 40px;">1s timeline approach as with browser events</h4>
         </section>
 
-        <section id="eye-tracker-results-1"  data-background-color="#FFFFFF">
+        <section id="eye-tracker-results-1" data-autoslide="800" data-background-color="#FFFFFF">
           <h3 class="orange">Gaze Indicator</h3>
           <img src="img/resampling-thresholds.jpg" alt="eye-tracker resampling">
           <div class="fragment">
@@ -1800,6 +1818,7 @@
             <h4 class="fragment">No fixtures/saccades</h4>
             <h4 class="fragment">1ms threshold</h4>
           </div>
+          <div id="eye-tracker-results-1-stamp" class="stamp fragment smaller" data-autoslide="none"> Functional &amp; Logic Programming <br> (2016/2017)</div>
         </section>
 
         <section id="eye-tracker-combine" data-background-color="#ffffff">
@@ -2067,6 +2086,8 @@
             </tbody>
           </table>
            <p><em>p &lt; 0.01</em></p>
+
+           <aside class="related-publications small brown" style="position: fixed; top: -30px;">[Triglianos2017UMAP]</aside>
         </section>
 
         <section id="publications" class="text-center" style="width: 840px; margin-left: 80px">

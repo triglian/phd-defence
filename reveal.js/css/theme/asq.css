@@ -1282,6 +1282,57 @@ tr.no-border-bottom td{
   transform: translate3D(70px, -670px, 0) rotateZ(25deg);
 }
 
+
+#events-img-stamp{
+  transform: translate3D(120px, -350px, 800px) rotateZ(25deg);
+}
+
+
+#events-img-stamp.visible {
+  transform: translate3D(120px, -350px, 0) rotateZ(25deg);
+}
+
+#http-lecture-visible-stamp{
+  transform: translate3D(150px, -440px, 800px) rotateZ(20deg);
+}
+
+#http-lecture-visible-stamp.visible {
+  transform: translate3D(150px, -440px, 0) rotateZ(20deg);
+}
+
+#slide-engagement-stamp{
+  transform: translate3D(150px, -640px, 800px) rotateZ(20deg);
+}
+
+#slide-engagement-stamp.visible {
+  transform: translate3D(150px, -640px, 0) rotateZ(20deg);
+}
+
+#stacked-area-connected-focus-stamp{
+  transform: translate3D(240px, -500px, 800px) rotateZ(20deg);
+}
+
+#stacked-area-connected-focus-stamp.visible {
+  transform: translate3D(240px, -500px, 0) rotateZ(20deg);
+}
+
+#stacked-area-dissection-stamp{
+  transform: translate3D(190px, -550px, 800px) rotateZ(10deg);
+}
+
+#stacked-area-dissection-stamp.visible {
+  transform: translate3D(190px, -550px, 0) rotateZ(10deg);
+}
+
+#eye-tracker-results-1-stamp{
+  transform: translate3D(130px, -590px, 800px) rotateZ(10deg);
+}
+
+#eye-tracker-results-1-stamp.visible {
+  transform: translate3D(130px, -590px, 0) rotateZ(10deg);
+}
+
+
 /*********************************************
  * Publish Deploy
  *********************************************/
