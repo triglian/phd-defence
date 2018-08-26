@@ -1,79 +1,108 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="513 848 462 198">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" viewBox="635 2032 451 202" width="100%">
     <defs>
-        <marker orient="auto" overflow="visible" id="a" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="#000">
+        <filter id="b" filterUnits="userSpaceOnUse">
+            <feGaussianBlur in="SourceAlpha" result="blur" stdDeviation="1.308"/>
+            <feOffset in="blur" result="offset" dy="2"/>
+            <feFlood flood-color="#000" flood-opacity=".5" result="flood"/>
+            <feComposite in="flood" in2="offset" operator="in"/>
+        </filter>
+        <marker orient="auto" overflow="visible" id="j" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="#000">
             <path d="M8 0L0-3v6z" fill="currentColor" stroke="currentColor"/>
         </marker>
     </defs>
     <g fill="none">
-        <title>
-            Canvas 1
-        </title>
-        <title>
-            Layer 1
-        </title>
-       <!--  <path fill="#f7f7f7" d="M515.905 850.394h456.378v192.756H515.905z"/>
-        <path stroke="#929292" stroke-linecap="round" stroke-linejoin="round" d="M515.905 850.394h456.378v192.756H515.905z"/> -->
-        <path d="M692.82 856.063h102.55c2.21 0 4 1.79 4 4v170.583c0 2.21-1.79 4-4 4H692.82c-2.21 0-4-1.79-4-4V860.063c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1,4"/>
-        <text transform="translate(693.82 861.063)" fill="#3c3c3b">
+        <xl:use xl:href="#a" filter="url(#b)"/>
+        <xl:use xl:href="#c" filter="url(#b)"/>
+        <xl:use xl:href="#d" filter="url(#b)"/>
+        <xl:use xl:href="#e" filter="url(#b)"/>
+        <xl:use xl:href="#f" filter="url(#b)"/>
+        <xl:use xl:href="#g" filter="url(#b)"/>
+        <xl:use xl:href="#h" filter="url(#b)"/>
+        <xl:use xl:href="#i" filter="url(#b)"/>
+        <path d="M809.04 2043.78h102.55a4 4 0 0 1 4 4v170.582a4 4 0 0 1-4 4H809.04a4 4 0 0 1-4-4V2047.78a4 4 0 0 1 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1,4"/>
+        <text transform="translate(810.04 2048.78)" fill="#3c3c3b">
             <tspan font-family="Helvetica" font-size="11" font-weight="500" x="0" y="10" textLength="23.842">Core</tspan>
         </text>
         <g class="fragment">
-          <path d="M712.66 881.575h62.868c2.21 0 4 1.79 4 4v20.346c0 2.21-1.79 4-4 4H712.66c-2.208 0-4-1.79-4-4v-20.345c0-2.21 1.792-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
-          <text transform="translate(713.66 889.248)" fill="#3c3c3b">
-              <tspan font-family="Helvetica" font-size="11" font-weight="500" x="4.751" y="10" textLength="34.235">Hooks </tspan><tspan font-family="Helvetica" font-size="11" font-weight="500" x="38.385" y="10" textLength="17.73">API</tspan>
-          </text>
-          <path d="M712.66 915.59h62.868c2.21 0 4 1.79 4 4v20.347c0 2.21-1.79 4-4 4H712.66c-2.208 0-4-1.79-4-4V919.59c0-2.21 1.792-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
-          <text transform="translate(713.66 923.264)" fill="#3c3c3b">
-              <tspan font-family="Helvetica" font-size="11" font-weight="500" x="3.527" y="10" textLength="36.685">Events </tspan><tspan font-family="Helvetica" font-size="11" font-weight="500" x="39.61" y="10" textLength="17.73">API</tspan>
-          </text>
-          <path d="M712.66 949.606h62.868c2.21 0 4 1.79 4 4v26.016c0 2.21-1.79 4-4 4H712.66c-2.208 0-4-1.79-4-4v-26.016c0-2.21 1.792-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
-          <text transform="translate(713.66 953.614)" fill="#3c3c3b">
-              <tspan font-family="Helvetica" font-size="11" font-weight="500" x="6.889" y="10" textLength="50.145">Database </tspan><tspan font-family="Helvetica" font-size="11" font-weight="500" x="21.568" y="23" textLength="17.73">API</tspan>
-          </text>
-          <path d="M712.66 989.29h62.868c2.21 0 4 1.792 4 4v20.348c0 2.21-1.79 4-4 4H712.66c-2.208 0-4-1.79-4-4V993.29c0-2.208 1.792-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
-          <text transform="translate(713.66 996.965)" fill="#3c3c3b">
-              <tspan font-family="Helvetica" font-size="11" font-weight="500" x=".468" y="10" textLength="42.802">Settings </tspan><tspan font-family="Helvetica" font-size="11" font-weight="500" x="42.668" y="10" textLength="17.73">API</tspan>
-          </text>
+            <path d="M828.882 2069.291h62.866a4 4 0 0 1 4 4v20.347a4 4 0 0 1-4 4h-62.866a4 4 0 0 1-4-4v-20.347a4 4 0 0 1 4-4z" fill="#c8cbff"/>
+            <path d="M828.882 2069.291h62.866a4 4 0 0 1 4 4v20.347a4 4 0 0 1-4 4h-62.866a4 4 0 0 1-4-4v-20.347a4 4 0 0 1 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+            <text transform="translate(829.882 2076.965)" fill="#3c3c3b">
+                <tspan font-family="Helvetica" font-size="11" font-weight="500" x="4.751" y="10" textLength="34.235">Hooks </tspan><tspan font-family="Helvetica" font-size="11" font-weight="500" x="38.385" y="10" textLength="17.73">API</tspan>
+            </text>
+            <path d="M828.882 2103.307h62.866a4 4 0 0 1 4 4v20.347a4 4 0 0 1-4 4h-62.866a4 4 0 0 1-4-4v-20.347a4 4 0 0 1 4-4z" fill="#c8cbff"/>
+            <path d="M828.882 2103.307h62.866a4 4 0 0 1 4 4v20.347a4 4 0 0 1-4 4h-62.866a4 4 0 0 1-4-4v-20.347a4 4 0 0 1 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+            <text transform="translate(829.882 2110.98)" fill="#3c3c3b">
+                <tspan font-family="Helvetica" font-size="11" font-weight="500" x="3.527" y="10" textLength="36.685">Events </tspan><tspan font-family="Helvetica" font-size="11" font-weight="500" x="39.61" y="10" textLength="17.73">API</tspan>
+            </text>
+            <path d="M828.882 2137.323h62.866a4 4 0 0 1 4 4v26.016a4 4 0 0 1-4 4h-62.866a4 4 0 0 1-4-4v-26.016a4 4 0 0 1 4-4z" fill="#c8cbff"/>
+            <path d="M828.882 2137.323h62.866a4 4 0 0 1 4 4v26.016a4 4 0 0 1-4 4h-62.866a4 4 0 0 1-4-4v-26.016a4 4 0 0 1 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+            <text transform="translate(829.882 2141.33)" fill="#3c3c3b">
+                <tspan font-family="Helvetica" font-size="11" font-weight="500" x="6.889" y="10" textLength="50.145">Database </tspan><tspan font-family="Helvetica" font-size="11" font-weight="500" x="21.568" y="23" textLength="17.73">API</tspan>
+            </text>
+            <path d="M828.882 2177.008h62.866a4 4 0 0 1 4 4v20.346a4 4 0 0 1-4 4h-62.866a4 4 0 0 1-4-4v-20.346a4 4 0 0 1 4-4z" fill="#c8cbff"/>
+            <path d="M828.882 2177.008h62.866a4 4 0 0 1 4 4v20.346a4 4 0 0 1-4 4h-62.866a4 4 0 0 1-4-4v-20.346a4 4 0 0 1 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+            <text transform="translate(829.882 2184.681)" fill="#3c3c3b">
+                <tspan font-family="Helvetica" font-size="11" font-weight="500" x=".468" y="10" textLength="42.802">Settings </tspan><tspan font-family="Helvetica" font-size="11" font-weight="500" x="42.668" y="10" textLength="17.73">API</tspan>
+            </text>
         </g>
-        <path d="M826.047 895.748H954.11c2.21 0 4 1.79 4 4v85.543c0 2.21-1.79 4-4 4H826.047c-2.21 0-4-1.79-4-4V899.75c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1,4"/>
-        <text transform="translate(827.047 900.748)" fill="#3c3c3b">
+        <path d="M942.268 2083.465h128.063a4 4 0 0 1 4 4v85.543a4 4 0 0 1-4 4H942.268a4 4 0 0 1-4-4v-85.543a4 4 0 0 1 4-4z" fill="#fcf7e4"/>
+        <path d="M942.268 2083.465h128.063a4 4 0 0 1 4 4v85.543a4 4 0 0 1-4 4H942.268a4 4 0 0 1-4-4v-85.543a4 4 0 0 1 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1,4"/>
+        <text transform="translate(943.268 2088.465)" fill="#3c3c3b">
             <tspan font-family="Helvetica" font-size="11" font-weight="500" x="26.35" y="10" textLength="73.364">System Plugin</tspan>
         </text>
-
-        <g class="fragment">          
-          <path d="M834.55 922.677h31.686c2.21 0 4 1.79 4 4v40.19c0 2.208-1.79 4-4 4H834.55c-2.208 0-4-1.792-4-4v-40.19c0-2.21 1.792-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
-          <text transform="translate(835.55 940.272)" fill="#3c3c3b">
-              <tspan font-family="Helvetica" font-size="11" font-weight="500" x=".784" y="10" textLength="28.118">Proxy</tspan>
-          </text>
-          <path d="M882.74 922.677h62.866c2.21 0 4 1.79 4 4v40.19c0 2.208-1.79 4-4 4H882.74c-2.21 0-4-1.792-4-4v-40.19c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
-          <text transform="translate(883.74 933.772)" fill="#3c3c3b">
-              <tspan font-family="Helvetica" font-size="11" font-weight="500" x="8.116" y="10" textLength="44.634">Business</tspan><tspan font-family="Helvetica" font-size="11" font-weight="500" x="17.285" y="23" textLength="26.297">Logic</tspan>
-          </text>
-        </g>
-
-        <path d="M534.08 892.913H662.14c2.21 0 4 1.79 4 4v85.544c0 2.21-1.79 4-4 4H534.08c-2.21 0-4-1.79-4-4v-85.544c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1,4"/>
-        <text transform="translate(535.08 897.913)" fill="#3c3c3b">
+        
+        <path d="M650.3 2080.63h128.062a4 4 0 0 1 4 4v85.543a4 4 0 0 1-4 4H650.3a4 4 0 0 1-4-4v-85.543a4 4 0 0 1 4-4z" fill="#fcf7e4"/>
+        <path d="M650.3 2080.63h128.062a4 4 0 0 1 4 4v85.543a4 4 0 0 1-4 4H650.3a4 4 0 0 1-4-4v-85.543a4 4 0 0 1 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1,4"/>
+        <text transform="translate(651.3 2085.63)" fill="#3c3c3b">
             <tspan font-family="Helvetica" font-size="11" font-weight="500" x="19.928" y="10" textLength="86.206">Third party Plugin</tspan>
         </text>
-        <g class="fragment">   
-          <path d="M621.953 921.26h31.685c2.21 0 4 1.79 4 4v40.19c0 2.208-1.79 4-4 4h-31.685c-2.21 0-4-1.792-4-4v-40.19c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
-          <text transform="translate(622.953 938.854)" fill="#3c3c3b">
-              <tspan font-family="Helvetica" font-size="11" font-weight="500" x=".784" y="10" textLength="28.118">Proxy</tspan>
-          </text>
-          <path d="M542.583 921.26h62.866c2.208 0 4 1.79 4 4v40.19c0 2.208-1.792 4-4 4h-62.867c-2.21 0-4-1.792-4-4v-40.19c0-2.21 1.79-4 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
-          <text transform="translate(543.583 932.354)" fill="#3c3c3b">
-              <tspan font-family="Helvetica" font-size="11" font-weight="500" x="8.116" y="10" textLength="44.634">Business</tspan><tspan font-family="Helvetica" font-size="11" font-weight="500" x="17.285" y="23" textLength="26.297">Logic</tspan>
-          </text>
+        <g class="fragment">
+            <path d="M998.96 2110.394h62.867a4 4 0 0 1 4 4v40.189a4 4 0 0 1-4 4H998.96a4 4 0 0 1-4-4v-40.19a4 4 0 0 1 4-4z" fill="#fff"/>
+            <path d="M998.96 2110.394h62.867a4 4 0 0 1 4 4v40.189a4 4 0 0 1-4 4H998.96a4 4 0 0 1-4-4v-40.19a4 4 0 0 1 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+            <text transform="translate(999.96 2121.488)" fill="#3c3c3b">
+                <tspan font-family="Helvetica" font-size="11" font-weight="500" x="8.116" y="10" textLength="44.634">Business</tspan><tspan font-family="Helvetica" font-size="11" font-weight="500" x="17.285" y="23" textLength="26.297">Logic</tspan>
+            </text>
+            <path d="M658.803 2108.976h62.866a4 4 0 0 1 4 4v40.19a4 4 0 0 1-4 4h-62.866a4 4 0 0 1-4-4v-40.19a4 4 0 0 1 4-4z" fill="#fff"/>
+            <path d="M658.803 2108.976h62.866a4 4 0 0 1 4 4v40.19a4 4 0 0 1-4 4h-62.866a4 4 0 0 1-4-4v-40.19a4 4 0 0 1 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+            <text transform="translate(659.803 2120.07)" fill="#3c3c3b">
+                <tspan font-family="Helvetica" font-size="11" font-weight="500" x="8.116" y="10" textLength="44.634">Business</tspan><tspan font-family="Helvetica" font-size="11" font-weight="500" x="17.285" y="23" textLength="26.297">Logic</tspan>
+            </text>
         </g>
-        <g class="fragment">        
-          <path marker-end="url(#a)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M657.638 945.354l43.925-42.705"/>
-          <path marker-end="url(#a)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M657.638 945.354l41.556-12.697"/>
-          <path marker-end="url(#a)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M657.638 945.354l41.885 17.453"/>
-          <path marker-end="url(#a)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M657.638 945.354l44.49 50.67"/> 
-          <path marker-end="url(#a)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M830.55 946.772l-44.022-44.024"/>
-          <path marker-end="url(#a)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M830.55 946.772l-41.63-13.878"/>
-          <path marker-end="url(#a)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M830.55 946.772l-41.796 16.254"/>
-          <path marker-end="url(#a)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M830.55 946.772l-44.4 49.334"/>
+        <g class="fragment">
+            <path d="M950.772 2110.394h31.685a4 4 0 0 1 4 4v40.189a4 4 0 0 1-4 4h-31.685a4 4 0 0 1-4-4v-40.19a4 4 0 0 1 4-4z" fill="#c8cbff"/>
+            <path d="M950.772 2110.394h31.685a4 4 0 0 1 4 4v40.189a4 4 0 0 1-4 4h-31.685a4 4 0 0 1-4-4v-40.19a4 4 0 0 1 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+            <text transform="translate(951.772 2127.988)" fill="#3c3c3b">
+                <tspan font-family="Helvetica" font-size="11" font-weight="500" x=".784" y="10" textLength="28.118">Proxy</tspan>
+            </text>
+            <path d="M738.173 2108.976h31.685a4 4 0 0 1 4 4v40.19a4 4 0 0 1-4 4h-31.685a4 4 0 0 1-4-4v-40.19a4 4 0 0 1 4-4z" fill="#c8cbff"/>
+            <path d="M738.173 2108.976h31.685a4 4 0 0 1 4 4v40.19a4 4 0 0 1-4 4h-31.685a4 4 0 0 1-4-4v-40.19a4 4 0 0 1 4-4z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
+            <text transform="translate(739.173 2126.57)" fill="#3c3c3b">
+                <tspan font-family="Helvetica" font-size="11" font-weight="500" x=".784" y="10" textLength="28.118">Proxy</tspan>
+            </text>
+        </g>
+        <g class="fragment">
+            <path marker-end="url(#j)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M946.772 2134.488l-44.024-44.023" id="a"/>
+            <g id="c">
+                <path marker-end="url(#j)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M946.772 2134.488l-41.632-13.877"/>
+            </g>
+            <g id="d">
+                <path marker-end="url(#j)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M946.772 2134.488l-41.797 16.254"/>
+            </g>
+            <g id="e">
+                <path marker-end="url(#j)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M946.772 2134.488l-44.401 49.335"/>
+            </g>
+            <g id="f">
+                <path marker-end="url(#j)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M773.858 2135.905l43.926-42.705"/>
+            </g>
+            <g id="g">
+                <path marker-end="url(#j)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M773.858 2135.905l41.556-12.697"/>
+            </g>
+            <g id="h">
+                <path marker-end="url(#j)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M773.858 2135.905l41.885 17.453"/>
+            </g>
+            <g id="i">
+                <path marker-end="url(#j)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="M773.858 2135.905l44.492 50.672"/>
+            </g>
         </g>
     </g>
 </svg>
