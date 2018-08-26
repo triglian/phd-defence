@@ -164,14 +164,14 @@
     var steps = [
       {
         _submissionsNum: 0,
-        _workingViewersNum: 70,
-        _focusedViewersNum: 25,
+        _workingViewersNum: 40,
+        _focusedViewersNum: 65,
         _idleViewersNum: 5
       },
       {
         _submissionsNum: 0,
-        _workingViewersNum: 80,
-        _focusedViewersNum: 15,
+        _workingViewersNum: 60,
+        _focusedViewersNum: 35,
         _idleViewersNum: 5
       },
       {
@@ -264,6 +264,9 @@
 
       if(currentStep < steps.length){
         exerciseProgressDemoTId = setTimeout(step, Math.floor(Math.random() * Math.floor(2000)))
+      }else{
+        currentStep = 0;
+        exerciseProgressDemoTId = setTimeout(step, 5000);
       }
     }
     step();     
