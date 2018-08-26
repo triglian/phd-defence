@@ -24,6 +24,7 @@
     <link rel="import" href="bower_components/iron-icons/image-icons.html">
     <link rel="import" href="bower_components/iron-icons/av-icons.html">
     <link rel="import" href="bower_components/iron-icons/communication-icons.html">
+    <link rel="import" href="bower_components/asq-exercise/asq-exercise-progress-demo.html">
 
     <!-- 
     <link rel="import" href="http://asq.inf.usi.ch/element-docs/paper-icon-button/paper-icon-button.html">
@@ -350,7 +351,7 @@
           </aside>
         </section>
 
-        <section id="cloud" data-background-image="img/ash-1372-auditorium.jpg" data-autoslide="1000">
+        <section id="cloud" data-background-image="img/scale-auditorium.jpg" data-autoslide="1000">
           <div class="fragment" data-autoslide="0">
             <div class="challenge-icon-container cyan" style="margin: 0 auto;"><iron-icon class="challenge-icon big" icon="icons:cloud-circle"></iron-icon></div>
             <h1 class="white" data-autoslide="0" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.6); font-size: 4em;">Scalability &amp; availability</h1>
@@ -1703,7 +1704,28 @@
       </section>
 
       <section id="exercise-progress">
-        <asq-exercise-progress></asq-exercise-progress>
+        <asq-exercise-progress-demo></asq-exercise-progress-demo>
+
+        <table class="eye-tracker-combine-tbl" style="margin-top: 100px;">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Submitted</th>
+              <th>Working</th>
+              <th>Focused</th>
+              <th>Idle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>User</td>
+              <td><div class="tile" style="background: #0f9d58;"></div></td>
+              <td><div class="tile" style="background: #ff9800;"></div></td>
+              <td><div class="tile" style="background: #90caf9;"></div></td>
+              <td><div class="tile" style="background: #9e9e9e;"></div></td>
+            </tr>
+          </tbody>
+        </table>
       </section>
 
       <section id="dataset-2"  data-background-color="#FFFFFF">

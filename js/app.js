@@ -1,4 +1,5 @@
 (function(){
+
   //and inject svgs
   var mySVGsToInject = document.querySelectorAll('img.svg');
   SVGInjector(mySVGsToInject);
@@ -12,7 +13,7 @@
 
   Reveal.addEventListener( 'ready', function( event ) {
     document.body.classList.add("on-"+event.currentSlide.id);
-    resizeAceEditors();
+    resizeAceEditors();    
   });
 
   Reveal.addEventListener( 'slidechanged', function( event ) {
@@ -21,6 +22,12 @@
     }
     if (event.currentSlide) {
       document.body.classList.add("on-"+event.currentSlide.id);
+    }
+
+    if(event.currentSlide.id == 'exercise-progress'){
+      initExerciseProgressDemo();
+    }else{
+      stopExerciseProgressDemo();
     }
   });
 
@@ -146,4 +153,124 @@
       }
     })
   }
+
+  var exerciseProgressDemoTId;
+  function initExerciseProgressDemo(){
+    var eP = document.querySelector("#exercise-progress asq-exercise-progress-demo");
+    if(!eP) return;
+    
+    eP._connectedViewersNum = 100
+
+    var steps = [
+      {
+        _submissionsNum: 0,
+        _workingViewersNum: 70,
+        _focusedViewersNum: 25,
+        _idleViewersNum: 5
+      },
+      {
+        _submissionsNum: 0,
+        _workingViewersNum: 80,
+        _focusedViewersNum: 15,
+        _idleViewersNum: 5
+      },
+      {
+        _submissionsNum: 2,
+        _workingViewersNum: 85,
+        _focusedViewersNum: 13,
+        _idleViewersNum: 5
+      },
+      {
+        _submissionsNum: 14,
+        _workingViewersNum: 70,
+        _focusedViewersNum: 13,
+        _idleViewersNum: 3
+      },
+      {
+        _submissionsNum: 18,
+        _workingViewersNum: 60,
+        _focusedViewersNum: 18,
+        _idleViewersNum: 4
+      },
+      {
+        _submissionsNum: 32,
+        _workingViewersNum: 40,
+        _focusedViewersNum: 25,
+        _idleViewersNum: 13
+      },
+      {
+        _submissionsNum: 38,
+        _workingViewersNum: 45,
+        _focusedViewersNum: 10,
+        _idleViewersNum: 7
+      },
+      {
+        _submissionsNum: 54,
+        _workingViewersNum: 32,
+        _focusedViewersNum: 20,
+        _idleViewersNum: 4
+      },
+      {
+        _submissionsNum: 61,
+        _workingViewersNum: 20,
+        _focusedViewersNum: 14,
+        _idleViewersNum: 5
+      },
+      {
+        _submissionsNum: 71,
+        _workingViewersNum: 10,
+        _focusedViewersNum: 10,
+        _idleViewersNum: 9
+      },
+      {
+        _submissionsNum: 80,
+        _workingViewersNum: 2,
+        _focusedViewersNum: 10,
+        _idleViewersNum: 8
+      },
+      {
+        _submissionsNum: 82,
+        _workingViewersNum: 0,
+        _focusedViewersNum: 5,
+        _idleViewersNum: 13
+      },
+      {
+        _submissionsNum: 82,
+        _workingViewersNum: 0,
+        _focusedViewersNum: 3,
+        _idleViewersNum: 15
+      },
+      {
+        _submissionsNum: 82,
+        _workingViewersNum: 0,
+        _focusedViewersNum: 2,
+        _idleViewersNum: 16
+      }
+    ]
+
+    var currentStep = 0;
+
+    function step(){
+
+      if(! eP) return;
+
+      eP._submissionsNum = steps[currentStep]._submissionsNum;
+      eP._workingViewersNum = steps[currentStep]._workingViewersNum;
+      eP._focusedViewersNum = steps[currentStep]._focusedViewersNum;
+      eP._idleViewersNum = steps[currentStep]._idleViewersNum;
+
+
+      currentStep++;
+
+      if(currentStep < steps.length){
+        exerciseProgressDemoTId = setTimeout(step, Math.floor(Math.random() * Math.floor(2000)))
+      }
+    }
+    step();     
+  }
+
+  function  stopExerciseProgressDemo(){
+    clearTimeout(exerciseProgressDemoTId);
+  }
+  
 })();

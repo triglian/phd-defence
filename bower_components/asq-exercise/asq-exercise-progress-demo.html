@@ -1,0 +1,271 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../asq-base/asq-base.html">
+<link rel="import" href="../paper-progress/paper-progress.html">
+<link rel="import" href="asq-exercise-progress-style.html">
+
+<!--
+### ASQ Exercise Progress:
+The ASQ exercise progress bar consists of a progress bar and a progress counter
+(submissions/connected users).
+
+The progress bar shows the cumulative viewers' activity states for the corresponding
+exercise. Each user can be in one of the following activitystates: submitted, working,
+focused or idle.
+Those states are represented in 4 different colors as partial progress bars in the
+order they were mentioned.
+
+To display the gradient of change for a certain activity state (e.g submitted),
+we use a slightly bigger progress bar of the same style in the background of the main
+progress bar. The faster the animation from left to right, the more activity occurred for
+a given state in the last 5 seconds.
+
+The presenter can choose if they want instant updates for the progress bar or
+if the progress bar should update simultaneously with the momentum effect
+by using the `directUpdate` property.
+
+
+### Styling progress bar (in presenter's view):
+
+The followings are available for styling (presenter's view):
+
+Custom property                                    | Description                                 | Default
+---------------------------------------------------|---------------------------------------------|----------
+--asq-exercise-progress-height                     | The height of the progress bar              | 4px
+--asq-exercise-progress-submitted-color            | The color of the submission bar.            | --google-green-500
+--asq-exercise-progress-working-color              | The color of the working users bar.         | --paper-orange-500
+--asq-exercise-progress-focused-color              | The color of the focused users bar.         | --paper-blue-200
+--asq-exercise-progress-idle-color                 | The color of the idle users bar.            | --google-grey-500
+--asq-exercise-progressbar-background-color        | The color of the empty progress bar.        | --google-grey-300
+--asq-exercise-progress-num-mixin                  | The mixin to style the progress numbers of the progress bar. | { }
+
+
+Examples:
+
+- To change the submitted progress bar color:
+      asq-exercise {
+        --asq-exercise-progress-submitted-color: #e91e63;
+      }
+
+- To change the style of the progress numbers:
+      asq-exercise {
+        --asq-exercise-progress-progress-num-mixin: {
+          font-size: 20px;
+          padding: 2px;
+        };
+      }
+
+
+@element asq-exercise-progress
+@demo demo/asq-exercise-progress-demo.html
+@group ASQ Elements
+@blurb Element Container the progress bar.
+@homepage http://github.com/ASQ-USI-Elements/asq-exercise/asq-exercise-progress.html
+
+-->
+
+
+<dom-module id="asq-exercise-progress-demo">
+  <template>
+    <style include="iron-flex asq-exercise-progress-style">
+      :host {
+        display: flex;
+        position: relative;
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+        margin: 10px 0 5px 0;
+        font-size: 14px;
+      }
+    </style>
+    <div class="progress-bar-container background-progress">
+      <paper-progress id="background-submitted-progress" indeterminate style$=[[_calcFlex(_submissionsNum)]]></paper-progress>
+      <paper-progress id="background-working-progress" indeterminate style$=[[_calcFlex(_workingViewersNum)]]></paper-progress>
+      <paper-progress id="background-focused-progress" indeterminate style$=[[_calcFlex(_focusedViewersNum)]]></paper-progress>
+      <paper-progress id="background-idle-progress" indeterminate style$=[[_calcFlex(_idleViewersNum)]]></paper-progress>
+    </div>
+
+    <div class="progress-bar-container foreground-progress">
+      <paper-progress id="submitted-progress" value="100" style$=[[_calcFlex(_submissionsNum)]]></paper-progress>
+      <paper-progress id="working-progress" value="100" style$=[[_calcFlex(_workingViewersNum)]]></paper-progress>
+      <paper-progress id="focused-progress" value="100" style$=[[_calcFlex(_focusedViewersNum)]]></paper-progress>
+      <paper-progress id="idle-progress" value="100" style$=[[_calcFlex(_idleViewersNum)]]></paper-progress>
+    </div>
+    <div id="progress-num">
+      <span>[[_submissionsNum]]/[[_connectedViewersNum]]</span>
+    </div>
+  </template>
+
+  <script>
+
+  Polymer({
+
+    is: 'asq-exercise-progress-demo',
+
+    behaviors: [ASQ.asqElementBehavior],
+
+    properties: {
+      exUid: {
+        type: String,
+        value: '',
+      },
+      /**
+      * Object that contains viewers with their activity information.
+      *
+      * @attribute _viewers
+      * @type Object
+      * @default {}
+      */
+      _viewers: {
+        type: Object,
+        value: function() {return {};},
+      },
+      /**
+      * Object that contains the submissions.
+      *
+      * @attribute _submissions
+      * @type Object
+      * @default {}
+      */
+      _submissions: {
+        type: Object,
+        value: function() {return {};},
+      },
+
+      /**
+      * Counts the number of currently connected viewers.
+      *
+      * @attribute _connectedViewersNum
+      * @type Number
+      * @default 0
+      */
+      _connectedViewersNum: {
+        type: Number,
+        value: 0,
+      },
+
+      /**
+      * Counts the number of submissions, inherited from asq-exercise.
+      *
+      * @attribute _submissionsNum
+      * @type Number
+      * @default 0
+      */
+      _submissionsNum: {
+        type: Number,
+        value: 0,
+      },
+
+      /**
+      * Counts the number of submissions during a given time interval
+      * by the _visualizeChange function.
+      *
+      * @attribute _submissionCounter
+      * @type Number
+      * @default 0
+      */
+      _submissionCounter: {
+        type: Number,
+        value: 0,
+      },
+
+      /**
+      * Counts the number of working users, calculated with the function given
+      * in its computed property.
+      * @attribute _workingViewersNum
+      * @type Number
+      * @default 0
+      */
+      _workingViewersNum: {
+        type: Number,
+        value: 0,
+      },
+
+      /**
+      * Counts the number of working users during a given time interval
+      * by the _visualizeChange function.
+      *
+      * @attribute _workingCounter
+      * @type Number
+      * @default 0
+      */
+      _workingCounter: {
+        type: Number,
+        value: 0,
+      },
+
+      /**
+      * Counts the number of focused users, calculated with the function given
+      * in its computed property.
+      * @attribute _focusedViewersNum
+      * @type Number
+      * @default 0
+      */
+      _focusedViewersNum: {
+        type: Number,
+        value: 0,
+      },
+
+       /**
+       * Counts the number of focused users during a given time interval
+       * by the _visualizeChange function.
+       *
+       * @attribute _focusedCounter
+       * @type Number
+       * @default 0
+       */
+      _focusedCounter: {
+        type: Number,
+        value: 0,
+      },
+
+       /**
+       * Counts the number of idle users, calculated with the function given
+       * in its computed property.
+       *
+       * @attribute _focusedViewersNum
+       * @type Number
+       * @default 0
+       */
+      _idleViewersNum: {
+        type: Number,
+        value: 0,
+      },
+
+       /**
+       * Counts the number of idle users during a given time interval
+       * by the _visualizeChange function.
+       *
+       * @attribute _focusedCounter
+       * @type Number
+       * @default 0
+       */
+      _idleCounter: {
+        type: Number,
+        value: 0,
+      },
+
+     /**
+      * Flag to trigger the computed function at the right moment.
+      *
+      * @attribute _update
+      * @type Boolean
+      * @default false
+      */
+      _update: {
+        type: Boolean,
+        value: true,
+      },
+
+      directUpdate: {
+        type: Boolean,
+      },
+    },
+
+    _calcFlex: function(num) {
+      return 'flex:' + num + ';';
+    },
+
+  });
+
+  </script>
+
+</dom-module>
