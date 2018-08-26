@@ -813,14 +813,8 @@
           </aside>
         </section> -->
 
-         <section id="proxy-diagram-temp">
-           <img src="svg/proxy.svg" alt="" class="svg">
-           <aside class="notes">
-             One interesting implementation detail that decouples the core from plugins and can isolate runnning plugins in case of failure is the proxy object. A proxy object is a single façade interface between plugin modules and the host system. It exposes the core API to plugins. Each plugin gets instantiated with one from the core.
-           </aside>
-         </section>
-
          <section id="proxy-diagram">
+           <h2 class="pastel-blue"> Serverside architecture</h2>
            <img src="svg/proxy_cleaned.svg" alt="" class="svg">
            <aside class="notes">
              One interesting implementation detail that decouples the core from plugins and can isolate runnning plugins in case of failure is the proxy object. A proxy object is a single façade interface between plugin modules and the host system. It exposes the core API to plugins. Each plugin gets instantiated with one from the core.
